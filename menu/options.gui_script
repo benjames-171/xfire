@@ -42,7 +42,7 @@ end
 
 function update(self, dt)
 	if data.state == data.STATE_OPTIONS then
-		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 32, self.arrowpos[self.handpos].y + 1, 0)
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 10, self.arrowpos[self.handpos].y, 0)
 		gui.set_position(gui.get_node("arrow"), pos)
 	end
 end

@@ -1,7 +1,7 @@
-font: "/assets/font/PressStart2P-vaV7.ttf"
+font: "/assets/font/BMjapan.TTF"
 material: "/builtins/fonts/font.material"
-size: 24
-antialias: 0
+size: 12
+antialias: 1
 alpha: 1.0
 outline_alpha: 1.0
 outline_width: 0.0

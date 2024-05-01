@@ -17,7 +17,7 @@ M.SCR_H = 0
 M.CANV_W = 0
 M.CANV_H = 0
 M.TILE_SIZE = 16
-M.PIXEL_SIZE = 4
+M.PIXEL_SIZE = 1
 M.MAX_LEVELS = 10
 
 M.level = 1

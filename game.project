@@ -3,8 +3,8 @@ main_collection = /main/main.collectionc
 render = /main/custom.renderc
 
 [display]
-width = 1024
-height = 576
+width = 256
+height = 224
 
 [graphics]
 default_texture_min_filter = nearest

@@ -3,10 +3,6 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
-fonts {
-  name: "large"
-  font: "/assets/font/large.font"
-}
 textures {
   name: "16"
   texture: "/game/core/game.tilesource"
@@ -23,8 +19,8 @@ background_color {
 }
 nodes {
   position {
-    x: 512.0
-    y: 288.0
+    x: 128.0
+    y: 114.0
     z: 0.0
     w: 1.0
   }
@@ -93,8 +89,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 4.0
-    y: 4.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
@@ -141,7 +137,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 150.0
+    y: 80.0
     z: 0.0
     w: 1.0
   }
@@ -158,8 +154,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 40.0
+    x: 200.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -172,7 +168,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "SETTINGS"
-  font: "large"
+  font: "main"
   id: "options"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -207,8 +203,8 @@ nodes {
 }
 nodes {
   position {
-    x: -150.0
-    y: 62.0
+    x: -72.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -225,8 +221,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -274,7 +270,7 @@ nodes {
 }
 nodes {
   position {
-    x: 300.0
+    x: 150.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -292,8 +288,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -341,8 +337,8 @@ nodes {
 }
 nodes {
   position {
-    x: -150.0
-    y: 12.0
+    x: -72.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -359,8 +355,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -408,7 +404,7 @@ nodes {
 }
 nodes {
   position {
-    x: 300.0
+    x: 150.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -426,8 +422,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -475,8 +471,8 @@ nodes {
 }
 nodes {
   position {
-    x: -150.0
-    y: -69.0
+    x: -72.0
+    y: -48.0
     z: 0.0
     w: 1.0
   }
@@ -493,8 +489,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }
@@ -542,8 +538,8 @@ nodes {
 }
 nodes {
   position {
-    x: -150.0
-    y: -119.0
+    x: -72.0
+    y: -80.0
     z: 0.0
     w: 1.0
   }
@@ -560,8 +556,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 50.0
+    x: 150.0
+    y: 32.0
     z: 0.0
     w: 1.0
   }

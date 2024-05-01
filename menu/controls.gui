@@ -3,10 +3,6 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
-fonts {
-  name: "large"
-  font: "/assets/font/large.font"
-}
 background_color {
   x: 0.0
   y: 0.0
@@ -15,8 +11,8 @@ background_color {
 }
 nodes {
   position {
-    x: 512.0
-    y: 288.0
+    x: 128.0
+    y: 114.0
     z: 0.0
     w: 1.0
   }
@@ -67,11 +63,14 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
 }
 nodes {
   position {
     x: 0.0
-    y: 150.0
+    y: 80.0
     z: 0.0
     w: 1.0
   }
@@ -88,8 +87,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 250.0
-    y: 50.0
+    x: 200.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -102,7 +101,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "CONTROLS"
-  font: "large"
+  font: "main"
   id: "controls"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -131,6 +130,9 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
 }
 nodes {
   position {
@@ -152,8 +154,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 200.0
+    x: 100.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -195,9 +197,12 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 1.8
+  text_leading: 1.5
   text_tracking: 0.0
   custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
 }
 nodes {
   position {
@@ -219,8 +224,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 300.0
-    y: 200.0
+    x: 100.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -262,14 +267,17 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 1.8
+  text_leading: 1.5
   text_tracking: 0.0
   custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
 }
 nodes {
   position {
     x: 0.0
-    y: -150.0
+    y: -80.0
     z: 0.0
     w: 1.0
   }
@@ -286,8 +294,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 620.0
-    y: 50.0
+    x: 200.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -301,7 +309,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "GAMEPAD COMPATIBLE"
   font: "main"
-  id: "controls1"
+  id: "gamepad"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
@@ -329,6 +337,9 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
