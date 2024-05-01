@@ -1,0 +1,107 @@
+local data = require "main.data"
+local ui = require "main.ui"
+
+local MENU_LEN = 4
+
+local function settext(self)
+	local text
+
+	data.save.sfx = data.clamp(data.save.sfx, 0, 10)
+	data.save.music = data.clamp(data.save.music, 0, 10)
+
+	if data.save.sfx > 0 then text = data.save.sfx
+	else text = "OFF"
+	end
+	gui.set_text(gui.get_node("sound"), text)
+
+	if data.save.music > 0 then text = data.save.music
+	else text = "OFF"
+	end
+	gui.set_text(gui.get_node("music"), text)
+end
+
+function init(self)
+	self.handpos = 1
+	self.arrowpos = {
+		gui.get_position(gui.get_node("sound1")),
+		gui.get_position(gui.get_node("music1")),
+		gui.get_position(gui.get_node("credits")),
+		gui.get_position(gui.get_node("back")),
+	}
+
+	self.node = gui.get_node("container")
+	settext(self)
+	ui.init(self.node)
+end
+
+local function show(self)
+	ui.show(self.node)
+	self.handpos = MENU_LEN
+	data.state = data.STATE_OPTIONS
+end
+
+function update(self, dt)
+	if data.state == data.STATE_OPTIONS then
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 36, self.arrowpos[self.handpos].y, 0)
+		gui.set_position(gui.get_node("arrow"), pos)
+	end
+end
+
+local function close(self)
+	ui.hide(self.node)
+	msg.post("#menu", "show")
+	data.sound("menu-back")
+	data.savegamefile()
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("up") and action.pressed then
+		self.handpos = self.handpos - 1
+		self.handpos = data.wrap(self.handpos, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("down") and action.pressed then
+		self.handpos = self.handpos + 1
+		self.handpos = data.wrap(self.handpos, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("left") and action.pressed then
+		if self.handpos == 1 then
+			data.save.sfx = data.save.sfx - 1
+		elseif self.handpos == 2 then
+			data.save.music = data.save.music - 1
+			sound.set_gain("main:/sound#music-menu", data.save.music / 10)
+		else
+			return
+		end
+		data.sound("menu-move")
+		settext(self)
+	elseif action_id == hash("right") and action.pressed then
+		if self.handpos == 1 then
+			data.save.sfx = data.save.sfx + 1
+		elseif self.handpos == 2 then
+			data.save.music = data.save.music + 1
+			sound.set_gain("main:/sound#music-menu", data.save.music / 10)
+		else
+			return
+		end
+		data.sound("menu-move")
+		settext(self)
+	elseif action_id == hash("action") and action.pressed then
+		if self.handpos == 8 then
+			ui.hide(self.node)
+			msg.post("#credits", "show")
+			data.sound("menu-select")
+		elseif self.handpos == 9 then
+			close(self)
+		end
+	elseif action_id == hash("exit") and action.pressed then
+		close(self)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("show") then
+		show(self)
+	elseif message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	end
+end
