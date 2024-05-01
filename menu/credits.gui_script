@@ -10,6 +10,7 @@ local function input(self, action_id, action)
 	if (action_id == hash("action") or action_id == hash("exit")) and action.pressed then
 		ui.hide(self.node)
 		msg.post("#options", "show", {})
+		data.sound("menu-back")
 	end
 end
 

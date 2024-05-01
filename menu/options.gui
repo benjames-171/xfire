@@ -116,7 +116,7 @@ nodes {
   id: "arrow"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_W
+  pivot: PIVOT_CENTER
   adjust_mode: ADJUST_MODE_STRETCH
   parent: "container"
   layer: ""

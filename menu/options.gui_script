@@ -42,7 +42,7 @@ end
 
 function update(self, dt)
 	if data.state == data.STATE_OPTIONS then
-		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 36, self.arrowpos[self.handpos].y, 0)
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 32, self.arrowpos[self.handpos].y + 1, 0)
 		gui.set_position(gui.get_node("arrow"), pos)
 	end
 end
@@ -86,11 +86,11 @@ local function input(self, action_id, action)
 		data.sound("menu-move")
 		settext(self)
 	elseif action_id == hash("action") and action.pressed then
-		if self.handpos == 8 then
+		if self.handpos == 3 then
 			ui.hide(self.node)
 			msg.post("#credits", "show")
 			data.sound("menu-select")
-		elseif self.handpos == 9 then
+		elseif self.handpos == 4 then
 			close(self)
 		end
 	elseif action_id == hash("exit") and action.pressed then

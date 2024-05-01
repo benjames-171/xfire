@@ -85,9 +85,9 @@ end
 function M.sound(id)
 	if M.save.sfx > 0 then
 		local t = M.gate[id] or 0
-		t = M.clock - t
+		t = os.clock() - t
 		if t > 0.05 then
-			M.gate[id] = M.clock
+			M.gate[id] = os.clock()
 			msg.post("main:/sound", "play", {id = id})
 		end
 	end

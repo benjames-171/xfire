@@ -1,6 +1,8 @@
 local data = require "main.data"
 local ui = require "main.ui"
 
+local MENU_LEN = 3
+
 function init(self)
 	self.handpos = 1
 	self.arrowpos = {
@@ -41,17 +43,14 @@ end
 
 local function input(self, action_id, action)
 	if action_id == hash("up") and action.pressed then
-		self.handpos = self.handpos - 1
-		if self.handpos < 1 then
-			self.handpos = 3
-		end
+		self.handpos = data.wrap(self.handpos - 1, 1, MENU_LEN)
+		data.sound("menu-move")
 	elseif action_id == hash("down") and action.pressed then
-		self.handpos = self.handpos + 1
-		if self.handpos > 3 then
-			self.handpos = 1
-		end
+		self.handpos = data.wrap(self.handpos + 1, 1, MENU_LEN)
+		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		ui.hide(self.node)
+		data.sound("menu-select")
 		if self.handpos == 1 then
 			startgame(self)
 		elseif self.handpos == 2 then
