@@ -24,15 +24,6 @@ show_fullscreen_button = 0
 [spine]
 max_count = 0
 
-[model]
-max_count = 0
-
-[mesh]
-max_count = 0
-
-[label]
-max_count = 0
-
 [input]
 game_binding = /main/game.input_bindingc
 

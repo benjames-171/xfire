@@ -1,5 +1,7 @@
 local data = require "main.data"
 
+local MENU_LEN = 2
+
 function init(self)
 	self.node = gui.get_node("container")
 	gui.set_enabled(self.node, false)
@@ -19,6 +21,7 @@ function update(self, dt)
 end
 
 local function close(self)
+	data.sound("menu-back")
 	gui.set_enabled(self.node, false)
 	data.state = data.STATE_PLAYING
 	msg.post("main:/handler", "set_time_step", {factor = 1, mode = 0})
@@ -26,11 +29,11 @@ end
 
 local function input(self, action_id, action)
 	if action_id == hash("up") and action.pressed then
-		self.handpos = self.handpos - 1
-		if self.handpos < 1 then self.handpos = 2 end
+		self.handpos = data.wrap(self.handpos - 1, 1, MENU_LEN)
+		data.sound("menu-move")
 	elseif action_id == hash("down") and action.pressed then
-		self.handpos = self.handpos + 1
-		if self.handpos > 2 then self.handpos = 1 end
+		self.handpos = data.wrap(self.handpos + 1, 1, MENU_LEN)
+		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		if self.handpos == 1 then
 			close(self)
