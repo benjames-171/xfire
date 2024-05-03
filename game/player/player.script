@@ -1,7 +1,9 @@
 local data = require "main.data"
 
 function init(self)
+	self.move = vmath.vector3()
 	msg.post(".", "acquire_input_focus")
+	data.cursor = vmath.vector3(32,32,0)
 end
 
 local function pauseinput(time)
@@ -13,22 +15,39 @@ local function quit2menu(self)
 	msg.post("main:/sound", "stop_sound")
 	msg.post("main:/handler", "show_menu")
 end
+
+local function move(self)
+	data.cursor = data.cursor + self.move
+	data.cursor.x = data.clamp(data.cursor.x, 1, 64)
+	data.cursor.y = data.clamp(data.cursor.y, 1, 64)
+	go.set_position(data.cursor * data.TILE_SIZE)
+	self.move = vmath.vector3()
+end
+
 function update(self, dt)
 	if data.state == data.STATE_PLAYING then
+		move(self)
 	end
 end
 
 local function input_playing(self, action_id, action)
+	if not action.pressed then return
+	end
+
 	if action_id == hash("left") then
-
+		self.move.x = -1
 	elseif action_id == hash("right") then
+		self.move.x = 1
+	elseif action_id == hash("up") then
+		self.move.y = 1
+	elseif action_id == hash("down") then
+		self.move.y = -1
+	elseif action_id == hash("action") then
 
-	elseif action_id == hash("action") and action.pressed then
-
-	elseif action_id == hash("exit") and action.pressed then
+	elseif action_id == hash("exit") then
 		msg.post("view#pause", "show")
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		clear(self)
+
 	end
 end
 

@@ -77,8 +77,8 @@ nodes {
 }
 nodes {
   position {
-    x: 68.0
-    y: 16.0
+    x: 107.0
+    y: 19.0
     z: 0.0
     w: 1.0
   }
@@ -615,8 +615,8 @@ nodes {
 }
 nodes {
   position {
-    x: 68.0
-    y: 6.0
+    x: 107.0
+    y: 11.0
     z: 0.0
     w: 1.0
   }
@@ -985,8 +985,8 @@ nodes {
 }
 nodes {
   position {
-    x: 12.0
-    y: 21.0
+    x: 40.0
+    y: 7.0
     z: 0.0
     w: 1.0
   }
@@ -1016,7 +1016,8 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "MECH"
+  text: "MECH\n"
+  "HP 60%"
   font: "small"
   id: "unit"
   xanchor: XANCHOR_NONE
@@ -1051,8 +1052,8 @@ nodes {
 }
 nodes {
   position {
-    x: 20.0
-    y: -10.0
+    x: -5.0
+    y: 8.0
     z: 0.0
     w: 1.0
   }
@@ -1110,8 +1111,8 @@ nodes {
 }
 nodes {
   position {
-    x: 8.0
-    y: -10.0
+    x: -17.0
+    y: 8.0
     z: 0.0
     w: 1.0
   }

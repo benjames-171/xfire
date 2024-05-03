@@ -18,7 +18,6 @@ function init(self)
 	data.SCR_H = render.get_height()
 	data.CANV_W = data.SCR_W / data.PIXEL_SIZE
 	data.CANV_H = data.SCR_H / data.PIXEL_SIZE
-	data.offset = vmath.vector3(data.CANV_W / 2, data.CANV_H / 2, 0)
 end
 
 function update(self)

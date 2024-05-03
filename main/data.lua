@@ -22,10 +22,10 @@ M.MAX_LEVELS = 10
 M.level = 1
 M.time = 0
 M.currentsong = nil
-M.offset = vmath.vector3()
-M.player = vmath.vector3()
+M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()
-M.bounds = vmath.vector3()
+M.offset = vmath.vector3(8,7,0)
+M.bounds = vmath.vector4(1,-1,64,64)
 M.gate = {}
 
 M.APP_NAME = "unnamed"
