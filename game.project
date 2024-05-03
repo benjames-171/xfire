@@ -21,13 +21,14 @@ show_console_banner = 0
 show_made_with_defold = 0
 show_fullscreen_button = 0
 
+[project]
+version = v1.0
+dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
+dependencies#1 = https://github.com/defold/lua-language-server/releases/download/v0.0.5/release.zip
+
 [spine]
 max_count = 0
 
 [input]
 game_binding = /main/game.input_bindingc
-
-[project]
-dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
-dependencies#1 = https://github.com/defold/lua-language-server/releases/download/v0.0.5/release.zip
 

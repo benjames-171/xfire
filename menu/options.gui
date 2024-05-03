@@ -203,8 +203,8 @@ nodes {
 }
 nodes {
   position {
-    x: -72.0
-    y: 32.0
+    x: -57.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -221,8 +221,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 100.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -270,7 +270,7 @@ nodes {
 }
 nodes {
   position {
-    x: 150.0
+    x: 120.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -288,8 +288,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 32.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -337,7 +337,7 @@ nodes {
 }
 nodes {
   position {
-    x: -72.0
+    x: -57.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -355,8 +355,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 100.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -404,7 +404,7 @@ nodes {
 }
 nodes {
   position {
-    x: 150.0
+    x: 120.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -422,8 +422,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 32.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -471,8 +471,8 @@ nodes {
 }
 nodes {
   position {
-    x: -72.0
-    y: -48.0
+    x: -57.0
+    y: -32.0
     z: 0.0
     w: 1.0
   }
@@ -489,8 +489,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 100.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }
@@ -502,7 +502,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "VIEW CREDITS"
+  text: "CREDITS"
   font: "main"
   id: "credits"
   xanchor: XANCHOR_NONE
@@ -538,7 +538,7 @@ nodes {
 }
 nodes {
   position {
-    x: -72.0
+    x: -57.0
     y: -80.0
     z: 0.0
     w: 1.0
@@ -556,8 +556,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 150.0
-    y: 32.0
+    x: 100.0
+    y: 16.0
     z: 0.0
     w: 1.0
   }

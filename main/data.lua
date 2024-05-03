@@ -33,8 +33,8 @@ M.APP_NAME = "unnamed"
 M.FILE_NAME = "unnamed.sav"
 
 M.save = {
-	sfx = 7,
-	music = 7,
+	sfx = 8,
+	music = 8,
 }
 
 function M.clamp(v, min, max)
