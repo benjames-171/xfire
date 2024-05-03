@@ -9,7 +9,7 @@ textures {
 }
 textures {
   name: "game"
-  texture: "/game/core/game.tilesource"
+  texture: "/game/core/16.tilesource"
 }
 background_color {
   x: 0.0

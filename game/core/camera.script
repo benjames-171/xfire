@@ -4,7 +4,7 @@ local SPEED = 0.15
 
 function init(self)
 	msg.post("#camera", "acquire_camera_focus")
-	self.target = vmath.vector3()
+	self.target = vmath.vector3(120,200,0)
 	self.pos = go.get_world_position()
 end
 

@@ -21,7 +21,7 @@ embedded_components {
   "blend_mode: BLEND_MODE_ALPHA\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/game/core/game.tilesource\"\n"
+  "  texture: \"/game/core/16.tilesource\"\n"
   "}\n"
   ""
   position {
