@@ -216,7 +216,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 30.0
+    x: 24.0
     y: 10.0
     z: 0.0
     w: 1.0
@@ -399,8 +399,8 @@ nodes {
 }
 nodes {
   position {
-    x: -27.0
-    y: 5.0
+    x: -36.0
+    y: 1.0
     z: 0.0
     w: 1.0
   }
@@ -418,7 +418,7 @@ nodes {
   }
   size {
     x: 20.0
-    y: 6.0
+    y: 8.0
     z: 0.0
     w: 1.0
   }
@@ -435,7 +435,7 @@ nodes {
   id: "move"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -466,8 +466,8 @@ nodes {
 }
 nodes {
   position {
-    x: 16.0
-    y: 0.0
+    x: 25.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -525,8 +525,8 @@ nodes {
 }
 nodes {
   position {
-    x: 22.0
-    y: 0.0
+    x: 31.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -584,8 +584,8 @@ nodes {
 }
 nodes {
   position {
-    x: 28.0
-    y: 0.0
+    x: 37.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -643,8 +643,8 @@ nodes {
 }
 nodes {
   position {
-    x: 34.0
-    y: 0.0
+    x: 43.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -702,8 +702,8 @@ nodes {
 }
 nodes {
   position {
-    x: 42.0
-    y: 0.0
+    x: 51.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -761,8 +761,8 @@ nodes {
 }
 nodes {
   position {
-    x: 48.0
-    y: 0.0
+    x: 57.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -820,8 +820,8 @@ nodes {
 }
 nodes {
   position {
-    x: 54.0
-    y: 0.0
+    x: 63.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -879,8 +879,8 @@ nodes {
 }
 nodes {
   position {
-    x: 60.0
-    y: 0.0
+    x: 69.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -938,8 +938,8 @@ nodes {
 }
 nodes {
   position {
-    x: -27.0
-    y: -6.0
+    x: -36.0
+    y: -10.0
     z: 0.0
     w: 1.0
   }
@@ -957,7 +957,7 @@ nodes {
   }
   size {
     x: 20.0
-    y: 6.0
+    y: 8.0
     z: 0.0
     w: 1.0
   }
@@ -974,7 +974,7 @@ nodes {
   id: "fire"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -1005,8 +1005,8 @@ nodes {
 }
 nodes {
   position {
-    x: 16.0
-    y: 0.0
+    x: 25.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1064,8 +1064,8 @@ nodes {
 }
 nodes {
   position {
-    x: 22.0
-    y: 0.0
+    x: 31.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1123,8 +1123,8 @@ nodes {
 }
 nodes {
   position {
-    x: 28.0
-    y: 0.0
+    x: 37.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1182,8 +1182,8 @@ nodes {
 }
 nodes {
   position {
-    x: 34.0
-    y: 0.0
+    x: 43.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1241,8 +1241,8 @@ nodes {
 }
 nodes {
   position {
-    x: 42.0
-    y: 0.0
+    x: 51.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1300,8 +1300,8 @@ nodes {
 }
 nodes {
   position {
-    x: 48.0
-    y: 0.0
+    x: 57.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1359,8 +1359,8 @@ nodes {
 }
 nodes {
   position {
-    x: 54.0
-    y: 0.0
+    x: 63.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1418,8 +1418,8 @@ nodes {
 }
 nodes {
   position {
-    x: 60.0
-    y: 0.0
+    x: 69.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -1789,6 +1789,72 @@ nodes {
   alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 256.0
+    y: 32.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 512.0
+    y: 8.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: ""
+  font: "small"
+  id: "tick"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_SW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   custom_type: 0
   enabled: true
   visible: true

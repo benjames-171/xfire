@@ -25,8 +25,8 @@ function update(self, dt)
 	if data.state == data.STATE_PLAYING then
 		move(self)
 		local pos = bounds(self.pos - data.offset) * data.TILE_SIZE
-		pos.x = math.floor(pos.x)
-		pos.y = math.floor(pos.y)
+		pos.x = math.ceil(pos.x)
+		pos.y = math.ceil(pos.y)
 		go.set_position(pos)
 		data.scroll = pos
 	end

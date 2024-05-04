@@ -17,13 +17,16 @@ local function spawnunit(x, y, t)
 	unit.add(x, y, team, type, url)
 end
 
-local function parse(self)
+local function parse()
 	local sx, sy, w, h = tilemap.get_bounds("#tilemap")
 
 	for y = sy, h + sy - 1 do
 		for x = sx, w+sx-1 do
 			local t = tilemap.get_tile("#tilemap", "world", x, y)
-			if t >= 97 and t <= 120 then
+			if t == 11 then
+				tilemap.set_tile("#tilemap", "world", x, y, 0)
+				data.cursor = vmath.vector3(x, y, 0)
+			elseif t >= 97 and t <= 120 then
 				tilemap.set_tile("#tilemap", "world", x, y, 0)
 				spawnunit(x, y, t)
 			end
@@ -32,6 +35,6 @@ local function parse(self)
 end
 
 function init(self)
-	unit.deleteall()
-	parse(self)
+	unit.init()
+	parse()
 end

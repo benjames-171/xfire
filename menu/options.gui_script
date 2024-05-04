@@ -3,7 +3,7 @@ local ui = require "main.ui"
 
 local MENU_LEN = 4
 
-local function settext(self)
+local function settext()
 	local text
 
 	data.save.sfx = data.clamp(data.save.sfx, 0, 10)
@@ -30,7 +30,7 @@ function init(self)
 	}
 
 	self.node = gui.get_node("container")
-	settext(self)
+	settext()
 	ui.init(self.node)
 end
 
@@ -73,7 +73,7 @@ local function input(self, action_id, action)
 			return
 		end
 		data.sound("menu-move")
-		settext(self)
+		settext()
 	elseif action_id == hash("right") and action.pressed then
 		if self.handpos == 1 then
 			data.save.sfx = data.save.sfx + 1
@@ -84,7 +84,7 @@ local function input(self, action_id, action)
 			return
 		end
 		data.sound("menu-move")
-		settext(self)
+		settext()
 	elseif action_id == hash("action") and action.pressed then
 		if self.handpos == 3 then
 			ui.hide(self.node)

@@ -1,8 +1,23 @@
 local data = require "main.data"
 
+function init(self)
+	self.tick = gui.get_node("tick")
+end
+
 function update(self, dt)
+	if data.state ~= data.STATE_PAUSE then
+		local pos = gui.get_position(self.tick)
+		pos.x = pos.x - 1
+		gui.set_position(self.tick, pos)
+	end
 end
 
 function on_message(self, message_id, message, sender)
+	if message_id == hash("tick") then
+		gui.set_text(self.tick, message.text)
+		local pos = gui.get_position(self.tick)
+		pos.x = data.CANV_W
+		gui.set_position(self.tick, pos)
+	end
 end
 
