@@ -4,6 +4,7 @@ go.property("type", 1)
 function init(self)
 	local anim = self.team.."-"..self.type
 	sprite.play_flipbook("#sprite", anim)
+	sprite.set_hflip("#sprite", self.team == 2)
 end
 
 function update(self, dt)

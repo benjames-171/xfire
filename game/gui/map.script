@@ -1,0 +1,51 @@
+local data = require "main.data"
+local unit = require "game.unit.unit"
+
+local function setpixel(stream, index, r, g, b)
+	stream[index + 1] = r
+	stream[index + 2] = g
+	stream[index + 3] = b
+	stream[index + 4] = 0xff
+end
+
+local function generate()
+	local buff = buffer.create(data.MAP_SIZE * data.MAP_SIZE, {{name = hash("rgba"), type = buffer.VALUE_TYPE_UINT8, count = 4}})
+	local stream = buffer.get_stream(buff, hash("rgba"))
+
+	for y = 1, data.MAP_SIZE do
+		for x = 1, data.MAP_SIZE do
+			local index = ((y-1) * data.MAP_SIZE * 4) + ((x-1) * 4)
+			local t = tilemap.get_tile("/level#tilemap", "world", x, y)
+			local u = unit.find(x, y)
+
+			if u ~= nil then
+				if u.team == 1 then
+					setpixel(stream, index, 0xff,0x03,0x2b)
+				else
+					setpixel(stream, index, 0x3c,0x80,0xdb)
+				end
+			elseif data.walltile(t) then
+				setpixel(stream, index, 0x7d,0x7d,0xa3)
+			elseif t ~= 0 then
+				setpixel(stream, index, 0x2d,0x00,0x6e)
+			else
+				setpixel(stream, index, 0x00,0x00,0x00)
+			end
+		end
+	end
+
+	local resource_path = go.get("#sprite", "texture0")
+	local header = {width = data.MAP_SIZE, height = data.MAP_SIZE, type = resource.TEXTURE_TYPE_2D, format = resource.TEXTURE_FORMAT_RGBA, num_mip_maps = 1}
+	resource.set_texture(resource_path, header, buff)
+end
+
+function init(self)
+	msg.post("#sprite", "disable")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("refresh") then
+		generate()
+	end
+end
+

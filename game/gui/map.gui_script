@@ -1,0 +1,76 @@
+local data = require "main.data"
+local squad = require "main.squad"
+local button = require "main.button"
+
+local function disablenode(self, node)
+	gui.set_enabled(node, false)
+end
+
+local function show(self)
+	data.state = data.STATE_MAP
+	gui.set_enabled(self.node, true)
+	gui.animate(self.node, gui.PROP_POSITION, data.gui_in, gui.EASING_INOUTQUAD, 0.25, 0.25)
+
+	gui.set_enabled(self.nodeb, true)
+	gui.animate(self.nodeb, gui.PROP_COLOR, vmath.vector4(0,0,0,1), gui.EASING_INOUTQUAD, 0.25, 0.25)
+end
+
+local function hide(self)
+	gui.animate(self.node, gui.PROP_POSITION, data.gui_out, gui.EASING_INOUTQUAD, 0.25, 0, disablenode)
+	gui.animate(self.nodeb, gui.PROP_COLOR, vmath.vector4(0,0,0,0), gui.EASING_INOUTQUAD, 0.25, 0, disablenode)
+	sound.play("main:/sound#transition")
+end
+
+local function setwindow(self)
+	local pos = data.world2tile(data.scroll + data.offset) - vmath.vector3(32,32,0)
+	pos.z = 0
+	gui.set_position(gui.get_node("window"), (pos * 8) + vmath.vector3(-3.5,-3.5,0))
+end
+
+local function fadewindow(self, node)
+	gui.set_color(node, vmath.vector4(1,1,1,1))
+	gui.animate(node, "color.w", 0.5, gui.EASING_LINEAR, 1, 0, fadewindow)
+end
+
+function init(self)
+	self.node = gui.get_node("container")
+	self.nodeb = gui.get_node("map")
+	self.target = ""
+	gui.set_enabled(self.node, false)
+	gui.set_enabled(self.nodeb, false)
+	gui.set_color(self.nodeb, vmath.vector4(0,0,0,0))
+	gui.set_render_order(1)
+	gui.set_text(gui.get_node("team1-text"), squad.name[data.level][1])
+	gui.set_text(gui.get_node("team2-text"), squad.name[data.level][2])
+	fadewindow(self, gui.get_node("window"))
+end
+
+function update(self, dt)
+	if data.state == data.STATE_MAP then
+		button.hovercheck("cancel")
+	end
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("action") and action.pressed then
+		if gui.pick_node(gui.get_node("cancel/bg"), action.x, action.y) then
+			hide(self)
+			msg.post(self.target, "show")
+		end
+	elseif action_id == hash("exit") and action.pressed then
+		hide(self)
+		msg.post(self.target, "show")
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("show") then
+		msg.post("minimap", "refresh")
+		self.target = message.target
+		show(self)
+		setwindow(self)
+	elseif message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	end
+end
+

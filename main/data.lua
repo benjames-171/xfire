@@ -4,6 +4,7 @@ M.STATE_MENU = 1
 M.STATE_CONTROLS = 2
 M.STATE_OPTIONS = 3
 M.STATE_CREDITS = 4
+
 M.STATE_PLAYING = 5
 M.STATE_PAUSE = 6
 M.STATE_GAMEOVER = 7
@@ -17,7 +18,7 @@ M.CANV_W = 0
 M.CANV_H = 0
 M.TILE_SIZE = 16
 M.PIXEL_SIZE = 1
-M.MAX_LEVELS = 10
+M.MAP_SIZE = 64
 
 M.level = 1
 M.turn = 0
@@ -25,7 +26,7 @@ M.currentsong = nil
 M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()
 M.offset = vmath.vector3(8,7,0)
-M.bounds = vmath.vector4(0,-2,64,64)
+M.bounds = vmath.vector4(0, -2, M.MAP_SIZE, M.MAP_SIZE)
 M.gate = {}
 
 M.APP_NAME = "unnamed"
@@ -50,6 +51,10 @@ function M.wrap(v, min, max)
 	elseif v > max then v = min
 	end
 	return v
+end
+
+function M.walltile(t)
+	return t >= 13 and t <= 72
 end
 
 function M.world2tile(p)
