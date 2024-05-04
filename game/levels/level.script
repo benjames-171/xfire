@@ -1,19 +1,37 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
+
+local function spawnunit(x, y, t)
+	local team, type
+
+	if t < 109 then
+		team = 1
+		type = 1 + ((t - 97) / 2)
+	else
+		team = 2
+		type = 1 + ((t - 109) / 2)
+	end
+
+	local pos = data.tile2world(vmath.vector3(x, y, 0))
+	local url = factory.create("#unit-fac", pos, nil, {team = team, type = type})
+	unit.addunit(x, y, team, type, url)
+end
 
 local function parse(self)
 	local sx, sy, w, h = tilemap.get_bounds("#tilemap")
 
-	for y = sy, h+sy-1 do
+	for y = sy, h + sy - 1 do
 		for x = sx, w+sx-1 do
 			local t = tilemap.get_tile("#tilemap", "world", x, y)
-			if t == 1 then
+			if t >= 97 and t <= 120 then
 				tilemap.set_tile("#tilemap", "world", x, y, 0)
-				msg.post("common/player", "position", {pos = data.tile2world(vmath.vector3(x, y, 0.5))})
+				spawnunit(x, y, t)
 			end
 		end
 	end
 end
 
 function init(self)
+	unit.deleteall()
 	parse(self)
 end

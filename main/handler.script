@@ -30,6 +30,6 @@ end
 
 function on_input(self, action_id, action)
 	if action_id == hash("fullscreen") and action.pressed then
-		data.fullscreen(self)
+		data.fullscreen()
 	end
 end

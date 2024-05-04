@@ -1,0 +1,14 @@
+go.property("team", 1)
+go.property("type", 1)
+
+function init(self)
+	local anim = self.team.."-"..self.type
+	sprite.play_flipbook("#sprite", anim)
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+end
+

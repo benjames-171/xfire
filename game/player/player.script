@@ -3,7 +3,7 @@ local data = require "main.data"
 function init(self)
 	self.move = vmath.vector3()
 	msg.post(".", "acquire_input_focus")
-	data.cursor = vmath.vector3(32,32,0)
+	data.cursor = vmath.vector3(16, 16, 0)
 end
 
 local function pauseinput(time)
@@ -18,8 +18,8 @@ end
 
 local function move(self)
 	data.cursor = data.cursor + self.move
-	data.cursor.x = data.clamp(data.cursor.x, 0, 63)
-	data.cursor.y = data.clamp(data.cursor.y, 0, 63)
+	data.cursor.x = data.clamp(data.cursor.x, 1, 64)
+	data.cursor.y = data.clamp(data.cursor.y, 1, 64)
 	go.set_position(data.cursor * data.TILE_SIZE)
 	self.move = vmath.vector3()
 end

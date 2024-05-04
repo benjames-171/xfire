@@ -20,7 +20,7 @@ M.PIXEL_SIZE = 1
 M.MAX_LEVELS = 10
 
 M.level = 1
-M.time = 0
+M.turn = 0
 M.currentsong = nil
 M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()
@@ -134,7 +134,7 @@ function M.ms2str(time)
 	return str
 end
 
-function M.fullscreen(self)
+function M.fullscreen()
 	defos.toggle_fullscreen()
 	defos.disable_window_resize()
 	defos.disable_maximize_button()
