@@ -1,9 +1,11 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 
 function init(self)
 	self.move = vmath.vector3()
 	msg.post(".", "acquire_input_focus")
 	data.cursor = vmath.vector3(16, 16, 0)
+	data.state = data.STATE_PLAYING
 end
 
 local function pauseinput(time)
@@ -30,6 +32,13 @@ function update(self, dt)
 	end
 end
 
+local function select(self)
+	local u = unit.find(data.cursor.x, data.cursor.y)
+	if u ~= nil then
+		pprint(u)
+	end
+end
+
 local function input_playing(self, action_id, action)
 	if not action.pressed then return
 	end
@@ -43,7 +52,7 @@ local function input_playing(self, action_id, action)
 	elseif action_id == hash("down") then
 		self.move.y = -1
 	elseif action_id == hash("action") then
-
+		select(self)
 	elseif action_id == hash("exit") then
 		msg.post("view#pause", "show")
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
