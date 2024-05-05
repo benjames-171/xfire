@@ -14,31 +14,28 @@ function update(self, dt)
 end
 
 local function panel(info)
-	local name = ""
-	local arm = ""
-	local pow = ""
-	local anim = "empty"
-
 	if info ~= nil then
-		name = unit.getname(info.type)
-		arm = info.arm
-		pow = info.pow
-		anim = info.team.."-"..info.type
-
 		for n = 1, 8 do
 			local node = gui.get_node("hp"..n)
 			gui.set_enabled(node, info.hp >= n)
 		end
-	else
 		for n = 1, 8 do
-			local node = gui.get_node("hp"..n)
-			gui.set_enabled(node, false)
+			local node = gui.get_node("m"..n)
+			gui.set_enabled(node, info.move >= n)
 		end
+		for n = 1, 8 do
+			local node = gui.get_node("f"..n)
+			gui.set_enabled(node, info.fire >= n)
+		end
+
+		gui.set_enabled(gui.get_node("unit"), true)
+		gui.set_text(gui.get_node("name"), unit.getname(info.type))
+		gui.set_text(gui.get_node("armor"), info.arm)
+		gui.set_text(gui.get_node("power"), info.pow)
+		gui.play_flipbook(gui.get_node("icon"), info.team.."-"..info.type)
+	else
+		gui.set_enabled(gui.get_node("unit"), false)
 	end
-	gui.set_text(gui.get_node("name"), name)
-	gui.set_text(gui.get_node("armor"), arm)
-	gui.set_text(gui.get_node("power"), pow)
-	gui.play_flipbook(gui.get_node("icon"), anim)
 end
 
 function on_message(self, message_id, message, sender)
