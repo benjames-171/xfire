@@ -3,6 +3,10 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
+fonts {
+  name: "small"
+  font: "/assets/font/small.font"
+}
 textures {
   name: "main"
   texture: "/main/main.atlas"
@@ -89,8 +93,8 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 2.0
+    y: 2.0
     z: 1.0
     w: 1.0
   }
@@ -337,73 +341,6 @@ nodes {
 }
 nodes {
   position {
-    x: 116.0
-    y: -100.0
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 100.0
-    y: 16.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "..."
-  font: "main"
-  id: "v"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_E
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_STRETCH
-  line_break: false
-  parent: "container"
-  layer: ""
-  inherit_alpha: true
-  alpha: 0.2
-  outline_alpha: 0.0
-  shadow_alpha: 0.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-  custom_type: 0
-  enabled: true
-  visible: true
-  material: ""
-}
-nodes {
-  position {
     x: 0.0
     y: 0.0
     z: 0.0
@@ -456,6 +393,73 @@ nodes {
   alpha: 1.0
   template_node_child: false
   size_mode: SIZE_MODE_AUTO
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 56.0
+    y: -46.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 24.0
+    y: 8.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.149
+    y: 0.039
+    z: 0.204
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "0000"
+  font: "small"
+  id: "v"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_E
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "logo"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   custom_type: 0
   enabled: true
   visible: true
