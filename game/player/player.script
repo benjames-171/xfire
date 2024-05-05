@@ -3,6 +3,7 @@ local unit = require "game.unit.unit"
 
 function init(self)
 	self.move = vmath.vector3()
+	self.state = data.STATE_NULL
 	msg.post(".", "acquire_input_focus")
 	data.state = data.STATE_PLAYING
 end
@@ -17,22 +18,46 @@ local function quit2menu(self)
 	msg.post("main:/handler", "show_menu")
 end
 
+local function panel(self)
+	if vmath.length(self.move) ~= 0 then
+		msg.post("view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+	end
+end
+
 local function move(self)
 	data.cursor = data.cursor + self.move
 	data.cursor.x = data.clamp(data.cursor.x, 1, data.MAP_SIZE)
 	data.cursor.y = data.clamp(data.cursor.y, 1, data.MAP_SIZE)
 	go.set_position(data.cursor * data.TILE_SIZE)
-	self.move = vmath.vector3()
+end
+
+local function cursor(self)
+	if data.state == self.state then
+		return
+	end
+	self.state = data.state
+	if data.state == data.STATE_PLAYING then
+		sprite.play_flipbook("#sprite", "cursor")
+	elseif data.state == data.STATE_FIRE then
+		sprite.play_flipbook("#sprite", "cursor-fire")
+	else
+		sprite.play_flipbook("#sprite", "empty")
+	end
 end
 
 function update(self, dt)
 	if data.state == data.STATE_PLAYING then
 		move(self)
+		panel(self)
+	elseif data.state == data.STATE_FIRE then
+		move(self)
 	end
+	cursor(self)
+	self.move = vmath.vector3()
 end
 
 local function select(self)
-	local u = unit.find(data.cursor.x, data.cursor.y)
+	local u = unit.findxy(data.cursor.x, data.cursor.y)
 	if u ~= nil then
 		pprint(u)
 	end
@@ -52,10 +77,8 @@ local function input_playing(self, action_id, action)
 		self.move.y = -1
 	elseif action_id == hash("action") then
 		select(self)
-	elseif action_id == hash("exit") then
-		msg.post("view#pause", "show")
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		msg.post("view#map", "show")
+		data.state = data.STATE_FIRE
 	end
 end
 
@@ -63,12 +86,6 @@ local function input_map(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		msg.post("view#map", "hide")
 		data.state = data.STATE_PLAYING
-	end
-end
-
-local function input_gameover(self, action_id, action)
-	if action_id == hash("action") and action.pressed then
-		quit2menu(self)
 	end
 end
 
@@ -82,14 +99,10 @@ function on_input(self, action_id, action)
 	if action.value < 0.2 then return
 	end
 
-	if data.state == data.STATE_PLAYING then
+	if data.state == data.STATE_PLAYING or data.state == data.STATE_FIRE then
 		input_playing(self, action_id, action)
 	elseif data.state == data.STATE_MAP then
 		input_map(self, action_id, action)
-	elseif data.state == data.STATE_PAUSE then
-		msg.post("view#pause", "input", {action_id = action_id, action = action})
-	elseif data.state == data.STATE_GAMEOVER then
-		input_gameover(self, action_id, action)
 	elseif data.state == data.STATE_COMPLETE then
 		input_complete(self, action_id, action)
 	end

@@ -16,7 +16,7 @@ local function generate()
 		for x = 1, data.MAP_SIZE do
 			local index = ((y-1) * data.MAP_SIZE * 4) + ((x-1) * 4)
 			local t = tilemap.get_tile("/level#tilemap", "world", x, y)
-			local u = unit.find(x, y)
+			local u = unit.findxy(x, y)
 
 			if u ~= nil then
 				if u.team == 1 then

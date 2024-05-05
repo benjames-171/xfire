@@ -1,15 +1,18 @@
 local M = {}
 
+M.STATE_NULL = -1
+
 M.STATE_MENU = 1
 M.STATE_CONTROLS = 2
 M.STATE_OPTIONS = 3
 M.STATE_CREDITS = 4
 
-M.STATE_PLAYING = 5
-M.STATE_MAP = 6
-M.STATE_PAUSE = 7
-M.STATE_GAMEOVER = 8
-M.STATE_COMPLETE = 9
+M.STATE_PLAYING = 10
+M.STATE_UNIT = 11
+M.STATE_FIRE = 12
+M.STATE_MAP = 13
+M.STATE_PAUSE = 14
+M.STATE_COMPLETE = 15
 
 M.state = M.STATE_MENU
 
@@ -26,7 +29,7 @@ M.turn = 0
 M.currentsong = nil
 M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()
-M.offset = vmath.vector3(8,7,0)
+M.offset = vmath.vector3(8, 7, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE, M.MAP_SIZE)
 M.gate = {}
 

@@ -1,4 +1,5 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 
 function init(self)
 	self.tick = gui.get_node("tick")
@@ -12,12 +13,32 @@ function update(self, dt)
 	end
 end
 
+local function panel(info)
+	local name = ""
+	local arm = ""
+	local pow = ""
+	local anim = "empty"
+
+	if info ~= nil then
+		name = unit.getname(info.type)
+		arm = info.arm
+		pow = info.pow
+		anim = info.team.."-"..info.type
+	end
+	gui.set_text(gui.get_node("name"), name)
+	gui.set_text(gui.get_node("armor"), arm)
+	gui.set_text(gui.get_node("power"), pow)
+	gui.play_flipbook(gui.get_node("icon"), anim)
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("tick") then
 		gui.set_text(self.tick, message.text)
 		local pos = gui.get_position(self.tick)
 		pos.x = data.CANV_W
 		gui.set_position(self.tick, pos)
+	elseif message_id == hash("panel") then
+		panel(unit.findxy(message.x, message.y))
 	end
 end
 

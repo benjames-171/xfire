@@ -22,14 +22,12 @@ local function move(self)
 end
 
 function update(self, dt)
-	if data.state == data.STATE_PLAYING then
-		move(self)
-		local pos = bounds(self.pos - data.offset) * data.TILE_SIZE
-		pos.x = math.ceil(pos.x)
-		pos.y = math.ceil(pos.y)
-		go.set_position(pos)
-		data.scroll = pos
-	end
+	move(self)
+	local pos = bounds(self.pos - data.offset) * data.TILE_SIZE
+	pos.x = math.ceil(pos.x)
+	pos.y = math.ceil(pos.y)
+	go.set_position(pos)
+	data.scroll = pos
 end
 
 function on_message(self, message_id, message, sender)

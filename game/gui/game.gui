@@ -231,7 +231,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "SCOUT"
   font: "small"
-  id: "unit"
+  id: "name"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
@@ -1530,7 +1530,7 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
-  enabled: true
+  enabled: false
   visible: true
   material: ""
 }
