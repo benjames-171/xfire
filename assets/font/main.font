@@ -1,6 +1,6 @@
-font: "/assets/font/BMjapan.TTF"
+font: "/assets/font/BMSPA___.TTF"
 material: "/builtins/fonts/font.material"
-size: 12
+size: 9
 antialias: 1
 alpha: 1.0
 outline_alpha: 1.0

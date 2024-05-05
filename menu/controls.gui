@@ -169,8 +169,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "move\n"
   "action\n"
-  "fullscreen\n"
-  "pause"
+  "back"
   font: "main"
   id: "left"
   xanchor: XANCHOR_NONE
@@ -239,8 +238,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "ARROWS\n"
   "X\n"
-  "F11\n"
-  "ESC"
+  "C"
   font: "main"
   id: "right"
   xanchor: XANCHOR_NONE

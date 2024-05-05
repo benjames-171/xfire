@@ -3,10 +3,6 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
-fonts {
-  name: "large"
-  font: "/assets/font/large.font"
-}
 textures {
   name: "minimap"
   texture: "/game/gui/map.atlas"
