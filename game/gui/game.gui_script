@@ -24,6 +24,16 @@ local function panel(info)
 		arm = info.arm
 		pow = info.pow
 		anim = info.team.."-"..info.type
+
+		for n = 1, 8 do
+			local node = gui.get_node("hp"..n)
+			gui.set_enabled(node, info.hp >= n)
+		end
+	else
+		for n = 1, 8 do
+			local node = gui.get_node("hp"..n)
+			gui.set_enabled(node, false)
+		end
 	end
 	gui.set_text(gui.get_node("name"), name)
 	gui.set_text(gui.get_node("armor"), arm)
