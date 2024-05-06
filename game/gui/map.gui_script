@@ -6,6 +6,14 @@ function init(self)
 	ui.init(self.node)
 end
 
+function update(self, dt)
+	if data.state == data.STATE_MAP then
+		local pos = vmath.vector3(-32, -30, 0)
+		pos = pos + (data.scroll / data.TILE_SIZE)
+		gui.set_position(gui.get_node("box"), pos)
+	end
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("show") then
 		ui.show(self.node)
