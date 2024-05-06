@@ -87,7 +87,7 @@ local function input_playing(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		select(self)
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		data.state = data.STATE_FIRE
+		msg.post("view#minimenu", "show", {menu = {"item 1", "item 2", "CANCEL"}})
 	end
 end
 
@@ -95,7 +95,7 @@ local function input_fire(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		fire(self)
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		data.state = data.STATE_FIRE
+		data.state = data.STATE_PLAYING
 	end
 end
 
@@ -122,6 +122,8 @@ function on_input(self, action_id, action)
 	elseif data.state == data.STATE_FIRE then
 		input_cursor(self, action_id, action)
 		input_fire(self, action_id, action)
+	elseif data.state == data.STATE_MENU then
+		msg.post("view#minimenu", "input", {action_id = action_id, action = action})
 	elseif data.state == data.STATE_MAP then
 		input_map(self, action_id, action)
 	elseif data.state == data.STATE_COMPLETE then

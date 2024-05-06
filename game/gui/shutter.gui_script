@@ -3,6 +3,7 @@ local function disablenode (self, node)
 end
 
 function init(self)
+	gui.set_render_order(15)
 	gui.animate(gui.get_node("1"), gui.PROP_POSITION, vmath.vector3(0, -112, 0), gui.EASING_LINEAR, 0.3, 0.3, disablenode)
 	gui.animate(gui.get_node("2"), gui.PROP_POSITION, vmath.vector3(0, 224, 0), gui.EASING_LINEAR, 0.3, 0.3, disablenode)
 end

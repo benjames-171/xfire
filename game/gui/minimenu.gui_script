@@ -1,0 +1,55 @@
+local data = require "main.data"
+
+function init(self)
+	self.len = 3
+	self.handpos = 1
+	self.arrowpos = {
+		gui.get_position(gui.get_node("1")),
+		gui.get_position(gui.get_node("2")),
+		gui.get_position(gui.get_node("3")),
+	}
+	gui.set_render_order(10)
+end
+
+function update(self, dt)
+	if data.state == data.STATE_MENU then
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 5, self.arrowpos[self.handpos].y, 0)
+		gui.set_position(gui.get_node("arrow"), pos)
+	end
+end
+
+local function select(self)
+	local text = string.upper(gui.get_text(gui.get_node(self.handpos)))
+	if text == "CANCEL" then
+		gui.set_enabled(gui.get_node("menu"), false)
+		data.state = data.STATE_PLAYING
+		data.sound("menu-back")
+	end
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("up") and action.pressed then
+		self.handpos = data.wrap(self.handpos - 1, 1, self.len)
+		data.sound("menu-move")
+	elseif action_id == hash("down") and action.pressed then
+		self.handpos = data.wrap(self.handpos + 1, 1, self.len)
+		data.sound("menu-move")
+	elseif action_id == hash("action") and action.pressed then
+		select(self)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	elseif message_id == hash("show") then
+		self.handpos = 1
+		self.len = 0
+		for _, v in pairs(message.menu) do
+			self.len = self.len + 1
+			gui.set_text(gui.get_node(self.len), v)
+		end
+		gui.set_enabled(gui.get_node("menu"), true)
+		data.state = data.STATE_MENU
+	end
+end
