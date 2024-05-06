@@ -3,6 +3,10 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
+fonts {
+  name: "small"
+  font: "/assets/font/small.font"
+}
 background_color {
   x: 0.0
   y: 0.0
@@ -81,13 +85,13 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 2.0
+    y: 2.0
     z: 1.0
     w: 1.0
   }
   size {
-    x: 200.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -136,7 +140,7 @@ nodes {
 }
 nodes {
   position {
-    x: -10.0
+    x: -6.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -169,7 +173,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "developed by\n"
   "music by\n"
-  "made with"
+  "game engine"
   font: "main"
   id: "left"
   xanchor: XANCHOR_NONE
@@ -196,7 +200,7 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 2.0
+  text_leading: 3.0
   text_tracking: 0.0
   custom_type: 0
   enabled: true
@@ -205,7 +209,7 @@ nodes {
 }
 nodes {
   position {
-    x: 10.0
+    x: 6.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -237,7 +241,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "BEN JAMES\n"
-  "COMPOSER\n"
+  "ERIC MATYAS\n"
   "DEFOLD"
   font: "main"
   id: "right"
@@ -265,7 +269,208 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 2.0
+  text_leading: 3.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 0.0
+    y: 18.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
+    y: 8.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "www.171dev.uk"
+  font: "small"
+  id: "attr1"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "right"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 0.0
+    y: -9.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
+    y: 8.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "www.soundimage.org"
+  font: "small"
+  id: "attr2"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "right"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 0.0
+    y: -36.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
+    y: 8.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "www.defold.com"
+  font: "small"
+  id: "attr3"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "right"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
   text_tracking: 0.0
   custom_type: 0
   enabled: true

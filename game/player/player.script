@@ -87,7 +87,7 @@ local function input_playing(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		select(self)
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		msg.post("view#minimenu", "show", {menu = {"item 1", "item 2", "CANCEL"}})
+		msg.post("view#minimenu", "show", {menu = {"item 1", "QUIT", "CANCEL"}})
 	end
 end
 

@@ -148,13 +148,13 @@ nodes {
     w: 1.0
   }
   scale {
-    x: 1.0
-    y: 1.0
+    x: 2.0
+    y: 2.0
     z: 1.0
     w: 1.0
   }
   size {
-    x: 200.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -234,7 +234,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "SOUND"
+  text: "SFX VOLUME"
   font: "main"
   id: "sound1"
   xanchor: XANCHOR_NONE
@@ -368,7 +368,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "MUSIC"
+  text: "MUSIC VOLUME"
   font: "main"
   id: "music1"
   xanchor: XANCHOR_NONE

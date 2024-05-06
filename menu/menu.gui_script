@@ -15,10 +15,12 @@ function init(self)
 	self.node = gui.get_node("container")
 	gui.set_position(self.node, vmath.vector3(data.SCR_W/2, (data.SCR_H/2), 0))
 	gui.set_text(gui.get_node("v"), sys.get_config("project.version"))
+	data.playmusic("music-menu")
 	data.state = data.STATE_MENU
 end
 
 local function startgame(self)
+	data.stopmusic()
 	msg.post("main:/handler", "show_game")
 	data.level = 1
 	data.state = data.STATE_PLAYING

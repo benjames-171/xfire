@@ -1,0 +1,3 @@
+function init(self)
+	msg.post(".", "acquire_camera_focus")
+end

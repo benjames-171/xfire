@@ -18,12 +18,18 @@ function update(self, dt)
 	end
 end
 
+local function close()
+	gui.set_enabled(gui.get_node("menu"), false)
+	data.state = data.STATE_PLAYING
+	data.sound("menu-back")
+end
+
 local function select(self)
 	local text = string.upper(gui.get_text(gui.get_node(self.handpos)))
 	if text == "CANCEL" then
-		gui.set_enabled(gui.get_node("menu"), false)
-		data.state = data.STATE_PLAYING
-		data.sound("menu-back")
+		close()
+	elseif text == "QUIT" then
+		msg.post("main:/handler", "show_menu")
 	end
 end
 
@@ -36,6 +42,8 @@ local function input(self, action_id, action)
 		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		select(self)
+	elseif action_id == hash("back") and action.pressed then
+		close()
 	end
 end
 
