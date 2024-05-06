@@ -172,7 +172,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "move\n"
-  "action\n"
+  "select\n"
   "back"
   font: "main"
   id: "action"

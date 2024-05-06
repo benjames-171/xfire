@@ -1,17 +1,17 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
-function init(self)
-	self.tick = gui.get_node("tick")
+local function ticker(self)
+	local pos = gui.get_position(self.tick)
+	pos.x = pos.x - 1
+	gui.set_position(self.tick, pos)
 end
 
-function update(self, dt)
-	if data.state ~= data.STATE_PAUSE then
-		local pos = gui.get_position(self.tick)
-		pos.x = pos.x - 1
-		gui.set_position(self.tick, pos)
-	end
+function init(self)
+	self.tick = gui.get_node("tick")
+	timer.delay(1/59.94, true, ticker)
 end
+
 
 local function panel(info)
 	if info ~= nil then

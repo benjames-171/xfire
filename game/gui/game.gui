@@ -295,9 +295,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -312,7 +312,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -834,9 +834,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -851,7 +851,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -960,9 +960,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -977,7 +977,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -1086,9 +1086,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -1103,7 +1103,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -1625,9 +1625,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -1642,7 +1642,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -2223,9 +2223,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -2240,7 +2240,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -2290,9 +2290,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -2307,7 +2307,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -2357,9 +2357,9 @@ nodes {
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -2374,7 +2374,7 @@ nodes {
   layer: ""
   inherit_alpha: true
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -2476,16 +2476,16 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: ""
+  text: "Welcome to Xfire"
   font: "small"
   id: "tick"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_SW
   outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   shadow {

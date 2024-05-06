@@ -687,41 +687,41 @@ convex_hulls {
 }
 convex_hulls {
   index: 261
-  count: 4
+  count: 6
   collision_group: ""
 }
 convex_hulls {
-  index: 265
+  index: 267
   count: 10
   collision_group: ""
 }
 convex_hulls {
-  index: 275
+  index: 277
   count: 4
   collision_group: ""
 }
 convex_hulls {
-  index: 279
+  index: 281
   count: 5
   collision_group: ""
 }
 convex_hulls {
-  index: 284
+  index: 286
   count: 4
   collision_group: ""
 }
 convex_hulls {
-  index: 288
+  index: 290
   count: 4
   collision_group: ""
 }
 convex_hulls {
-  index: 292
+  index: 294
   count: 4
   collision_group: ""
 }
 convex_hulls {
-  index: 296
+  index: 298
   count: 4
   collision_group: ""
 }
