@@ -62,7 +62,7 @@ local function input(self, action_id, action)
 			msg.post("#options", "show", {})
 		elseif self.handpos == 4 then
 			ui.hide(self.node)
-			timer.delay(0.5, false, function() msg.post("@system:", "exit", {code = 0}) end)
+			timer.delay(0.75, false, function() msg.post("@system:", "exit", {code = 0}) end)
 		end
 	end
 end

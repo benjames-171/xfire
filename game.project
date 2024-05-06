@@ -31,4 +31,5 @@ max_count = 0
 
 [input]
 game_binding = /main/game.input_bindingc
+repeat_interval = 0.075
 

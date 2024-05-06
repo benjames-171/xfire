@@ -68,7 +68,7 @@ local function fire(self)
 end
 
 local function input_cursor(self, action_id, action)
-	if not action.pressed then
+	if not action.pressed and not action.repeated then
 		return
 	end
 
@@ -87,7 +87,7 @@ local function input_playing(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		select(self)
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		msg.post("view#minimenu", "show", {menu = {"item 1", "QUIT", "CANCEL"}})
+		msg.post("view#minimenu", "show", {menu = {"NEXT UNIT", "MAP", "QUIT GAME"}})
 	end
 end
 
@@ -100,8 +100,9 @@ local function input_fire(self, action_id, action)
 end
 
 local function input_map(self, action_id, action)
-	if action_id == hash("action") and action.pressed then
+	if action_id == hash("back") and action.pressed then
 		msg.post("view#map", "hide")
+		data.sound("menu-back")
 		data.state = data.STATE_PLAYING
 	end
 end

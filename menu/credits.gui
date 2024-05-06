@@ -140,7 +140,7 @@ nodes {
 }
 nodes {
   position {
-    x: -6.0
+    x: 0.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -159,7 +159,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 64.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -200,7 +200,7 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 3.0
+  text_leading: 2.5
   text_tracking: 0.0
   custom_type: 0
   enabled: true
@@ -209,7 +209,7 @@ nodes {
 }
 nodes {
   position {
-    x: 6.0
+    x: 5.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -228,7 +228,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 64.0
+    y: 100.0
     z: 0.0
     w: 1.0
   }
@@ -269,7 +269,7 @@ nodes {
   outline_alpha: 0.0
   shadow_alpha: 0.0
   template_node_child: false
-  text_leading: 3.0
+  text_leading: 2.5
   text_tracking: 0.0
   custom_type: 0
   enabled: true
@@ -279,7 +279,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 18.0
+    y: 21.0
     z: 0.0
     w: 1.0
   }
@@ -297,7 +297,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 8.0
+    y: 10.0
     z: 0.0
     w: 1.0
   }
@@ -364,7 +364,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 8.0
+    y: 10.0
     z: 0.0
     w: 1.0
   }
@@ -413,7 +413,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -36.0
+    y: -39.0
     z: 0.0
     w: 1.0
   }
@@ -431,7 +431,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 8.0
+    y: 10.0
     z: 0.0
     w: 1.0
   }

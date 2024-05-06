@@ -21,14 +21,16 @@ end
 local function close()
 	gui.set_enabled(gui.get_node("menu"), false)
 	data.state = data.STATE_PLAYING
-	data.sound("menu-back")
 end
 
 local function select(self)
 	local text = string.upper(gui.get_text(gui.get_node(self.handpos)))
-	if text == "CANCEL" then
+
+	if text == "MAP" then
 		close()
-	elseif text == "QUIT" then
+		data.sound("menu-select")
+		msg.post("view#map", "show")
+	elseif text == "QUIT GAME" then
 		msg.post("main:/handler", "show_menu")
 	end
 end
@@ -43,6 +45,7 @@ local function input(self, action_id, action)
 	elseif action_id == hash("action") and action.pressed then
 		select(self)
 	elseif action_id == hash("back") and action.pressed then
+		data.sound("menu-back")
 		close()
 	end
 end
