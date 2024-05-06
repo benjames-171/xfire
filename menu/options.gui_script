@@ -93,7 +93,7 @@ local function input(self, action_id, action)
 		elseif self.handpos == 4 then
 			close(self)
 		end
-	elseif action_id == hash("exit") and action.pressed then
+	elseif action_id == hash("back") and action.pressed then
 		close(self)
 	end
 end

@@ -1,7 +1,7 @@
 local data = require "main.data"
 local ui = require "main.ui"
 
-local MENU_LEN = 3
+local MENU_LEN = 4
 
 function init(self)
 	self.handpos = 1
@@ -9,6 +9,7 @@ function init(self)
 		gui.get_position(gui.get_node("1")),
 		gui.get_position(gui.get_node("2")),
 		gui.get_position(gui.get_node("3")),
+		gui.get_position(gui.get_node("4")),
 	}
 	msg.post(".", "acquire_input_focus")
 	self.node = gui.get_node("container")
@@ -57,9 +58,10 @@ local function input(self, action_id, action)
 			msg.post("#controls", "show", {})
 		elseif self.handpos == 3 then
 			msg.post("#options", "show", {})
+		elseif self.handpos == 4 then
+			ui.hide(self.node)
+			timer.delay(0.5, false, function() msg.post("@system:", "exit", {code = 0}) end)
 		end
-	elseif action_id == hash("exit") and action.pressed and not html5 then
-		msg.post("@system:", "exit", {code = 0})
 	end
 end
 
