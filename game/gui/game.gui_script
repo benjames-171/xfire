@@ -18,7 +18,7 @@ local function panel(info)
 			local node = gui.get_node("hp"..n)
 			gui.set_enabled(node, info.hp >= n)
 		end
-		for n = 1, 8 do
+		for n = 1, 12 do
 			local node = gui.get_node("m"..n)
 			gui.set_enabled(node, info.move >= n)
 		end

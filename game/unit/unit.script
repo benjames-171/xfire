@@ -11,26 +11,45 @@ function init(self)
 	self.move = vmath.vector3()
 	self.flash = 0
 	self.url = nil
+	self.u = nil
+	self.target = {}
 end
 
 local function move(self)
-	if vmath.length(self.move) ~= 0 then
-		local u = unit.findurl(self.url)
-		local pos = vmath.vector3(u.x + self.move.x, u.y + self.move.y, 0)
-		local t = tilemap.get_tile("/level#tilemap", "world", pos.x, pos.y)
-		if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
-			u.x = pos.x
-			u.y = pos.y
-			go.set_position(data.tile2world(pos))
-			data.cursor = pos
+	if self.u.move <= 0 then
+		return
+	else
+		self.u.move = self.u.move - 1
+	end
+	local pos = vmath.vector3(self.u.x + self.move.x, self.u.y + self.move.y, 0)
+	local t = tilemap.get_tile("/level#tilemap", "world", pos.x, pos.y)
+	if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
+		self.u.x = pos.x
+		self.u.y = pos.y
+		go.set_position(data.tile2world(pos))
+		data.cursor = pos
+		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+		data.sound("step")
+	end
+end
+
+local function lookfortargets(self)
+	local pos = go.get_position()
+	self.target = {}
+	for _, v in pairs(unit.data) do
+		if self.u.team ~= v.team then
+			local target = data.tile2world(vmath.vector3(v.x, v.y, 0))
+			local ray = physics.raycast(pos, target, {hash("world")})
+			if ray == nil then
+				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
+			end
 		end
-		self.move = vmath.vector3()
 	end
 end
 
 local function flash(self, dt)
 	self.flash = self.flash + dt
-	self.flash = data.wrap(self.flash, 0, 0.6)
+	self.flash = data.wrap(self.flash, 0, 0.4)
 	if self.flash > 0.1 then
 		msg.post("#sprite", "enable")
 	else
@@ -39,10 +58,22 @@ local function flash(self, dt)
 end
 
 function update(self, dt)
-	if data.state == data.STATE_UNIT and self.url == unit.current then
-		move(self)
+	if self.url == unit.current and self.url ~= nil then
+		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT then
+			move(self)
+			lookfortargets(self)
+		end
 		flash(self, dt)
+		self.move = vmath.vector3()
 	end
+end
+
+local function cancel(self)
+	unit.current = nil
+	self.url = nil
+	data.sound("menu-back")
+	msg.post("#sprite", "enable")
+	data.state = data.STATE_PLAYING
 end
 
 local function input(self, action_id, action)
@@ -55,13 +86,9 @@ local function input(self, action_id, action)
 	elseif action_id == hash("right") and action.pressed then
 		self.move.x = 1
 	elseif action_id == hash("action") and action.pressed then
-
+		msg.post("common/view#minimenu", "show", {menu = {"FIRE", "CANCEL"}, caller = self.url})
 	elseif action_id == hash("back") and action.pressed then
-		unit.current = nil
-		self.url = nil
-		data.sound("menu-back")
-		msg.post("#sprite", "enable")
-		data.state = data.STATE_PLAYING
+		cancel(self)
 	end
 end
 
@@ -70,5 +97,9 @@ function on_message(self, message_id, message, sender)
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("select") then
 		self.url = unit.current
+		self.u = unit.findurl(self.url)
+		data.sound("popup")
+	elseif message_id == hash("cancel") then
+		cancel(self)
 	end
 end

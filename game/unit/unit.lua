@@ -4,7 +4,7 @@ M.data = {}
 M.names = {"TROOP", "MECHA", "SCOUT"}
 M.arm = {6,8,4}
 M.pow = {4,6,2}
-M.movemax = {6,4,8}
+M.movemax = {9,6,12}
 M.firemax = {2,1,3}
 M.current = nil
 
