@@ -61,11 +61,11 @@ function M.walltile(t)
 end
 
 function M.world2tile(p)
-	return vmath.vector3(math.floor((p.x + M.TILE_SIZE) / M.TILE_SIZE), math.floor((p.y + M.TILE_SIZE) / M.TILE_SIZE), p.z)
+	return vmath.vector3(p.x / M.TILE_SIZE, p.y / M.TILE_SIZE, p.z)
 end
 
 function M.tile2world(p)
-	return vmath.vector3((p.x * M.TILE_SIZE) - (M.TILE_SIZE / 2), (p.y * M.TILE_SIZE) - (M.TILE_SIZE / 2), p.z)
+	return vmath.vector3(p.x * M.TILE_SIZE, p.y * M.TILE_SIZE, p.z)
 end
 
 function M.loadgamefile()

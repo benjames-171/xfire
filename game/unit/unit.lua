@@ -6,6 +6,7 @@ M.arm = {6,8,4}
 M.pow = {4,6,2}
 M.movemax = {6,4,8}
 M.firemax = {2,1,3}
+M.current = nil
 
 function M.init()
 	M.data = {}

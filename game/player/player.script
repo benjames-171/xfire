@@ -63,7 +63,9 @@ end
 local function select(self)
 	local u = unit.findxy(data.cursor.x, data.cursor.y)
 	if u ~= nil then
-		pprint(u)
+		unit.current = u.url
+		msg.post(u.url, "select")
+		data.state = data.STATE_UNIT
 	end
 end
 
@@ -124,6 +126,8 @@ function on_input(self, action_id, action)
 	if data.state == data.STATE_PLAYING  then
 		input_cursor(self, action_id, action)
 		input_playing(self, action_id, action)
+	elseif data.state == data.STATE_UNIT then
+		msg.post(unit.current, "input", {action_id = action_id, action = action})
 	elseif data.state == data.STATE_FIRE then
 		input_cursor(self, action_id, action)
 		input_fire(self, action_id, action)

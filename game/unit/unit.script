@@ -1,3 +1,6 @@
+local data = require "main.data"
+local unit = require "game.unit.unit"
+
 go.property("team", 1)
 go.property("type", 1)
 
@@ -5,11 +8,67 @@ function init(self)
 	local anim = self.team.."-"..self.type
 	sprite.play_flipbook("#sprite", anim)
 	sprite.set_hflip("#sprite", self.team == 2)
+	self.move = vmath.vector3()
+	self.flash = 0
+	self.url = nil
+end
+
+local function move(self)
+	if vmath.length(self.move) ~= 0 then
+		local u = unit.findurl(self.url)
+		local pos = vmath.vector3(u.x + self.move.x, u.y + self.move.y, 0)
+		local t = tilemap.get_tile("/level#tilemap", "world", pos.x, pos.y)
+		if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
+			u.x = pos.x
+			u.y = pos.y
+			go.set_position(data.tile2world(pos))
+			data.cursor = pos
+		end
+		self.move = vmath.vector3()
+	end
+end
+
+local function flash(self, dt)
+	self.flash = self.flash + dt
+	self.flash = data.wrap(self.flash, 0, 0.6)
+	if self.flash > 0.1 then
+		msg.post("#sprite", "enable")
+	else
+		msg.post("#sprite", "disable")
+	end
 end
 
 function update(self, dt)
+	if data.state == data.STATE_UNIT and self.url == unit.current then
+		move(self)
+		flash(self, dt)
+	end
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("up") and action.pressed then
+		self.move.y = 1
+	elseif action_id == hash("down") and action.pressed then
+		self.move.y = -1
+	elseif action_id == hash("left") and action.pressed then
+		self.move.x = -1
+	elseif action_id == hash("right") and action.pressed then
+		self.move.x = 1
+	elseif action_id == hash("action") and action.pressed then
+
+	elseif action_id == hash("back") and action.pressed then
+		unit.current = nil
+		self.url = nil
+		data.sound("menu-back")
+		msg.post("#sprite", "enable")
+		data.state = data.STATE_PLAYING
+	end
 end
 
 function on_message(self, message_id, message, sender)
+	if message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	elseif message_id == hash("select") then
+		self.url = unit.current
+	end
 end
-
