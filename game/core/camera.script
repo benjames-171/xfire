@@ -31,11 +31,8 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("look_at") then
-		self.target = message.position + vmath.vector3(0, 8, 0)
-	elseif message_id == hash("snap_to") then
-		self.pos = message.position
-		self.target = message.position + vmath.vector3(0, 8, 0)
+	if message_id == hash("snap_to") then
+		self.pos = vmath.vector3(data.cursor - data.offset)
 	elseif message_id == hash("reset") then
 		go.set_position(vmath.vector3(0,0,0))
 	end
