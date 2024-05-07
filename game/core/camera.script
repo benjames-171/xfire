@@ -32,7 +32,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("snap_to") then
-		self.pos = vmath.vector3(data.cursor - data.offset)
+		self.pos = vmath.vector3(data.cursor)
 	elseif message_id == hash("reset") then
 		go.set_position(vmath.vector3(0,0,0))
 	end
