@@ -24,7 +24,8 @@ M.PIXEL_SIZE = 1
 M.MAP_SIZE = 64
 
 M.level = 1
-M.turn = 0
+M.turn = 1
+M.next = 0
 M.currentsong = nil
 M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()

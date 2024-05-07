@@ -26,8 +26,8 @@ local function generate()
 				end
 			elseif data.walltile(t) then
 				setpixel(stream, index, 0x6e,0x00,0x85)
-			elseif t ~= 0 then
-				setpixel(stream, index, 0x2d,0x00,0x6e)
+			--elseif t ~= 0 then
+				--setpixel(stream, index, 0x2d,0x00,0x6e)
 			else
 				setpixel(stream, index, 0x00,0x00,0x00)
 			end

@@ -37,6 +37,8 @@ local function select(self)
 	elseif text == "CANCEL" then
 		data.sound("menu-back")
 		close(self)
+	elseif text == "NEXT UNIT" then
+		msg.post("player", "nextunit")
 	elseif text == "QUIT GAME" then
 		msg.post("main:/handler", "show_menu")
 	end
