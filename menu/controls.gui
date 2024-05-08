@@ -140,7 +140,7 @@ nodes {
 }
 nodes {
   position {
-    x: -51.0
+    x: -46.0
     y: -6.0
     z: 0.0
     w: 1.0
@@ -171,9 +171,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "move\n"
-  "select\n"
-  "back"
+  text: "MOVE\n"
+  "SELECT\n"
+  "BACK"
   font: "main"
   id: "action"
   xanchor: XANCHOR_NONE
@@ -337,7 +337,7 @@ nodes {
 }
 nodes {
   position {
-    x: 75.0
+    x: 72.0
     y: -6.0
     z: 0.0
     w: 1.0
@@ -496,7 +496,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "press <back>"
+  text: "PRESS <BACK>"
   font: "main"
   id: "controls1"
   xanchor: XANCHOR_NONE

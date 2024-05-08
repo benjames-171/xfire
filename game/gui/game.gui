@@ -192,7 +192,7 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
-  enabled: false
+  enabled: true
   visible: true
   material: ""
 }
@@ -1116,7 +1116,7 @@ nodes {
 nodes {
   position {
     x: 25.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1175,7 +1175,7 @@ nodes {
 nodes {
   position {
     x: 29.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1234,7 +1234,7 @@ nodes {
 nodes {
   position {
     x: 33.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1293,7 +1293,7 @@ nodes {
 nodes {
   position {
     x: 37.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1352,7 +1352,7 @@ nodes {
 nodes {
   position {
     x: 41.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1411,7 +1411,7 @@ nodes {
 nodes {
   position {
     x: 45.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1470,7 +1470,7 @@ nodes {
 nodes {
   position {
     x: 49.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1529,7 +1529,7 @@ nodes {
 nodes {
   position {
     x: 53.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1588,7 +1588,7 @@ nodes {
 nodes {
   position {
     x: 57.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1647,7 +1647,7 @@ nodes {
 nodes {
   position {
     x: 61.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1706,7 +1706,7 @@ nodes {
 nodes {
   position {
     x: 65.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1765,7 +1765,7 @@ nodes {
 nodes {
   position {
     x: 69.0
-    y: 4.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1890,8 +1890,8 @@ nodes {
 }
 nodes {
   position {
-    x: 29.0
-    y: 4.0
+    x: 30.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -1949,8 +1949,8 @@ nodes {
 }
 nodes {
   position {
-    x: 41.0
-    y: 4.0
+    x: 42.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -2008,8 +2008,8 @@ nodes {
 }
 nodes {
   position {
-    x: 53.0
-    y: 4.0
+    x: 54.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }
@@ -2067,8 +2067,8 @@ nodes {
 }
 nodes {
   position {
-    x: 65.0
-    y: 4.0
+    x: 66.0
+    y: 5.0
     z: 0.0
     w: 1.0
   }

@@ -140,7 +140,7 @@ nodes {
 }
 nodes {
   position {
-    x: 0.0
+    x: -2.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -171,9 +171,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "developed by\n"
-  "music by\n"
-  "game engine"
+  text: "DEVELOPER\n"
+  "MUSIC BY\n"
+  "GAME ENGINE"
   font: "main"
   id: "left"
   xanchor: XANCHOR_NONE
@@ -510,7 +510,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "press <back>"
+  text: "PRESS <BACK>"
   font: "main"
   id: "pressback"
   xanchor: XANCHOR_NONE
