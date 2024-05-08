@@ -58,7 +58,7 @@ function M.wrap(v, min, max)
 end
 
 function M.walltile(t)
-	return t >= 13 and t <= 72
+	return t > 0 and t <= 80
 end
 
 function M.world2tile(p)
