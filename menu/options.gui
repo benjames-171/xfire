@@ -203,8 +203,142 @@ nodes {
 }
 nodes {
   position {
-    x: -75.0
+    x: -80.0
     y: 24.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
+    y: 16.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "DIFFICULTY"
+  font: "main"
+  id: "diff1"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 0.11372549
+    y: 0.16862746
+    z: 0.3254902
+    w: 1.0
+  }
+  shadow {
+    x: 0.11372549
+    y: 0.16862746
+    z: 0.3254902
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "container"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: 160.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 64.0
+    y: 16.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "NORMAL"
+  font: "main"
+  id: "diff"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_E
+  outline {
+    x: 0.11372549
+    y: 0.16862746
+    z: 0.3254902
+    w: 1.0
+  }
+  shadow {
+    x: 0.11372549
+    y: 0.16862746
+    z: 0.3254902
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "diff1"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: -80.0
+    y: 8.0
     z: 0.0
     w: 1.0
   }
@@ -270,7 +404,7 @@ nodes {
 }
 nodes {
   position {
-    x: 150.0
+    x: 160.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -288,7 +422,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 32.0
+    x: 64.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -337,8 +471,8 @@ nodes {
 }
 nodes {
   position {
-    x: -75.0
-    y: 8.0
+    x: -80.0
+    y: -8.0
     z: 0.0
     w: 1.0
   }
@@ -404,7 +538,7 @@ nodes {
 }
 nodes {
   position {
-    x: 150.0
+    x: 160.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -422,7 +556,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 32.0
+    x: 64.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -471,8 +605,8 @@ nodes {
 }
 nodes {
   position {
-    x: -75.0
-    y: -24.0
+    x: -80.0
+    y: -35.0
     z: 0.0
     w: 1.0
   }
@@ -538,7 +672,7 @@ nodes {
 }
 nodes {
   position {
-    x: -75.0
+    x: -80.0
     y: -64.0
     z: 0.0
     w: 1.0

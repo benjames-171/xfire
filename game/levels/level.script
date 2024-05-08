@@ -58,7 +58,7 @@ local function parse()
 				data.cursor = vmath.vector3(x, y, 0)
 				msg.post("common/view", "snap_to")
 			elseif c == 192 then
-				factory.create("#powerup-fac", data.tile2world(vmath.vector3(x + 8, y + 8, 0)))
+				factory.create("#powerup-fac", data.tile2world(vmath.vector3(x, y, 0)) + vmath.vector3(-8, -8, 0))
 			elseif c >= 241 and c <= 252 then
 				tilemap.set_tile("#tilemap", "control", x, y, 0)
 				spawnunit(x, y, c)

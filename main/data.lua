@@ -33,10 +33,11 @@ M.offset = vmath.vector3(8.5, 8.5, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE - 16, M.MAP_SIZE - 14)
 M.gate = {}
 
-M.APP_NAME = "unnamed"
-M.FILE_NAME = "unnamed.sav"
+M.APP_NAME = "Xfire"
+M.FILE_NAME = "Xfire.sav"
 
 M.save = {
+	diff = 2,
 	sfx = 8,
 	music = 8,
 }
