@@ -1291,7 +1291,7 @@ animations {
   start_tile: 241
   end_tile: 242
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 3
+  fps: 1
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -1318,7 +1318,7 @@ animations {
   start_tile: 247
   end_tile: 248
   playback: PLAYBACK_LOOP_FORWARD
-  fps: 3
+  fps: 1
   flip_horizontal: 0
   flip_vertical: 0
 }

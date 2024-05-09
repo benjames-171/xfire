@@ -22,16 +22,19 @@ M.CANV_H = 0
 M.TILE_SIZE = 16
 M.PIXEL_SIZE = 1
 M.MAP_SIZE = 64
+M.MAX_TEAMS = 2
 
-M.level = 1
-M.turn = 1
-M.next = 0
 M.currentsong = nil
 M.cursor = vmath.vector3()
 M.scroll = vmath.vector3()
 M.offset = vmath.vector3(8.5, 8.5, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE - 16, M.MAP_SIZE - 14)
 M.gate = {}
+
+M.level = 1
+M.turn = 1
+M.next = 0
+M.ai = {false, true}
 
 M.APP_NAME = "Xfire"
 M.FILE_NAME = "Xfire.sav"

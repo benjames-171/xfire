@@ -26,6 +26,7 @@ version = v1.00
 title = Xfire
 dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
 dependencies#1 = https://github.com/defold/lua-language-server/releases/download/v0.0.5/release.zip
+dependencies#2 = https://github.com/selimanac/defold-astar/archive/master.zip
 
 [spine]
 max_count = 0

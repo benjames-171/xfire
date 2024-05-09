@@ -1,0 +1,48 @@
+local data = require "main.data"
+
+local function findpath()
+	local map = {}
+	local cost = {[1] = {1,1,1,1}}
+
+	for y = 1, data.MAP_SIZE do
+		for x = 1, data.MAP_SIZE do
+			local t = tilemap.get_tile("level#tilemap", "world", x, y)
+			if data.walltile(t) then t = 0
+			else t = 1
+			end
+			map[x + (y * data.MAP_SIZE)] = t
+		end
+	end
+
+	astar.set_map(map)
+	astar.set_costs(cost)
+
+	local result, size, total_cost, path = astar.solve(6,6, 18,18)
+
+	if result == astar.SOLVED then
+		print("SOLVED")
+		for i, v in ipairs(path) do
+			print("Tile: ", v.x .. "-" .. v.y)
+			tilemap.set_tile("level#tilemap", "world", v.x, v.y, 0)
+		end
+	elseif result == astar.NO_SOLUTION then
+		print("NO_SOLUTION")
+	elseif result == astar.START_END_SAME then
+		print("START_END_SAME")
+	end
+end
+
+function init(self)
+	--astar.setup(data.MAP_SIZE, data.MAP_SIZE, astar.DIRECTION_FOUR, data.MAP_SIZE * data.MAP_SIZE, 8, false)
+	--findpath()
+end
+
+function final(self)
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+end
+

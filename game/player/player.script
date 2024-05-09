@@ -18,7 +18,7 @@ local function quit2menu(self)
 	msg.post("main:/handler", "show_menu")
 end
 
-local function panel(self)
+local function panel()
 	msg.post("view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 end
 
@@ -44,10 +44,14 @@ local function cursor(self)
 end
 
 function update(self, dt)
+	if data.ai[data.turn] then
+		return
+	end
+
 	if data.state == data.STATE_PLAYING then
 		move(self)
 		if vmath.length(self.move) ~= 0 then
-			panel(self)
+			panel()
 		end
 	elseif data.state == data.STATE_FIRE then
 		move(self)
@@ -102,7 +106,7 @@ local function nextunit()
 
 	data.cursor = vmath.vector3(unit.data[data.next].x, unit.data[data.next].y, 0)
 	data.sound("popup")
-	panel(self)
+	panel()
 end
 
 local function input_playing(self, action_id, action)
@@ -141,6 +145,14 @@ function on_input(self, action_id, action)
 	if action.value < 0.5 then return
 	end
 
+	if data.state == data.STATE_COMPLETE then
+		input_complete(self, action_id, action)
+	end
+
+	if data.ai[data.turn] then
+		return
+	end
+
 	if data.state == data.STATE_PLAYING  then
 		input_cursor(self, action_id, action)
 		input_playing(self, action_id, action)
@@ -154,8 +166,6 @@ function on_input(self, action_id, action)
 	elseif data.state == data.STATE_MAP then
 		input_cursor(self, action_id, action)
 		input_map(self, action_id, action)
-	elseif data.state == data.STATE_COMPLETE then
-		input_complete(self, action_id, action)
 	end
 end
 
