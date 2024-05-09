@@ -14,6 +14,10 @@ images {
   image: "/assets/png/fade.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/assets/png/bezel.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 1
 inner_padding: 0

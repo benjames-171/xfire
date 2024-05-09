@@ -48,6 +48,12 @@ function on_message(self, message_id, message, sender)
 			timer.cancel(self.handle)
 		end
 		self.handle = timer.delay(2, false, function() gui.set_enabled(node, false) self.handle = nil end)
+	elseif message_id == hash("cleartick") then
+		if self.handle then
+			timer.cancel(self.handle)
+			self.handle = nil
+		end
+		gui.set_enabled(gui.get_node("tickbox"), false)
 	elseif message_id == hash("panel") then
 		panel(unit.findxy(message.x, message.y))
 	end

@@ -85,6 +85,7 @@ local function cancel(self)
 	self.url = nil
 	data.sound("menu-back")
 	msg.post("#sprite", "enable")
+	msg.post("common/view#game", "cleartick")
 	data.state = data.STATE_PLAYING
 end
 

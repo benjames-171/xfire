@@ -139,7 +139,7 @@ nodes {
 }
 nodes {
   position {
-    x: -1.0
+    x: 0.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -192,13 +192,13 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
-  enabled: false
+  enabled: true
   visible: true
   material: ""
 }
 nodes {
   position {
-    x: -80.0
+    x: -78.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -257,7 +257,7 @@ nodes {
 }
 nodes {
   position {
-    x: -68.0
+    x: -66.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -796,7 +796,7 @@ nodes {
 }
 nodes {
   position {
-    x: -50.0
+    x: -48.0
     y: -11.0
     z: 0.0
     w: 1.0
@@ -922,7 +922,7 @@ nodes {
 }
 nodes {
   position {
-    x: -62.0
+    x: -60.0
     y: -11.0
     z: 0.0
     w: 1.0
@@ -1048,7 +1048,7 @@ nodes {
 }
 nodes {
   position {
-    x: -32.0
+    x: -30.0
     y: 1.0
     z: 0.0
     w: 1.0
@@ -2059,7 +2059,7 @@ nodes {
 }
 nodes {
   position {
-    x: -32.0
+    x: -30.0
     y: -10.0
     z: 0.0
     w: 1.0
