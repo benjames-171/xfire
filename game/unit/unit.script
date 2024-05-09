@@ -106,6 +106,8 @@ function on_message(self, message_id, message, sender)
 		data.sound("popup")
 	elseif message_id == hash("fire") then
 		fire(self)
+	elseif message_id == hash("lookat") then
+		data.cursor = vmath.vector3(self.u.x, self.u.y, 0)
 	elseif message_id == hash("cancel") then
 		cancel(self)
 	end

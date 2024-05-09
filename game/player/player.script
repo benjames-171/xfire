@@ -122,8 +122,10 @@ end
 local function input_fire(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
 		fire(self)
-	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		data.state = data.STATE_PLAYING
+	elseif action_id == hash("back") and action.pressed then
+		data.sound("menu-back")
+		data.state = data.STATE_UNIT
+		msg.post(unit.current, "lookat")
 	end
 end
 

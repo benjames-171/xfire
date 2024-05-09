@@ -3,6 +3,7 @@ local data = require "main.data"
 function init(self)
 	self.len = 3
 	self.caller = nil
+	self.prevstat = data.STATE_PLAYING
 	self.handpos = 1
 	self.arrowpos = {
 		gui.get_position(gui.get_node("1")),
@@ -19,26 +20,24 @@ function update(self, dt)
 	end
 end
 
-local function close(self)
-	if self.caller ~= nil then
-		msg.post(self.caller, "cancel")
-	end
-	gui.set_enabled(gui.get_node("menu"), false)
-	data.state = data.STATE_PLAYING
-end
-
 local function select(self)
 	local text = string.upper(gui.get_text(gui.get_node(self.handpos)))
 
 	if text == "MAP" then
-		close(self)
-		data.sound("menu-select")
 		msg.post("view#map", "show")
+		data.sound("menu-select")
+		gui.set_enabled(gui.get_node("menu"), false)
 	elseif text == "FIRE" then
 		data.state = data.STATE_FIRE
+		data.sound("menu-select")
+		gui.set_enabled(gui.get_node("menu"), false)
 	elseif text == "CANCEL" then
 		data.sound("menu-back")
-		close(self)
+		if self.caller ~= nil then
+			msg.post(self.caller, "cancel")
+		end
+		gui.set_enabled(gui.get_node("menu"), false)
+		data.state = data.STATE_PLAYING
 	elseif text == "NEXT UNIT" then
 		msg.post("player", "nextunit")
 	elseif text == "QUIT GAME" then
@@ -56,8 +55,9 @@ local function input(self, action_id, action)
 	elseif action_id == hash("action") and action.pressed then
 		select(self)
 	elseif action_id == hash("back") and action.pressed then
+		data.state = self.prevstate
 		data.sound("menu-back")
-		close(self)
+		gui.set_enabled(gui.get_node("menu"), false)
 	end
 end
 
@@ -76,6 +76,7 @@ function on_message(self, message_id, message, sender)
 			gui.set_text(gui.get_node(n), "")
 		end
 		gui.set_enabled(gui.get_node("menu"), true)
+		self.prevstate = data.state
 		data.state = data.STATE_MENU
 		data.sound("popup")
 	end
