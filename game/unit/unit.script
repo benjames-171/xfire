@@ -16,35 +16,41 @@ function init(self)
 end
 
 local function move(self)
-	if self.u.move <= 0 then
-		return
-	else
-		self.u.move = self.u.move - 1
-	end
 	local pos = vmath.vector3(self.u.x + self.move.x, self.u.y + self.move.y, 0)
 	local t = tilemap.get_tile("/level#tilemap", "world", pos.x, pos.y)
 	if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
+		self.u.move = self.u.move - 1
 		self.u.x = pos.x
 		self.u.y = pos.y
 		go.set_position(data.tile2world(pos))
 		data.cursor = pos
 		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 		data.sound("step")
+		return true
 	end
+	return false
 end
 
-local function lookfortargets(self)
+local function findtargets(self)
 	local pos = go.get_position()
 	self.target = {}
+	local total = 0
 	for _, v in pairs(unit.data) do
 		if self.u.team ~= v.team then
 			local target = data.tile2world(vmath.vector3(v.x, v.y, 0))
 			local ray = physics.raycast(pos, target, {hash("world")})
 			if ray == nil then
 				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
+				total = total + 1
 			end
 		end
 	end
+	if total > 0 then
+		local text = string.format("ENEMY SPOTTED [%d]", total)
+		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})
+		data.sound("alarm")
+	end
+	return total
 end
 
 local function flash(self, dt)
@@ -59,9 +65,10 @@ end
 
 function update(self, dt)
 	if self.url == unit.current and self.url ~= nil then
-		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT then
-			move(self)
-			lookfortargets(self)
+		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and self.u.move > 0 then
+			if move(self) then
+				local total = findtargets(self)
+			end
 		end
 		flash(self, dt)
 		self.move = vmath.vector3()
@@ -104,6 +111,7 @@ function on_message(self, message_id, message, sender)
 		self.url = unit.current
 		self.u = unit.findurl(self.url)
 		data.sound("popup")
+		findtargets(self)
 	elseif message_id == hash("fire") then
 		fire(self)
 	elseif message_id == hash("lookat") then

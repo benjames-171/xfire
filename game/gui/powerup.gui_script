@@ -1,0 +1,50 @@
+local data = require "main.data"
+local ui = require "main.ui"
+
+local MENU_LEN = 4
+
+local desc = {"+1 SHIELD", "+1 MOVES PER TURN", "+1 SHOT POWER", "+1 SHOTS PER TURN"}
+
+function init(self)
+	self.handpos = 1
+	self.arrowpos = {
+		gui.get_position(gui.get_node("1")),
+		gui.get_position(gui.get_node("2")),
+		gui.get_position(gui.get_node("3")),
+		gui.get_position(gui.get_node("4")),
+	}
+	self.node = gui.get_node("container")
+	ui.init(self.node)
+end
+
+function update(self, dt)
+	if data.state == data.STATE_POWERUP then
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x, self.arrowpos[self.handpos].y, 0)
+		gui.set_position(gui.get_node("arrow"), pos)
+		gui.set_text(gui.get_node("text"), desc[self.handpos])
+	end
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("left") and action.pressed then
+		self.handpos = data.wrap(self.handpos - 1, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("right") and action.pressed then
+		self.handpos = data.wrap(self.handpos + 1, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("action") and action.pressed then
+		ui.hide(self.node)
+		data.sound("menu-select")
+		data.state = data.STATE_PLAYING
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	elseif message_id == hash("show") then
+		ui.show(self.node)
+		self.handpos = 1
+		data.state = data.STATE_POWERUP
+	end
+end

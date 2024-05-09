@@ -70,4 +70,5 @@ end
 function init(self)
 	unit.init()
 	parse()
+	msg.post("common/view", "tick", {text = "WELCOME TO XFIRE"})
 end

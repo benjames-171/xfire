@@ -2,14 +2,8 @@ local data = require "main.data"
 local unit = require "game.unit.unit"
 
 function init(self)
-	self.tick = gui.get_node("tick")
+	self.handle = nil
 	gui.set_render_order(1)
-end
-
-function update(self, dt)
-	local pos = gui.get_position(self.tick)
-	pos.x = pos.x - 1
-	gui.set_position(self.tick, pos)
 end
 
 local function panel(info)
@@ -39,10 +33,21 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("tick") then
-		gui.set_text(self.tick, message.text)
-		local pos = gui.get_position(self.tick)
-		pos.x = data.CANV_W
-		gui.set_position(self.tick, pos)
+		local node = gui.get_node("tickbox")
+		local text = gui.get_node("tick")
+		gui.set_enabled(node, true)
+
+		if message.color then
+			gui.set_color(text, data.hex2rgba(message.color))
+		else
+			gui.set_color(text, vmath.vector4(1))
+		end
+		gui.set_text(text, message.text)
+
+		if self.handle then
+			timer.cancel(self.handle)
+		end
+		self.handle = timer.delay(2, false, function() gui.set_enabled(node, false) self.handle = nil end)
 	elseif message_id == hash("panel") then
 		panel(unit.findxy(message.x, message.y))
 	end
