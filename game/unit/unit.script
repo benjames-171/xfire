@@ -68,6 +68,11 @@ function update(self, dt)
 	end
 end
 
+local function fire(self)
+	local target = data.tile2world(data.cursor)
+	factory.create("#shot-fac", nil, nil, {target = target})
+end
+
 local function cancel(self)
 	unit.current = nil
 	self.url = nil
@@ -99,6 +104,8 @@ function on_message(self, message_id, message, sender)
 		self.url = unit.current
 		self.u = unit.findurl(self.url)
 		data.sound("popup")
+	elseif message_id == hash("fire") then
+		fire(self)
 	elseif message_id == hash("cancel") then
 		cancel(self)
 	end

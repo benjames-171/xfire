@@ -1,0 +1,13 @@
+local data = require "main.data"
+
+go.property("target", vmath.vector3())
+
+local function hit(self)
+	go.delete()
+end
+
+function init(self)
+	local time = vmath.length(self.target - go.get_position()) / 250
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, self.target, go.EASING_LINEAR, time, 0, hit)
+	data.sound("shot")
+end

@@ -76,7 +76,7 @@ local function select(self)
 end
 
 local function fire(self)
-
+	msg.post(unit.current, "fire")
 end
 
 local function input_cursor(self, action_id, action)

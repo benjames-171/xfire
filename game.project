@@ -35,3 +35,6 @@ max_count = 0
 game_binding = /main/game.input_bindingc
 repeat_interval = 0.075
 
+[sprite]
+subpixels = 0
+

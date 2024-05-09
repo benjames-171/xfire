@@ -34,6 +34,8 @@ local function select(self)
 		close(self)
 		data.sound("menu-select")
 		msg.post("view#map", "show")
+	elseif text == "FIRE" then
+		data.state = data.STATE_FIRE
 	elseif text == "CANCEL" then
 		data.sound("menu-back")
 		close(self)
