@@ -7,10 +7,6 @@ images {
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 images {
-  image: "/assets/png/arc.png"
-  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
-}
-images {
   image: "/assets/png/fade.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
@@ -20,6 +16,10 @@ images {
 }
 images {
   image: "/assets/png/ch.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
+images {
+  image: "/assets/png/bg.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
 margin: 0
