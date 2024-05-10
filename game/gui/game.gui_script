@@ -23,8 +23,8 @@ local function panel(info)
 
 		gui.set_enabled(gui.get_node("unit"), true)
 		gui.set_text(gui.get_node("name"), unit.getname(info.type))
-		gui.set_text(gui.get_node("armor"), info.arm)
-		gui.set_text(gui.get_node("power"), info.pow)
+		gui.set_text(gui.get_node("armor"), info.armor)
+		gui.set_text(gui.get_node("power"), info.power)
 		gui.play_flipbook(gui.get_node("icon"), info.team.."-"..info.type)
 	else
 		gui.set_enabled(gui.get_node("unit"), false)

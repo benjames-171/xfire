@@ -1,13 +1,27 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 
 go.property("target", vmath.vector3())
+go.property("power", 0)
 
 local function hit(self)
-	go.delete()
+	sprite.play_flipbook("#sprite", "explode")
+	data.sound("exp-small")
 end
 
 function init(self)
-	local time = vmath.length(self.target - go.get_position()) / 250
-	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, self.target, go.EASING_LINEAR, time, 0, hit)
+	self.state = data.state
+	data.state = data.STATE_NULL
+	self.url = unit.findxy(self.target.x, self.target.y)
+	local target = data.tile2world(self.target)
+	local time = vmath.length(target - go.get_position()) / 250
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, target, go.EASING_LINEAR, time, 0, hit)
 	data.sound("shot")
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("animation_done") then
+		data.state = self.state
+		go.delete()
+	end
 end

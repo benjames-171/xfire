@@ -78,8 +78,8 @@ function update(self, dt)
 end
 
 local function fire(self)
-	local target = data.tile2world(data.cursor)
-	factory.create("#shot-fac", nil, nil, {target = target})
+	local target = vmath.vector3(data.cursor)
+	factory.create("#shot-fac", nil, nil, {target = target, power = self.u.power})
 end
 
 local function cancel(self)
