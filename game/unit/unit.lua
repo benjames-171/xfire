@@ -1,11 +1,13 @@
+local data = require "main.data"
+
 local M = {}
 
 M.names = {"TROOPER", "X4-MECH", "SCOUT"}
-M.armor = {3,4,2}
-M.power = {4,5,2}
+M.armor = {4,6,2}
+M.power = {5,7,3}
 M.movemax = {10,8,12}
 M.firemax = {3,2,4}
-M.hp = {5,6,3}
+M.hp = {8,10,5}
 M.ai = {false, true}
 
 M.current = nil
@@ -21,7 +23,11 @@ function M.init()
 end
 
 function M.add(x, y, team, type, url)
-	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type], url = url, armor = M.armor[type], power = M.power[type],
+	local diff = 1
+	if M.ai[team] then
+		diff = data.diff()
+	end
+	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, url = url, armor = M.armor[type], power = M.power[type],
 		move = M.movemax[type], movmax = M.movemax[type], fire = M.firemax[type], firemax = M.firemax[type]}
 	table.insert(M.data, unit)
 end

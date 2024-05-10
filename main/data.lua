@@ -43,6 +43,11 @@ M.save = {
 	music = 8,
 }
 
+function M.diff()
+	local d = {0.7, 1, 1.2}
+	return d[M.save.diff] or 1
+end
+
 function M.clamp(v, min, max)
 	if type(v) ~= "number" then v = 0 end
 	if v < min then v = min
