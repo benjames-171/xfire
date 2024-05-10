@@ -1,6 +1,6 @@
 local data = require "main.data"
 
-local function findpath()
+local function findpath(self)
 	local map = {}
 	local cost = {[1] = {1,1,1,1}}
 
@@ -18,6 +18,7 @@ local function findpath()
 	astar.set_costs(cost)
 
 	local result, size, total_cost, path = astar.solve(6,6, 18,18)
+	self.path = path
 
 	if result == astar.SOLVED then
 		print("SOLVED")
@@ -26,9 +27,9 @@ local function findpath()
 			tilemap.set_tile("level#tilemap", "world", v.x, v.y, 0)
 		end
 	elseif result == astar.NO_SOLUTION then
-		print("NO_SOLUTION")
+
 	elseif result == astar.START_END_SAME then
-		print("START_END_SAME")
+
 	end
 end
 
@@ -37,12 +38,13 @@ local ST_MOVE = 1
 local ST_FIRE = 2
 
 function init(self)
+	self.path = {}
 	self.state = ST_RESET
 end
 
 local function think(self)
 	if self.state == ST_RESET then
-		findpath()
+		findpath(self)
 		self.state = ST_MOVE
 	elseif self.state == ST_MOVE then
 

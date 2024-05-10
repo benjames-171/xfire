@@ -1,23 +1,26 @@
 local M = {}
 
-M.data = {}
 M.names = {"TROOP", "MECHA", "SCOUT"}
 M.arm = {6,8,4}
 M.pow = {4,6,2}
 M.movemax = {10,8,12}
 M.firemax = {3,2,4}
-M.current = nil
+M.ai = {false, true}
 
+M.current = nil
+M.data = {}
 M.turn = 1
 M.next = 0
-M.ai = {false, true}
 
 function M.init()
 	M.data = {}
+	M.current = nil
+	M.turn = 1
+	M.next = 0
 end
 
 function M.add(x, y, team, type, url)
-	local unit = {	x = x, y = y, team = team, type = type, hp = 8, url = url, arm = M.arm[type], pow = M.pow[type],
+	local unit = {x = x, y = y, team = team, type = type, hp = 8, url = url, arm = M.arm[type], pow = M.pow[type],
 		move = M.movemax[type], movmax = M.movemax[type], fire = M.firemax[type], firemax = M.firemax[type]}
 	table.insert(M.data, unit)
 end

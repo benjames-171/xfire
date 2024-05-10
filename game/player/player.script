@@ -71,7 +71,7 @@ local function select(self)
 		msg.post(u.url, "select")
 		data.state = data.STATE_UNIT
 	else
-		msg.post("view#minimenu", "show", {menu = {"NEXT UNIT", "MAP", "QUIT GAME"}})
+		msg.post("view#minimenu", "show", {menu = {"SCANNER", "END TURN", "QUIT GAME"}})
 	end
 end
 
@@ -115,7 +115,7 @@ local function input_playing(self, action_id, action)
 	elseif action_id == hash("back") and action.pressed then
 		nextunit()
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
-		msg.post("view#powerup", "show")
+		msg.post("view#complete", "show")
 	end
 end
 

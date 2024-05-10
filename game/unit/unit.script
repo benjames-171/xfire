@@ -49,6 +49,8 @@ local function findtargets(self)
 		local text = string.format("ENEMY SPOTTED [%d]", total)
 		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})
 		data.sound("alarm")
+	else
+		msg.post("common/view#game", "cleartick")
 	end
 	return total
 end

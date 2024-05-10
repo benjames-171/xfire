@@ -1,5 +1,6 @@
 local data = require "main.data"
 local ui = require "main.ui"
+local unit = require "game.unit.unit"
 
 function init(self)
 	self.node = gui.get_node("container")
@@ -10,5 +11,16 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("show") then
 		ui.show(self.node)
 		data.state = data.STATE_COMPLETE
+		local text
+		if unit.ai[unit.turn] then
+			text = "COMPUTER"
+		else
+			text = "PLAYER "..unit.turn
+		end
+		local node = gui.get_node("winner")
+		if unit.turn == 2 then
+			gui.set_color(node, data.hex2rgba("#3c80db"))
+		end
+		gui.set_text(node, text)
 	end
 end

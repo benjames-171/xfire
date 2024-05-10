@@ -23,7 +23,7 @@ end
 local function select(self)
 	local text = string.upper(gui.get_text(gui.get_node(self.handpos)))
 
-	if text == "MAP" then
+	if text == "SCANNER" then
 		msg.post("view#map", "show")
 		data.sound("menu-select")
 		gui.set_enabled(gui.get_node("menu"), false)
@@ -36,6 +36,10 @@ local function select(self)
 		if self.caller ~= nil then
 			msg.post(self.caller, "cancel")
 		end
+		gui.set_enabled(gui.get_node("menu"), false)
+		data.state = data.STATE_PLAYING
+	elseif text == "END TURN" then
+		data.sound("menu-select")
 		gui.set_enabled(gui.get_node("menu"), false)
 		data.state = data.STATE_PLAYING
 	elseif text == "NEXT UNIT" then
