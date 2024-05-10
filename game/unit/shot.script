@@ -4,9 +4,22 @@ local unit = require "game.unit.unit"
 go.property("target", vmath.vector3())
 go.property("power", 0)
 
+local function flash(self)
+	self.power = self.power - 1
+	if self.power < 0 then
+		timer.cancel(self.handle)
+		data.state = self.state
+		go.delete()
+	else
+		sprite.play_flipbook("#sprite", "flash")
+		data.sound("flash")
+	end
+end
+
 local function hit(self)
 	sprite.play_flipbook("#sprite", "hit")
 	data.sound("exp-small")
+	self.handle = timer.delay(0.2, true, flash)
 end
 
 function init(self)
@@ -19,9 +32,3 @@ function init(self)
 	data.sound("shot")
 end
 
-function on_message(self, message_id, message)
-	if message_id == hash("animation_done") then
-		data.state = self.state
-		go.delete()
-	end
-end
