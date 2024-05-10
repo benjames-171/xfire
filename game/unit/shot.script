@@ -5,6 +5,10 @@ go.property("target", vmath.vector3())
 go.property("power", 0)
 
 local function complete(self)
+	if unit.gameover() then
+		msg.post("common/player", "pauseinput", {time = 2})
+		msg.post("common/view#complete", "show")
+	end
 	data.state = self.state
 	go.delete()
 end

@@ -28,7 +28,7 @@ function M.add(x, y, team, type, url)
 		diff = data.diff()
 	end
 	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, url = url, armor = M.armor[type], power = M.power[type],
-		move = M.movemax[type], movmax = M.movemax[type], fire = M.firemax[type], firemax = M.firemax[type]}
+	move = M.movemax[type], movmax = M.movemax[type], fire = M.firemax[type], firemax = M.firemax[type]}
 	table.insert(M.data, unit)
 end
 
@@ -75,6 +75,22 @@ function M.delete(x, y)
 			return
 		end
 	end
+end
+
+function M.gameover()
+	local t = {}
+	for n = 1, data.MAX_TEAMS do
+		t[n] = 0
+	end
+	for _, v in pairs(M.data) do
+		t[v.team] = t[v.team] + 1
+	end
+	for n = 1, data.MAX_TEAMS do
+		if t[n] == 0 then
+			return true
+		end
+	end
+	return false
 end
 
 return M

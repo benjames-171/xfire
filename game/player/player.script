@@ -176,6 +176,8 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("nextunit") then
 		nextunit()
+	elseif message_id == hash("pauseinput") then
+		pauseinput(message.time)
 	end
 end
 
