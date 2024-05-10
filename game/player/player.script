@@ -44,7 +44,7 @@ local function cursor(self)
 end
 
 function update(self, dt)
-	if data.ai[data.turn] then
+	if unit.ai[unit.turn] then
 		return
 	end
 
@@ -97,14 +97,14 @@ end
 
 local function nextunit()
 	repeat
-		data.next = data.next + 1
-		if unit.data[data.next] == nil then
-			data.next = 1
+		unit.next = unit.next + 1
+		if unit.data[unit.next] == nil then
+			unit.next = 1
 		end
-		local u = unit.data[data.next]
-	until u.team == data.turn
+		local u = unit.data[unit.next]
+	until u.team == unit.turn
 
-	data.cursor = vmath.vector3(unit.data[data.next].x, unit.data[data.next].y, 0)
+	data.cursor = vmath.vector3(unit.data[unit.next].x, unit.data[unit.next].y, 0)
 	data.sound("popup")
 	panel()
 end
@@ -151,7 +151,7 @@ function on_input(self, action_id, action)
 		input_complete(self, action_id, action)
 	end
 
-	if data.ai[data.turn] then
+	if unit.ai[unit.turn] then
 		return
 	end
 

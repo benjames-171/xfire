@@ -8,6 +8,10 @@ M.movemax = {10,8,12}
 M.firemax = {3,2,4}
 M.current = nil
 
+M.turn = 1
+M.next = 0
+M.ai = {false, true}
+
 function M.init()
 	M.data = {}
 end
@@ -47,6 +51,10 @@ end
 
 function M.getname(type)
 	return M.names[type]
+end
+
+function M.endturn()
+
 end
 
 function M.delete(x, y)

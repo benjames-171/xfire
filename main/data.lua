@@ -13,6 +13,7 @@ M.STATE_FIRE = 12
 M.STATE_MAP = 13
 M.STATE_COMPLETE = 14
 M.STATE_POWERUP = 15
+M.STATE_AI = 16
 
 M.state = M.STATE_MENU
 
@@ -31,11 +32,7 @@ M.scroll = vmath.vector3()
 M.offset = vmath.vector3(8.5, 8.5, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE - 16, M.MAP_SIZE - 14)
 M.gate = {}
-
 M.level = 1
-M.turn = 1
-M.next = 0
-M.ai = {false, true}
 
 M.APP_NAME = "Xfire"
 M.FILE_NAME = "Xfire.sav"

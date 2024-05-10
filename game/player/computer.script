@@ -1,0 +1,34 @@
+local data = require "main.data"
+local unit = require "game.unit.unit"
+
+local INTERVAL = 0.5
+
+function init(self)
+	self.time = 0
+	astar.setup(data.MAP_SIZE, data.MAP_SIZE, astar.DIRECTION_FOUR, data.MAP_SIZE * data.MAP_SIZE, 8, false)
+end
+
+function update(self, dt)
+	if data.state == data.STATE_AI then
+		self.time = self.time + dt
+		if self.time > INTERVAL then
+			self.time = 0
+			if unit.data[self.index] then
+				if unit.data[self.index].team == unit.turn then
+					msg.post(unit.data[self.index].url, "think")
+				end
+				self.index = self.index + 1
+			else
+
+			end
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("newturn") then
+		self.index = 0
+		unit.prepteam(unit.turn)
+	end
+end
+
