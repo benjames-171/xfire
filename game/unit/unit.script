@@ -101,7 +101,7 @@ local function input(self, action_id, action)
 	elseif action_id == hash("right") and action.pressed then
 		self.move.x = 1
 	elseif action_id == hash("action") and action.pressed then
-		msg.post("common/view#minimenu", "show", {menu = {"FIRE", "CANCEL"}, caller = self.url})
+		msg.post("common/view#minimenu", "show", {menu = {"FIRE", "REGENERATE", "CANCEL"}, caller = self.url})
 	elseif action_id == hash("back") and action.pressed then
 		cancel(self)
 	end

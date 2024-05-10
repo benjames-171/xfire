@@ -8,10 +8,6 @@ end
 
 local function panel(info)
 	if info ~= nil then
-		for n = 1, 8 do
-			local node = gui.get_node("hp"..n)
-			gui.set_enabled(node, info.hp >= n)
-		end
 		for n = 1, 16 do
 			local node = gui.get_node("m"..n)
 			gui.set_enabled(node, info.move >= n)
@@ -23,6 +19,7 @@ local function panel(info)
 
 		gui.set_enabled(gui.get_node("unit"), true)
 		gui.set_text(gui.get_node("name"), unit.getname(info.type))
+		gui.set_text(gui.get_node("hp"), info.hp)
 		gui.set_text(gui.get_node("armor"), info.armor)
 		gui.set_text(gui.get_node("power"), info.power)
 		gui.play_flipbook(gui.get_node("icon"), info.team.."-"..info.type)
