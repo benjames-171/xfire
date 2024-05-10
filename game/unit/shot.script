@@ -5,14 +5,14 @@ go.property("target", vmath.vector3())
 go.property("power", 0)
 
 local function hit(self)
-	sprite.play_flipbook("#sprite", "explode")
+	sprite.play_flipbook("#sprite", "hit")
 	data.sound("exp-small")
 end
 
 function init(self)
 	self.state = data.state
 	data.state = data.STATE_NULL
-	self.url = unit.findxy(self.target.x, self.target.y)
+	self.unit = unit.findxy(self.target.x, self.target.y)
 	local target = data.tile2world(self.target)
 	local time = vmath.length(target - go.get_position()) / 250
 	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, target, go.EASING_LINEAR, time, 0, hit)

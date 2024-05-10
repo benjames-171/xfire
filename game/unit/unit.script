@@ -11,17 +11,17 @@ function init(self)
 	self.move = vmath.vector3()
 	self.flash = 0
 	self.url = nil
-	self.u = nil
+	self.unitdata = nil
 	self.target = {}
 end
 
 local function move(self)
-	local pos = vmath.vector3(self.u.x + self.move.x, self.u.y + self.move.y, 0)
+	local pos = vmath.vector3(self.unitdata.x + self.move.x, self.unitdata.y + self.move.y, 0)
 	local t = tilemap.get_tile("/level#tilemap", "world", pos.x, pos.y)
 	if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
-		self.u.move = self.u.move - 1
-		self.u.x = pos.x
-		self.u.y = pos.y
+		self.unitdata.move = self.unitdata.move - 1
+		self.unitdata.x = pos.x
+		self.unitdata.y = pos.y
 		go.set_position(data.tile2world(pos))
 		data.cursor = pos
 		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
@@ -36,7 +36,7 @@ local function findtargets(self)
 	self.target = {}
 	local total = 0
 	for _, v in pairs(unit.data) do
-		if self.u.team ~= v.team then
+		if self.unitdata.team ~= v.team then
 			local target = data.tile2world(vmath.vector3(v.x, v.y, 0)) + vmath.vector3(-8, -8, 0)
 			local ray = physics.raycast(pos, target, {hash("world")})
 			if ray == nil then
@@ -67,7 +67,7 @@ end
 
 function update(self, dt)
 	if self.url == unit.current and self.url ~= nil then
-		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and self.u.move > 0 then
+		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and self.unitdata.move > 0 then
 			if move(self) then
 				local total = findtargets(self)
 			end
@@ -79,7 +79,7 @@ end
 
 local function fire(self)
 	local target = vmath.vector3(data.cursor)
-	factory.create("#shot-fac", nil, nil, {target = target, power = self.u.power})
+	factory.create("#shot-fac", nil, nil, {target = target, power = self.unitdata.power})
 end
 
 local function cancel(self)
@@ -112,13 +112,13 @@ function on_message(self, message_id, message, sender)
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("select") then
 		self.url = unit.current
-		self.u = unit.findurl(self.url)
+		self.unitdata = unit.findurl(self.url)
 		data.sound("popup")
 		findtargets(self)
 	elseif message_id == hash("fire") then
 		fire(self)
 	elseif message_id == hash("lookat") then
-		data.cursor = vmath.vector3(self.u.x, self.u.y, 0)
+		data.cursor = vmath.vector3(self.unitdata.x, self.unitdata.y, 0)
 	elseif message_id == hash("cancel") then
 		cancel(self)
 	end
