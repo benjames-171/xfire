@@ -16,6 +16,7 @@ local function generate()
 		for x = 1, data.MAP_SIZE do
 			local index = ((y-1) * data.MAP_SIZE * 4) + ((x-1) * 4)
 			local t = tilemap.get_tile("/level#tilemap", "world", x, y)
+			local c = tilemap.get_tile("/level#tilemap", "control", x, y)
 			local u = unit.findxy(x, y)
 
 			if u ~= nil then
@@ -26,8 +27,8 @@ local function generate()
 				end
 			elseif data.walltile(t) then
 				setpixel(stream, index, 0x2d,0x00,0x6e)
-			--elseif t ~= 0 then
-				--setpixel(stream, index, 0x2d,0x00,0x6e)
+			elseif data.solidtile(c) then
+				setpixel(stream, index, 0x26,0x0a,0x34)
 			else
 				setpixel(stream, index, 0x00,0x00,0x00)
 			end

@@ -68,6 +68,10 @@ function M.walltile(t)
 	return t > 0 and t <= 80
 end
 
+function M.solidtile(t)
+	return t >= 81 and t <= 112
+end
+
 function M.world2tile(p)
 	return vmath.vector3(math.ceil(p.x / M.TILE_SIZE), math.ceil(p.y / M.TILE_SIZE), p.z)
 end

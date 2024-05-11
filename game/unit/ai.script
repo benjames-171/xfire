@@ -7,7 +7,8 @@ local function findpath(self)
 	for y = 1, data.MAP_SIZE do
 		for x = 1, data.MAP_SIZE do
 			local t = tilemap.get_tile("level#tilemap", "world", x, y)
-			if data.walltile(t) then t = 0
+			local c = tilemap.get_tile("level#tilemap", "control", x, y)
+			if data.walltile(t) or data.solidtile(c) then t = 0
 			else t = 1
 			end
 			map[x + (y * data.MAP_SIZE)] = t

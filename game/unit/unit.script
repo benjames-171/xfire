@@ -18,7 +18,8 @@ end
 local function move(self)
 	local pos = vmath.vector3(unit.stat.x + self.move.x, unit.stat.y + self.move.y, 0)
 	local t = tilemap.get_tile("level#tilemap", "world", pos.x, pos.y)
-	if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
+	local c = tilemap.get_tile("level#tilemap", "control", pos.x, pos.y)
+	if not data.walltile(t) and not data.solidtile(c) and unit.findxy(pos.x, pos.y) == nil then
 		unit.stat.move = unit.stat.move - 1
 		unit.stat.x = pos.x
 		unit.stat.y = pos.y
