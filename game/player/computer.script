@@ -16,7 +16,6 @@ function update(self, dt)
 				if unit.data[self.index].team == unit.turn then
 					msg.post(unit.data[self.index].obj, "think")
 				end
-				self.index = self.index + 1
 			else
 
 			end
@@ -28,6 +27,8 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("newturn") then
 		self.index = 0
 		unit.prepteam(unit.turn)
+	elseif message_id == hash("nextunit") then
+		self.index = self.index + 1
 	end
 end
 

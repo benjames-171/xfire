@@ -56,7 +56,7 @@ local function findtargets(self)
 		end
 	end
 	if total > 0 then
-		local text = string.format("ENEMY SPOTTED [%d]", total)
+		local text = string.format("%d ENEMY", total)
 		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})
 		data.sound("alarm")
 	else

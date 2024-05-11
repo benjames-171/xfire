@@ -39,7 +39,7 @@ local ST_MOVE = 1
 local ST_FIRE = 2
 
 function init(self)
-	self.path = {}
+	self.path = nil
 	self.state = ST_RESET
 end
 
