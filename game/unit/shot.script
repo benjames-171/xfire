@@ -17,7 +17,7 @@ local function flash(self)
 	self.power = self.power - 1
 
 	if self.unit.hp <= 0 then
-		sprite.play_flipbook("#sprite", "explode")
+		msg.post("common/effect", "explode", {pos = go.get_position()})
 		data.sound("exp-large")
 		unit.delete(self.target.x, self.target.y)
 		timer.cancel(self.handle)

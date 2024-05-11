@@ -104,7 +104,7 @@ end
 local function menu(self)
 	local menudata = {}
 
-	if unit.stat.fire >= 0 then
+	if unit.stat.fire > 0 then
 		table.insert(menudata, "FIRE")
 	end
 	if unit.stat.move >= 4 and unit.stat.hp < unit.stat.hpmax then

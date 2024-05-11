@@ -1,7 +1,7 @@
 tile_set: "/game/core/16.tilesource"
 layers {
   id: "world"
-  z: 0.0
+  z: -0.5
   is_visible: 1
   cell {
     x: 0
@@ -4638,12 +4638,12 @@ layers {
 }
 layers {
   id: "shadow"
-  z: 0.1
+  z: -0.4
   is_visible: 1
 }
 layers {
   id: "control"
-  z: 0.2
+  z: 0.0
   is_visible: 1
   cell {
     x: 8
