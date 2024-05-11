@@ -31,6 +31,13 @@ local function select(self)
 		data.state = data.STATE_FIRE
 		data.sound("menu-select")
 		gui.set_enabled(gui.get_node("menu"), false)
+	elseif text == "REGENERATE" then
+		data.sound("menu-select")
+		gui.set_enabled(gui.get_node("menu"), false)
+		if self.caller ~= nil then
+			msg.post(self.caller, "regenerate")
+		end
+		data.state = data.STATE_UNIT
 	elseif text == "CANCEL" then
 		data.sound("menu-back")
 		if self.caller ~= nil then

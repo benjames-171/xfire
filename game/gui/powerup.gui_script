@@ -4,7 +4,7 @@ local ui = require "main.ui"
 
 local MENU_LEN = 4
 
-local desc = {"+1 SHIELD", "+1 MOVES PER TURN", "+1 SHOT POWER", "+1 SHOTS PER TURN"}
+local desc = {"+2 ARMOR", "+1 MOVES PER TURN", "+2 SHOT POWER", "+1 SHOTS PER TURN"}
 
 function init(self)
 	self.handpos = 1
@@ -26,6 +26,21 @@ function update(self, dt)
 	end
 end
 
+local function apply(self)
+	local u = unit.findurl(unit.current)
+	if self.handpos == 1 then
+		u.armor = u.armor + 2
+	elseif self.handpos == 2 then
+		u.movemax = u.movemax + 1
+		u.move = u.move + 1
+	elseif self.handpos == 3 then
+		u.power = u.power + 2
+	elseif self.handpos == 4 then
+		u.firemax = u.firemax + 1
+		u.fire = u.fire + 1
+	end
+end
+
 local function input(self, action_id, action)
 	if action_id == hash("left") and action.pressed then
 		self.handpos = data.wrap(self.handpos - 1, 1, MENU_LEN)
@@ -37,18 +52,7 @@ local function input(self, action_id, action)
 		ui.hide(self.node)
 		data.sound("powerup")
 		data.state = data.STATE_UNIT
-		local u = unit.findurl(unit.current)
-		if self.handpos == 1 then
-			u.armor = u.armor + 1
-		elseif self.handpos == 2 then
-			u.movemax = u.movemax + 1
-			u.move = u.move + 1
-		elseif self.handpos == 3 then
-			u.power = u.power + 1
-		elseif self.handpos == 4 then
-			u.firemax = u.firemax + 1
-			u.fire = u.fire + 1
-		end
+		apply(self)
 		msg.post("view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 	end
 end

@@ -101,6 +101,19 @@ local function cancel(self)
 	data.state = data.STATE_PLAYING
 end
 
+local function menu(self)
+	local menudata = {}
+
+	if self.unitdata.fire >= 0 then
+		table.insert(menudata, "FIRE")
+	end
+	if self.unitdata.move >= 4 and self.unitdata.hp < self.unitdata.hpmax then
+		table.insert(menudata, "REGENERATE")
+	end
+	table.insert(menudata, "CANCEL")
+	msg.post("common/view#minimenu", "show", {menu = menudata, caller = self.url})
+end
+
 local function input(self, action_id, action)
 	if action_id == hash("up") and action.pressed then
 		self.move.y = 1
@@ -111,7 +124,7 @@ local function input(self, action_id, action)
 	elseif action_id == hash("right") and action.pressed then
 		self.move.x = 1
 	elseif action_id == hash("action") and action.pressed then
-		msg.post("common/view#minimenu", "show", {menu = {"FIRE", "REGENERATE", "CANCEL"}, caller = self.url})
+		menu(self)
 	elseif action_id == hash("back") and action.pressed then
 		cancel(self)
 	end
@@ -129,6 +142,13 @@ function on_message(self, message_id, message, sender)
 		fire(self)
 	elseif message_id == hash("lookat") then
 		data.cursor = vmath.vector3(self.unitdata.x, self.unitdata.y, 0)
+	elseif message_id == hash("regenerate") then
+		if self.unitdata.move >= 4 and self.unitdata.hp < self.unitdata.hpmax then
+			self.unitdata.move = self.unitdata.move - 4
+			self.unitdata.hp = self.unitdata.hp + 1
+			msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+			data.sound("powerup")
+		end
 	elseif message_id == hash("cancel") then
 		cancel(self)
 	end

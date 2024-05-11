@@ -8,8 +8,10 @@ end
 
 function update(self, dt)
 	if data.state == data.STATE_MAP then
-		local pos = vmath.vector3(-32, -30, 0)
-		pos = pos + (data.scroll / data.TILE_SIZE)
+		local pos = vmath.vector3(-64, -44, 0)
+		pos = pos + (data.scroll / 8)
+		pos.x = math.ceil(pos.x)
+		pos.y = math.ceil(pos.y)
 		gui.set_position(gui.get_node("box"), pos)
 	end
 end
