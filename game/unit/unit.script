@@ -11,17 +11,17 @@ function init(self)
 	self.move = vmath.vector3()
 	self.flash = 0
 	self.obj = nil
-	self.unitdata = nil
+	unit.stat = nil
 	self.target = {}
 end
 
 local function move(self)
-	local pos = vmath.vector3(self.unitdata.x + self.move.x, self.unitdata.y + self.move.y, 0)
+	local pos = vmath.vector3(unit.stat.x + self.move.x, unit.stat.y + self.move.y, 0)
 	local t = tilemap.get_tile("level#tilemap", "world", pos.x, pos.y)
 	if not data.walltile(t) and unit.findxy(pos.x, pos.y) == nil then
-		self.unitdata.move = self.unitdata.move - 1
-		self.unitdata.x = pos.x
-		self.unitdata.y = pos.y
+		unit.stat.move = unit.stat.move - 1
+		unit.stat.x = pos.x
+		unit.stat.y = pos.y
 		go.set_position(data.tile2world(pos))
 		data.cursor = pos
 		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
@@ -45,7 +45,7 @@ local function findtargets(self)
 	self.target = {}
 	local total = 0
 	for _, v in pairs(unit.data) do
-		if self.unitdata.team ~= v.team then
+		if unit.stat.team ~= v.team then
 			local target = data.tile2world(vmath.vector3(v.x, v.y, 0)) + vmath.vector3(-8, -8, 0)
 			local ray = physics.raycast(pos, target, {hash("world")})
 			if ray == nil then
@@ -76,7 +76,7 @@ end
 
 function update(self, dt)
 	if self.obj == unit.obj and self.obj ~= nil then
-		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and self.unitdata.move > 0 then
+		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and unit.stat.move > 0 then
 			if move(self) then
 				local total = findtargets(self)
 				powerup(self)
@@ -89,7 +89,7 @@ end
 
 local function fire(self)
 	local target = vmath.vector3(data.cursor)
-	factory.create("#shot-fac", nil, nil, {target = target, power = self.unitdata.power})
+	factory.create("#shot-fac", nil, nil, {target = target, power = unit.stat.power})
 end
 
 local function cancel(self)
@@ -104,10 +104,10 @@ end
 local function menu(self)
 	local menudata = {}
 
-	if self.unitdata.fire >= 0 then
+	if unit.stat.fire >= 0 then
 		table.insert(menudata, "FIRE")
 	end
-	if self.unitdata.move >= 4 and self.unitdata.hp < self.unitdata.hpmax then
+	if unit.stat.move >= 4 and unit.stat.hp < unit.stat.hpmax then
 		table.insert(menudata, "REGENERATE")
 	end
 	table.insert(menudata, "CANCEL")
@@ -135,17 +135,16 @@ function on_message(self, message_id, message, sender)
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("select") then
 		self.obj = unit.obj
-		self.unitdata = unit.findobj(self.obj)
 		data.sound("popup")
 		findtargets(self)
 	elseif message_id == hash("fire") then
 		fire(self)
 	elseif message_id == hash("lookat") then
-		data.cursor = vmath.vector3(self.unitdata.x, self.unitdata.y, 0)
+		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	elseif message_id == hash("regenerate") then
-		if self.unitdata.move >= 4 and self.unitdata.hp < self.unitdata.hpmax then
-			self.unitdata.move = self.unitdata.move - 4
-			self.unitdata.hp = self.unitdata.hp + 1
+		if unit.stat.move >= 4 and unit.stat.hp < unit.stat.hpmax then
+			unit.stat.move = unit.stat.move - 4
+			unit.stat.hp = unit.stat.hp + 1
 			msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 			data.sound("powerup")
 		end

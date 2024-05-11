@@ -47,11 +47,13 @@ function init(self)
 	data.state = data.STATE_NULL
 	msg.post("#ch", "disable")
 	self.unit = unit.findxy(self.target.x, self.target.y)
-	if self.unit then
+	if self.unit and unit.stat.fire > 0 then
 		local target = data.tile2world(self.target)
 		local time = vmath.length(target - go.get_position()) / 250
 		go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, target, go.EASING_LINEAR, time, 0, hit)
 		data.sound("shot")
+		unit.stat.fire = unit.stat.fire - 1
+		msg.post("common/view#game", "panel", {x = unit.stat.x, y = unit.stat.y})
 	else
 		complete(self)
 	end
