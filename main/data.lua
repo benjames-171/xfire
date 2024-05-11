@@ -69,7 +69,7 @@ function M.walltile(t)
 end
 
 function M.world2tile(p)
-	return vmath.vector3(p.x / M.TILE_SIZE, p.y / M.TILE_SIZE, p.z)
+	return vmath.vector3(math.ceil(p.x / M.TILE_SIZE), math.ceil(p.y / M.TILE_SIZE), p.z)
 end
 
 function M.tile2world(p)

@@ -130,7 +130,7 @@ local function input_fire(self, action_id, action)
 end
 
 local function input_map(self, action_id, action)
-	if action_id == hash("back") and action.pressed then
+	if (action_id == hash("action") or action_id == hash("back")) and action.pressed then
 		msg.post("view#map", "hide")
 		data.sound("menu-back")
 		data.state = data.STATE_PLAYING

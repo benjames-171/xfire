@@ -1,8 +1,11 @@
-function init(self)
-end
+local data = require "main.data"
 
 function update(self, dt)
-end
-
-function on_message(self, message_id, message, sender)
+	if data.state == data.STATE_POWERUP then
+		local pos = data.world2tile(go.get_position())
+		local t = tilemap.get_tile("level#tilemap", "control", pos.x, pos.y)
+		if t == 0 then
+			go.delete()
+		end
+	end
 end

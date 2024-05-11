@@ -1,4 +1,5 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 local ui = require "main.ui"
 
 local MENU_LEN = 4
@@ -34,8 +35,21 @@ local function input(self, action_id, action)
 		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		ui.hide(self.node)
-		data.sound("menu-select")
-		data.state = data.STATE_PLAYING
+		data.sound("powerup")
+		data.state = data.STATE_UNIT
+		local u = unit.findurl(unit.current)
+		if self.handpos == 1 then
+			u.armor = u.armor + 1
+		elseif self.handpos == 2 then
+			u.movemax = u.movemax + 1
+			u.move = u.move + 1
+		elseif self.handpos == 3 then
+			u.power = u.power + 1
+		elseif self.handpos == 4 then
+			u.firemax = u.firemax + 1
+			u.fire = u.fire + 1
+		end
+		msg.post("view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 	end
 end
 
