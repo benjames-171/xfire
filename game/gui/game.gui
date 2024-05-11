@@ -192,13 +192,13 @@ nodes {
   template_node_child: false
   size_mode: SIZE_MODE_MANUAL
   custom_type: 0
-  enabled: false
+  enabled: true
   visible: true
   material: ""
 }
 nodes {
   position {
-    x: -98.0
+    x: -99.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -324,7 +324,7 @@ nodes {
 }
 nodes {
   position {
-    x: -77.0
+    x: -78.0
     y: -10.0
     z: 0.0
     w: 1.0
@@ -450,7 +450,7 @@ nodes {
 }
 nodes {
   position {
-    x: -60.0
+    x: -61.0
     y: -10.0
     z: 0.0
     w: 1.0
@@ -576,7 +576,7 @@ nodes {
 }
 nodes {
   position {
-    x: -43.0
+    x: -44.0
     y: -10.0
     z: 0.0
     w: 1.0
@@ -769,7 +769,7 @@ nodes {
 }
 nodes {
   position {
-    x: 25.0
+    x: 26.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -828,7 +828,7 @@ nodes {
 }
 nodes {
   position {
-    x: 29.0
+    x: 30.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -887,7 +887,7 @@ nodes {
 }
 nodes {
   position {
-    x: 33.0
+    x: 34.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -946,7 +946,7 @@ nodes {
 }
 nodes {
   position {
-    x: 37.0
+    x: 38.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -1005,7 +1005,7 @@ nodes {
 }
 nodes {
   position {
-    x: 41.0
+    x: 42.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -1064,7 +1064,7 @@ nodes {
 }
 nodes {
   position {
-    x: 45.0
+    x: 46.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -1123,7 +1123,7 @@ nodes {
 }
 nodes {
   position {
-    x: 49.0
+    x: 50.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -1182,7 +1182,7 @@ nodes {
 }
 nodes {
   position {
-    x: 53.0
+    x: 54.0
     y: 6.0
     z: 0.0
     w: 1.0
@@ -1241,7 +1241,7 @@ nodes {
 }
 nodes {
   position {
-    x: 25.0
+    x: 26.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1300,7 +1300,7 @@ nodes {
 }
 nodes {
   position {
-    x: 29.0
+    x: 30.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1359,7 +1359,7 @@ nodes {
 }
 nodes {
   position {
-    x: 33.0
+    x: 34.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1418,7 +1418,7 @@ nodes {
 }
 nodes {
   position {
-    x: 37.0
+    x: 38.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1477,7 +1477,7 @@ nodes {
 }
 nodes {
   position {
-    x: 41.0
+    x: 42.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1536,7 +1536,7 @@ nodes {
 }
 nodes {
   position {
-    x: 45.0
+    x: 46.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1595,7 +1595,7 @@ nodes {
 }
 nodes {
   position {
-    x: 49.0
+    x: 50.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1654,7 +1654,7 @@ nodes {
 }
 nodes {
   position {
-    x: 53.0
+    x: 54.0
     y: 2.0
     z: 0.0
     w: 1.0
@@ -1780,7 +1780,7 @@ nodes {
 }
 nodes {
   position {
-    x: 25.0
+    x: 26.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -1839,7 +1839,7 @@ nodes {
 }
 nodes {
   position {
-    x: 29.0
+    x: 30.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -1898,7 +1898,7 @@ nodes {
 }
 nodes {
   position {
-    x: 33.0
+    x: 34.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -1957,7 +1957,7 @@ nodes {
 }
 nodes {
   position {
-    x: 37.0
+    x: 38.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -2016,7 +2016,7 @@ nodes {
 }
 nodes {
   position {
-    x: 41.0
+    x: 42.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -2075,7 +2075,7 @@ nodes {
 }
 nodes {
   position {
-    x: 45.0
+    x: 46.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -2134,7 +2134,7 @@ nodes {
 }
 nodes {
   position {
-    x: 49.0
+    x: 50.0
     y: 4.0
     z: 0.0
     w: 1.0
@@ -2193,7 +2193,7 @@ nodes {
 }
 nodes {
   position {
-    x: 53.0
+    x: 54.0
     y: 4.0
     z: 0.0
     w: 1.0

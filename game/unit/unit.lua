@@ -30,7 +30,7 @@ function M.add(x, y, team, type, obj)
 		diff = data.diff()
 	end
 	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, obj = obj,
-		armor = M.armor[type], power = M.power[type], move = M.movemax[type], movmax = M.movemax[type],
+		armor = M.armor[type], power = M.power[type], move = M.movemax[type], movemax = M.movemax[type],
 		fire = M.firemax[type], firemax = M.firemax[type]}
 	table.insert(M.data, unit)
 end
