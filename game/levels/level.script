@@ -13,8 +13,8 @@ local function spawnunit(x, y, t)
 	end
 
 	local pos = data.tile2world(vmath.vector3(x, y, 0))
-	local url = factory.create("#unit-fac", pos, nil, {team = team, type = type})
-	unit.add(x, y, team, type, url)
+	local obj = factory.create("#unit-fac", pos, nil, {team = team, type = type})
+	unit.add(x, y, team, type, obj)
 end
 
 local function shadow(x, y)

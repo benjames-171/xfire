@@ -15,7 +15,7 @@ function update(self, dt)
 			self.time = 0
 			if unit.data[self.index] then
 				if unit.data[self.index].team == unit.turn then
-					msg.post(unit.data[self.index].url, "think")
+					msg.post(unit.data[self.index].obj, "think")
 				end
 				self.index = self.index + 1
 			else

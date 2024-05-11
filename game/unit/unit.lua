@@ -10,24 +10,26 @@ M.firemax = {3,2,4}
 M.hp = {8,10,5}
 M.ai = {false, true}
 
-M.current = nil
+M.obj = nil
+M.stat = nil
 M.data = {}
 M.turn = 1
 M.next = 0
 
 function M.init()
 	M.data = {}
-	M.current = nil
+	M.obj = nil
+	M.stat = nil
 	M.turn = 1
 	M.next = 0
 end
 
-function M.add(x, y, team, type, url)
+function M.add(x, y, team, type, obj)
 	local diff = 1
 	if M.ai[team] then
 		diff = data.diff()
 	end
-	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, url = url,
+	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, obj = obj,
 		armor = M.armor[type], power = M.power[type], move = M.movemax[type], movmax = M.movemax[type],
 		fire = M.firemax[type], firemax = M.firemax[type]}
 	table.insert(M.data, unit)
@@ -51,9 +53,9 @@ function M.findxy(x, y)
 	return nil
 end
 
-function M.findurl(url)
+function M.findobj(obj)
 	for _, v in pairs(M.data) do
-		if v.url == url then
+		if v.obj == obj then
 			return v
 		end
 	end
@@ -71,7 +73,7 @@ end
 function M.delete(x, y)
 	for k, v in pairs(M.data) do
 		if v.x == x and v.y == y then
-			go.delete(v.url)
+			go.delete(v.obj)
 			table.remove(M.data, k)
 			return
 		end

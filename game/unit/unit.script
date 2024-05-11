@@ -10,7 +10,7 @@ function init(self)
 	sprite.set_hflip("#sprite", self.team == 2)
 	self.move = vmath.vector3()
 	self.flash = 0
-	self.url = nil
+	self.obj = nil
 	self.unitdata = nil
 	self.target = {}
 end
@@ -75,7 +75,7 @@ local function flash(self, dt)
 end
 
 function update(self, dt)
-	if self.url == unit.current and self.url ~= nil then
+	if self.obj == unit.obj and self.obj ~= nil then
 		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and self.unitdata.move > 0 then
 			if move(self) then
 				local total = findtargets(self)
@@ -93,8 +93,8 @@ local function fire(self)
 end
 
 local function cancel(self)
-	unit.current = nil
-	self.url = nil
+	unit.obj = nil
+	self.obj = nil
 	data.sound("menu-back")
 	msg.post("#sprite", "enable")
 	msg.post("common/view#game", "cleartick")
@@ -111,7 +111,7 @@ local function menu(self)
 		table.insert(menudata, "REGENERATE")
 	end
 	table.insert(menudata, "CANCEL")
-	msg.post("common/view#minimenu", "show", {menu = menudata, caller = self.url})
+	msg.post("common/view#minimenu", "show", {menu = menudata, caller = self.obj})
 end
 
 local function input(self, action_id, action)
@@ -134,8 +134,8 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("input") then
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("select") then
-		self.url = unit.current
-		self.unitdata = unit.findurl(self.url)
+		self.obj = unit.obj
+		self.unitdata = unit.findobj(self.obj)
 		data.sound("popup")
 		findtargets(self)
 	elseif message_id == hash("fire") then

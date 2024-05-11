@@ -27,7 +27,7 @@ function update(self, dt)
 end
 
 local function apply(self)
-	local u = unit.findurl(unit.current)
+	local u = unit.findobj(unit.obj)
 	if self.handpos == 1 then
 		u.armor = u.armor + 2
 	elseif self.handpos == 2 then
