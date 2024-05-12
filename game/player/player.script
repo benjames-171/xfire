@@ -64,13 +64,15 @@ function update(self, dt)
 	self.move = vmath.vector3()
 end
 
-local function select(self)
+local function select()
 	local unitdata = unit.findxy(data.cursor.x, data.cursor.y)
 	if unitdata ~= nil then
-		unit.obj = unitdata.obj
-		unit.stat = unitdata
-		msg.post(unitdata.obj, "select")
-		data.state = data.STATE_UNIT
+		if unitdata.team == unit.turn then
+			unit.obj = unitdata.obj
+			unit.stat = unitdata
+			msg.post(unitdata.obj, "select")
+			data.state = data.STATE_UNIT
+		end
 	else
 		msg.post("view#minimenu", "show", {menu = {"SCANNER", "END TURN", "QUIT GAME"}})
 	end
@@ -112,7 +114,7 @@ end
 
 local function input_playing(self, action_id, action)
 	if action_id == hash("action") and action.pressed then
-		select(self)
+		select()
 	elseif action_id == hash("back") and action.pressed then
 		nextunit()
 	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
