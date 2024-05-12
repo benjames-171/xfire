@@ -48,7 +48,7 @@ local function select(self)
 	elseif text == "END TURN" then
 		data.sound("menu-select")
 		gui.set_enabled(gui.get_node("menu"), false)
-		data.state = data.STATE_PLAYING
+		msg.post("turn", "newturn")
 	elseif text == "NEXT UNIT" then
 		msg.post("player", "nextunit")
 	elseif text == "QUIT GAME" then

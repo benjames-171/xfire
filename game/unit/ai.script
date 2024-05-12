@@ -45,8 +45,9 @@ end
 
 local function think(self)
 	if self.state == ST_RESET then
-		findpath(self)
+		--findpath(self)
 		self.state = ST_MOVE
+		msg.post("common/turn", "nextunit")
 	elseif self.state == ST_MOVE then
 
 	elseif self.state == ST_FIRE then
