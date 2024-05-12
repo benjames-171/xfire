@@ -26,7 +26,13 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("newturn") then
 		self.index = 0
+		data.turn = data.wrap(data.turn + 1, 1, data.MAX_TEAMS)
 		unit.prepteam(unit.turn)
+		if data.ai[data.turn] then
+			data.state = data.STATE_AI
+		else
+			data.state = data.PLAYING
+		end
 	elseif message_id == hash("nextunit") then
 		self.index = self.index + 1
 	end
