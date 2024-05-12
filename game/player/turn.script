@@ -1,7 +1,7 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
-local INTERVAL = 0.5
+local INTERVAL = 0.75
 
 function init(self)
 	self.time = 0
@@ -9,7 +9,11 @@ end
 
 local function newturn(self)
 	self.index = 1
+	unit.cursor[unit.turn] = data.cursor
 	unit.turn = data.wrap(unit.turn + 1, 1, data.MAX_TEAMS)
+	if unit.cursor[unit.turn] then
+		data.cursor = unit.cursor[unit.turn]
+	end
 	unit.prepteam(unit.turn)
 	if unit.ai[unit.turn] then
 		data.state = data.STATE_AI
@@ -30,7 +34,6 @@ function update(self, dt)
 		self.time = self.time + dt
 		if self.time > INTERVAL then
 			self.time = 0
-			pprint(self.index)
 			if unit.data[self.index].team == unit.turn then
 				msg.post(unit.data[self.index].obj, "think")
 			else

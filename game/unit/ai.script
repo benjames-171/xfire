@@ -46,8 +46,9 @@ end
 local function think(self)
 	if self.state == ST_RESET then
 		--findpath(self)
-		self.state = ST_MOVE
+		--self.state = ST_MOVE
 		msg.post("common/turn", "nextunit")
+		data.cursor = data.world2tile(go.get_position())
 	elseif self.state == ST_MOVE then
 
 	elseif self.state == ST_FIRE then

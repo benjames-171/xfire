@@ -70,5 +70,4 @@ end
 function init(self)
 	unit.init()
 	parse()
-	msg.post("common/view", "tick", {text = "PLAYER TURN - RED TEAM"})
 end

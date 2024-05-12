@@ -13,6 +13,7 @@ M.ai = {false, true}
 M.obj = nil
 M.stat = nil
 M.data = {}
+M.cursor = {}
 M.turn = 1
 M.next = 0
 
@@ -64,10 +65,6 @@ end
 
 function M.getname(type)
 	return M.names[type]
-end
-
-function M.endturn()
-
 end
 
 function M.delete(x, y)
