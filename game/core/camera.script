@@ -1,9 +1,8 @@
 local data = require "main.data"
 
-local SPEED = 0.15
-
 function init(self)
 	msg.post("#camera", "acquire_camera_focus")
+	self.speed = 0.2
 	self.pos = go.get_world_position()
 end
 
@@ -17,7 +16,11 @@ local function bounds(pos)
 end
 
 local function move(self)
-	local v = vmath.vector3((data.cursor.x - self.pos.x) * SPEED, (data.cursor.y - self.pos.y) * SPEED, 0)
+	local speed = 0.2
+	if data.state == data.STATE_AI or data.state == data.STATE_NULL then
+		speed = 0.05
+	end
+	local v = vmath.vector3((data.cursor.x - self.pos.x) * speed, (data.cursor.y - self.pos.y) * speed, 0)
 	self.pos = self.pos + v
 end
 

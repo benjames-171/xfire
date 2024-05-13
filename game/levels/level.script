@@ -37,7 +37,7 @@ end
 
 local function parse()
 	data.wp = {}
-	data.maxep = 0
+	data.maxwp = 0
 
 	for y = 1, data.MAP_SIZE do
 		for x = 1, data.MAP_SIZE do

@@ -31,7 +31,7 @@ local function findpath(self, sx, sy, tx, ty)
 	if result == astar.SOLVED then
 		self.path = path
 		self.plen = size
-		self.step = 1
+		self.step = 2
 	else
 		self.state = ST_ERR
 	end
@@ -53,13 +53,13 @@ local function reset(self)
 		self.endpoint = data.wp[math.random(1, data.maxwp)]
 	until self.endpoint.x ~= unit.stat.x or self.endpoint.y ~= unit.stat.y
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+	msg.post("common/view#script", "snap_to")
 end
 
 local function step(self)
 	unit.stat.x = self.path[self.step].x
 	unit.stat.y = self.path[self.step].y
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
-	msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 	go.set_position(data.tile2world(vmath.vector3(data.cursor)))
 	unit.stat.move = unit.stat.move - 1
 end
@@ -87,7 +87,7 @@ local function retreat(self)
 	if self.step > 0 and unit.stat.move > 0 then
 		step(self)
 	end
-	self.state = ST_RESET
+	self.state = ST_END
 end
 
 local function fire(self)
@@ -124,6 +124,7 @@ local function think(self)
 		msg.post("common/turn", "nextunit")
 		self.state = ST_RESET
 	end
+	msg.post("common/view#game", "panel", {x = unit.stat.x, y = unit.stat.y})
 end
 
 function on_message(self, message_id, message)
