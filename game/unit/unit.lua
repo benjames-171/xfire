@@ -63,6 +63,25 @@ function M.findobj(obj)
 	return nil
 end
 
+function M.findtargets(self)
+	self.target = {}
+	local pos = go.get_position() + vmath.vector3(-8, -8, 0)
+	local total = 0
+
+	for _, v in pairs(M.data) do
+		if M.stat.team ~= v.team then
+			local target = data.tile2world(vmath.vector3(v.x, v.y, 0)) + vmath.vector3(-8, -8, 0)
+			local ray = physics.raycast(pos, target, {hash("world")})
+			if ray == nil then
+				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
+				total = total + 1
+			end
+		end
+	end
+
+	return total
+end
+
 function M.getname(type)
 	return M.names[type]
 end

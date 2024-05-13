@@ -42,19 +42,8 @@ local function powerup(self)
 end
 
 local function findtargets(self)
-	local pos = go.get_position() + vmath.vector3(-8, -8, 0)
-	self.target = {}
-	local total = 0
-	for _, v in pairs(unit.data) do
-		if unit.stat.team ~= v.team then
-			local target = data.tile2world(vmath.vector3(v.x, v.y, 0)) + vmath.vector3(-8, -8, 0)
-			local ray = physics.raycast(pos, target, {hash("world")})
-			if ray == nil then
-				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
-				total = total + 1
-			end
-		end
-	end
+	local total = unit.findtargets(self)
+
 	if total > 0 then
 		local text = string.format("%d ENEMY", total)
 		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})

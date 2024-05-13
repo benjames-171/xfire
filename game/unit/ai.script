@@ -38,24 +38,25 @@ end
 
 function init(self)
 	self.path = nil
+	self.enemy = {}
 	self.plen = 0
 	self.step = 0
 	self.state = ST_RESET
-	self.target = vmath.vector3()
+	self.endpoint = vmath.vector3()
 end
 
 local function reset(self)
 	self.step = 0
 	self.state = ST_MOVE
 	repeat
-		self.target = data.wp[math.random(1, data.maxwp)]
-	until self.target.x ~= unit.stat.x or self.target.y ~= unit.stat.y
+		self.endpoint = data.wp[math.random(1, data.maxwp)]
+	until self.endpoint.x ~= unit.stat.x or self.endpoint.y ~= unit.stat.y
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 end
 
 local function move(self)
 	if self.step == 0 then
-		findpath(self, unit.stat.x, unit.stat.y, self.target.x, self.target.y)
+		findpath(self, unit.stat.x, unit.stat.y, self.endpoint.x, self.endpoint.y)
 	elseif unit.stat.move > 1 then
 		unit.stat.x = self.path[self.step].x
 		unit.stat.y = self.path[self.step].y
@@ -66,10 +67,20 @@ local function move(self)
 		self.step = self.step + 1
 		if self.step > self.plen then
 			self.state = ST_RESET
+		else
+			if unit.findtargets(self) > 0 then
+				self.state = ST_FIRE
+			end
 		end
 	else
 		self.state = ST_END
 	end
+end
+
+local function fire(self)
+	data.cursor = self.target[1]
+	factory.create("#shot-fac", nil, nil, {target = self.target[1], power = unit.stat.power})
+	self.state = ST_END
 end
 
 local function think(self)
@@ -78,7 +89,7 @@ local function think(self)
 	elseif self.state == ST_MOVE then
 		move(self)
 	elseif self.state == ST_FIRE then
-
+		fire(self)
 	elseif self.state == ST_END then
 		self.step = 0
 		self.state = ST_MOVE
