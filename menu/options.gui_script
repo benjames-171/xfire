@@ -1,18 +1,21 @@
 local data = require "main.data"
 local ui = require "main.ui"
 
-local MENU_LEN = 5
+local MENU_LEN = 6
 
 local DIFF = {"EASY", "NORMAL", "HARD"}
+local SPEED = {"SLOW", "NORMAL", "FAST"}
 
 local function settext()
 	local text
 
 	data.save.diff = data.wrap(data.save.diff, 1, 3)
+	data.save.speed = data.wrap(data.save.speed, 1, 3)
 	data.save.sfx = data.clamp(data.save.sfx, 0, 10)
 	data.save.music = data.clamp(data.save.music, 0, 10)
 
 	gui.set_text(gui.get_node("diff"), DIFF[data.save.diff])
+	gui.set_text(gui.get_node("speed"), SPEED[data.save.speed])
 
 	if data.save.sfx > 0 then text = data.save.sfx
 	else text = "OFF"
@@ -29,6 +32,7 @@ function init(self)
 	self.handpos = 1
 	self.arrowpos = {
 		gui.get_position(gui.get_node("diff1")),
+		gui.get_position(gui.get_node("speed1")),
 		gui.get_position(gui.get_node("sound1")),
 		gui.get_position(gui.get_node("music1")),
 		gui.get_position(gui.get_node("credits")),
@@ -70,9 +74,9 @@ local function input(self, action_id, action)
 		self.handpos = data.wrap(self.handpos, 1, MENU_LEN)
 		data.sound("menu-move")
 	elseif action_id == hash("left") and action.pressed then
-		if self.handpos == 2 then
+		if self.handpos == 3 then
 			data.save.sfx = data.save.sfx - 1
-		elseif self.handpos == 3 then
+		elseif self.handpos == 4 then
 			data.save.music = data.save.music - 1
 			sound.set_gain("main:/sound#music-menu", data.save.music / 10)
 		else
@@ -81,9 +85,9 @@ local function input(self, action_id, action)
 		data.sound("step")
 		settext()
 	elseif action_id == hash("right") and action.pressed then
-		if self.handpos == 2 then
+		if self.handpos == 3 then
 			data.save.sfx = data.save.sfx + 1
-		elseif self.handpos == 3 then
+		elseif self.handpos == 4 then
 			data.save.music = data.save.music + 1
 			sound.set_gain("main:/sound#music-menu", data.save.music / 10)
 		else
@@ -96,11 +100,15 @@ local function input(self, action_id, action)
 			data.sound("step")
 			data.save.diff = data.save.diff + 1
 			settext()
-		elseif self.handpos == 4 then
+		elseif self.handpos == 2 then
+			data.sound("step")
+			data.save.speed = data.save.speed + 1
+			settext()
+		elseif self.handpos == 5 then
 			ui.hide(self.node)
 			msg.post("#credits", "show")
 			data.sound("menu-select")
-		elseif self.handpos == 5 then
+		elseif self.handpos == 6 then
 			close(self)
 		end
 	elseif action_id == hash("back") and action.pressed then

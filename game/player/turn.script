@@ -1,8 +1,6 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
-local INTERVAL = 0.1
-
 function init(self)
 	self.time = 0
 end
@@ -32,7 +30,7 @@ end
 function update(self, dt)
 	if data.state == data.STATE_AI then
 		self.time = self.time + dt
-		if self.time > INTERVAL then
+		if self.time > data.speed() then
 			self.time = 0
 			if unit.data[self.index].team == unit.turn then
 				unit.stat = unit.data[self.index]
@@ -40,7 +38,7 @@ function update(self, dt)
 				msg.post(unit.data[self.index].obj, "think")
 			else
 				nextunit(self)
-				self.time = INTERVAL
+				self.time = data.speed()
 			end
 		else
 

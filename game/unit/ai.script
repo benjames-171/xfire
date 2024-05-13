@@ -78,9 +78,16 @@ local function move(self)
 end
 
 local function fire(self)
-	data.cursor = self.target[1]
-	factory.create("#shot-fac", nil, nil, {target = self.target[1], power = unit.stat.power})
-	self.state = ST_END
+	if unit.stat.fire > 0 then
+		if unit.findtargets(self) > 0 then
+			data.cursor = self.target[1]
+			factory.create("#shot-fac", nil, nil, {target = self.target[1], power = unit.stat.power})
+		else
+			self.state = ST_MOVE
+		end
+	else
+		self.state = ST_MOVE
+	end
 end
 
 local function think(self)

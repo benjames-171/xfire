@@ -41,6 +41,7 @@ M.FILE_NAME = "Xfire.sav"
 
 M.save = {
 	diff = 2,
+	speed = 2,
 	sfx = 8,
 	music = 8,
 }
@@ -48,6 +49,11 @@ M.save = {
 function M.diff()
 	local d = {0.7, 1, 1.2}
 	return d[M.save.diff] or 1
+end
+
+function M.speed()
+	local s = {0.7, 0.4, 0.1}
+	return s[M.save.speed] or 1
 end
 
 function M.clamp(v, min, max)
