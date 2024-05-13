@@ -1,6 +1,13 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 
-local function findpath(self)
+local ST_RESET = 0
+local ST_MOVE = 1
+local ST_FIRE = 2
+local ST_END = 3
+local ST_ERR = 4
+
+local function findpath(self, sx, sy, tx, ty)
 	local map = {}
 	local cost = {[1] = {1,1,1,1}}
 
@@ -8,51 +15,77 @@ local function findpath(self)
 		for x = 1, data.MAP_SIZE do
 			local t = tilemap.get_tile("level#tilemap", "world", x, y)
 			local c = tilemap.get_tile("level#tilemap", "control", x, y)
-			if data.walltile(t) or data.solidtile(c) then t = 0
+			if data.walltile(t) or data.solidtile(c) or unit.findxy(x, y) then t = 0
 			else t = 1
 			end
-			map[x + (y * data.MAP_SIZE)] = t
+			map[(x + 1) + (y  * data.MAP_SIZE)] = t
 		end
 	end
 
 	astar.set_map(map)
 	astar.set_costs(cost)
 
-	local result, size, total_cost, path = astar.solve(6,6, 18,18)
-	self.path = path
+	local result, size, _, path = astar.solve(sx, sy, tx, ty)
 
 	if result == astar.SOLVED then
-		print("SOLVED")
-		for _, v in ipairs(path) do
-			print("Tile: ", v.x .. "-" .. v.y)
-			tilemap.set_tile("level#tilemap", "world", v.x, v.y, 0)
-		end
-	elseif result == astar.NO_SOLUTION then
-
-	elseif result == astar.START_END_SAME then
-
+		self.path = path
+		self.plen = size
+		self.step = 1
+	else
+		self.state = ST_ERR
 	end
 end
 
-local ST_RESET = 0
-local ST_MOVE = 1
-local ST_FIRE = 2
-
 function init(self)
 	self.path = nil
+	self.plen = 0
+	self.step = 0
 	self.state = ST_RESET
+	self.target = vmath.vector3()
+end
+
+local function reset(self)
+	self.step = 0
+	self.state = ST_MOVE
+	repeat
+		self.target = data.wp[math.random(1, data.maxwp)]
+	until self.target.x ~= unit.stat.x or self.target.y ~= unit.stat.y
+	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+end
+
+local function move(self)
+	if self.step == 0 then
+		findpath(self, unit.stat.x, unit.stat.y, self.target.x, self.target.y)
+	elseif unit.stat.move > 1 then
+		unit.stat.x = self.path[self.step].x
+		unit.stat.y = self.path[self.step].y
+		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+		go.set_position(data.tile2world(vmath.vector3(data.cursor)))
+		unit.stat.move = unit.stat.move - 1
+		self.step = self.step + 1
+		if self.step > self.plen then
+			self.state = ST_RESET
+		end
+	else
+		self.state = ST_END
+	end
 end
 
 local function think(self)
 	if self.state == ST_RESET then
-		--findpath(self)
-		--self.state = ST_MOVE
-		msg.post("common/turn", "nextunit")
-		data.cursor = data.world2tile(go.get_position())
+		reset(self)
 	elseif self.state == ST_MOVE then
-
+		move(self)
 	elseif self.state == ST_FIRE then
 
+	elseif self.state == ST_END then
+		self.step = 0
+		self.state = ST_MOVE
+		msg.post("common/turn", "nextunit")
+	elseif self.state == ST_ERR then
+		msg.post("common/turn", "nextunit")
+		self.state = ST_RESET
 	end
 end
 

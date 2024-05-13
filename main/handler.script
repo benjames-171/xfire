@@ -5,7 +5,8 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("handler#menu", "load")
 	math.randomseed(os.time())
-	for _ = 1, 5 do
+	local t = 10 + os.time() % 50
+	for _ = 1, t do
 		math.random()
 	end
 	if not html5 then
