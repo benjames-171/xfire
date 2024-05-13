@@ -68,7 +68,7 @@ function update(self, dt)
 	if self.obj == unit.obj and self.obj ~= nil then
 		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and unit.stat.move > 0 then
 			if move(self) then
-				local total = findtargets(self)
+				findtargets(self)
 				powerup(self)
 			end
 		end
@@ -120,7 +120,7 @@ local function input(self, action_id, action)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("input") then
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("select") then

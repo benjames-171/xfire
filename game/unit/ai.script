@@ -1,11 +1,12 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
+local ST_ERR = -1
 local ST_RESET = 0
 local ST_MOVE = 1
 local ST_FIRE = 2
-local ST_END = 3
-local ST_ERR = 4
+local ST_RETREAT = 3
+local ST_END = 4
 
 local function findpath(self, sx, sy, tx, ty)
 	local map = {}
@@ -54,16 +55,20 @@ local function reset(self)
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 end
 
+local function step(self)
+	unit.stat.x = self.path[self.step].x
+	unit.stat.y = self.path[self.step].y
+	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+	msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+	go.set_position(data.tile2world(vmath.vector3(data.cursor)))
+	unit.stat.move = unit.stat.move - 1
+end
+
 local function move(self)
 	if self.step == 0 then
 		findpath(self, unit.stat.x, unit.stat.y, self.endpoint.x, self.endpoint.y)
 	elseif unit.stat.move > 1 then
-		unit.stat.x = self.path[self.step].x
-		unit.stat.y = self.path[self.step].y
-		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
-		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
-		go.set_position(data.tile2world(vmath.vector3(data.cursor)))
-		unit.stat.move = unit.stat.move - 1
+		step(self)
 		self.step = self.step + 1
 		if self.step > self.plen then
 			self.state = ST_RESET
@@ -77,6 +82,14 @@ local function move(self)
 	end
 end
 
+local function retreat(self)
+	self.step = self.step - 2
+	if self.step > 0 and unit.stat.move > 0 then
+		step(self)
+	end
+	self.state = ST_RESET
+end
+
 local function fire(self)
 	if unit.stat.fire > 0 then
 		if unit.findtargets(self) > 0 then
@@ -86,7 +99,11 @@ local function fire(self)
 			self.state = ST_MOVE
 		end
 	else
-		self.state = ST_MOVE
+		if unit.findtargets(self) > 0 then
+			self.state = ST_RETREAT
+		else
+			self.state = ST_MOVE
+		end
 	end
 end
 
@@ -97,6 +114,8 @@ local function think(self)
 		move(self)
 	elseif self.state == ST_FIRE then
 		fire(self)
+	elseif self.state == ST_RETREAT then
+		retreat(self)
 	elseif self.state == ST_END then
 		self.step = 0
 		self.state = ST_MOVE
@@ -107,9 +126,8 @@ local function think(self)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("think") then
 		think(self)
 	end
 end
-

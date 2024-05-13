@@ -72,7 +72,7 @@ local function input(self, action_id, action)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("input") then
 		input(self, message.action_id, message.action)
 	elseif message_id == hash("show") then

@@ -28,7 +28,7 @@ local function panel(info)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("tick") then
 		local node = gui.get_node("tickbox")
 		local text = gui.get_node("tick")

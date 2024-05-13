@@ -32,7 +32,9 @@ function update(self, dt)
 		self.time = self.time + dt
 		if self.time > data.speed() then
 			self.time = 0
-			if unit.data[self.index].team == unit.turn then
+			if not unit.data[self.index] then
+				newturn(self)
+			elseif unit.data[self.index].team == unit.turn then
 				unit.stat = unit.data[self.index]
 				unit.obj = unit.data[self.index].obj
 				msg.post(unit.data[self.index].obj, "think")
@@ -40,13 +42,11 @@ function update(self, dt)
 				nextunit(self)
 				self.time = data.speed()
 			end
-		else
-
 		end
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("newturn") then
 		newturn(self)
 	elseif message_id == hash("nextunit") then

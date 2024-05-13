@@ -38,7 +38,7 @@ function update(self, dt)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id)
 	if message_id == hash("show") then
 		show(self)
 	end

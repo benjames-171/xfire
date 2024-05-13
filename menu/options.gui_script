@@ -116,7 +116,7 @@ local function input(self, action_id, action)
 	end
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("show") then
 		show(self)
 	elseif message_id == hash("input") then

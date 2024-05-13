@@ -36,7 +36,7 @@ local function hit(self)
 	sprite.play_flipbook("#sprite", "hit")
 	data.sound("exp-small")
 	self.handle = timer.delay(0.2, true, flash)
-	if math.random(1, 64) == 1 then
+	if math.random(1, 64) == 32 then
 		msg.post("#ch", "enable")
 		timer.delay(1.2, false, function () msg.post("#ch", "disable") end)
 		self.power = self.power * 2

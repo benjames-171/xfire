@@ -1,6 +1,6 @@
 local data = require "main.data"
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("play") then
 		sound.play("#"..message.id, {gain = data.save.sfx / 10})
 	elseif message_id == hash("music") then

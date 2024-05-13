@@ -30,7 +30,7 @@ function update(self, dt)
 	data.scroll = pos
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("snap_to") then
 		self.pos = vmath.vector3(data.cursor)
 	elseif message_id == hash("reset") then

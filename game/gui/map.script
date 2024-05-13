@@ -44,7 +44,7 @@ function init(self)
 	msg.post("#sprite", "disable")
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message)
 	if message_id == hash("refresh") then
 		generate()
 	end
