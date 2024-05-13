@@ -74,7 +74,7 @@ local function select()
 			data.state = data.STATE_UNIT
 		end
 	else
-		msg.post("view#minimenu", "show", {menu = {"SCANNER", "END TURN", "QUIT GAME"}})
+		msg.post("view#minimenu", "show", {menu = {"NEXT UNIT", "SCANNER", "END TURN"}})
 	end
 end
 
