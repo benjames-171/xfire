@@ -27,7 +27,7 @@ embedded_components {
   position {
     x: -8.0
     y: -8.0
-    z: 0.7
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -50,7 +50,7 @@ embedded_components {
   position {
     x: -8.0
     y: 6.0
-    z: 0.7
+    z: 1.0
   }
   rotation {
     x: 0.0

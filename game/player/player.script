@@ -5,7 +5,9 @@ function init(self)
 	self.move = vmath.vector3()
 	self.state = data.STATE_NULL
 	msg.post(".", "acquire_input_focus")
-	data.state = data.STATE_PLAYING
+	if unit.ai[1] then
+		data.state = data.STATE_AI
+	end
 end
 
 local function pauseinput(time)
