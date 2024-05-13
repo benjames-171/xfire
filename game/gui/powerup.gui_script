@@ -9,10 +9,10 @@ local desc = {"+2 ARMOR", "+1 MOVES PER TURN", "+2 SHOT POWER", "+1 SHOTS PER TU
 function init(self)
 	self.handpos = 1
 	self.arrowpos = {
-		gui.get_position(gui.get_node("1")),
-		gui.get_position(gui.get_node("2")),
-		gui.get_position(gui.get_node("3")),
-		gui.get_position(gui.get_node("4")),
+		gui.get_position(gui.get_node("bg1")),
+		gui.get_position(gui.get_node("bg2")),
+		gui.get_position(gui.get_node("bg3")),
+		gui.get_position(gui.get_node("bg4")),
 	}
 	self.node = gui.get_node("container")
 	ui.init(self.node)
@@ -27,17 +27,16 @@ function update(self, dt)
 end
 
 local function apply(self)
-	local u = unit.findobj(unit.obj)
 	if self.handpos == 1 then
-		u.armor = u.armor + 2
+		unit.stat.armor = unit.stat.armor + 2
 	elseif self.handpos == 2 then
-		u.movemax = u.movemax + 1
-		u.move = u.move + 1
+		unit.stat.movemax = unit.stat.movemax + 1
+		unit.stat.move = unit.stat.move + 1
 	elseif self.handpos == 3 then
-		u.power = u.power + 2
+		unit.stat.power = unit.stat.power + 2
 	elseif self.handpos == 4 then
-		u.firemax = u.firemax + 1
-		u.fire = u.fire + 1
+		unit.stat.firemax = unit.stat.firemax + 1
+		unit.stat.fire = unit.stat.fire + 1
 	end
 end
 
