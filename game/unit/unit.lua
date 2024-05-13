@@ -2,10 +2,10 @@ local data = require "main.data"
 
 local M = {}
 
-M.names = {"TROOPER", "X4-MECH", "SCOUT"}
+M.names = {"TROOPER", "X4-MECHA", "C2-SCOUT"}
 M.armor = {4,6,2}
-M.power = {5,7,3}
-M.movemax = {9,7,11}
+M.power = {5,8,3}
+M.movemax = {8,6,10}
 M.firemax = {3,2,4}
 M.hp = {8,10,5}
 M.ai = {false, true}

@@ -3,6 +3,10 @@ fonts {
   name: "main"
   font: "/assets/font/main.font"
 }
+fonts {
+  name: "small"
+  font: "/assets/font/small.font"
+}
 textures {
   name: "16"
   texture: "/game/core/16.tilesource"
@@ -337,8 +341,75 @@ nodes {
 }
 nodes {
   position {
-    x: -87.0
+    x: 0.0
+    y: -9.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
     y: 10.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: ""
+  font: "small"
+  id: "time"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "length"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: -87.0
+    y: 4.0
     z: 0.0
     w: 1.0
   }
@@ -472,7 +543,7 @@ nodes {
 nodes {
   position {
     x: -87.0
-    y: -11.0
+    y: -18.0
     z: 0.0
     w: 1.0
   }
@@ -606,7 +677,7 @@ nodes {
 nodes {
   position {
     x: -87.0
-    y: -27.0
+    y: -34.0
     z: 0.0
     w: 1.0
   }
@@ -740,7 +811,7 @@ nodes {
 nodes {
   position {
     x: -87.0
-    y: -54.0
+    y: -61.0
     z: 0.0
     w: 1.0
   }
@@ -807,7 +878,7 @@ nodes {
 nodes {
   position {
     x: -87.0
-    y: -70.0
+    y: -77.0
     z: 0.0
     w: 1.0
   }

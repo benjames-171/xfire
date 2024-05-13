@@ -62,6 +62,7 @@ local function step(self)
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	go.set_position(data.tile2world(vmath.vector3(data.cursor)))
 	unit.stat.move = unit.stat.move - 1
+	data.sound("step")
 end
 
 local function move(self)
