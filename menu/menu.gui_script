@@ -19,13 +19,6 @@ function init(self)
 	data.state = data.STATE_MENU
 end
 
-local function startgame(self)
-	data.stopmusic()
-	msg.post("main:/handler", "show_game")
-	data.level = 1
-	data.state = data.STATE_PLAYING
-end
-
 local function show(self)
 	ui.show(self.node)
 	data.state = data.STATE_MENU
@@ -55,7 +48,7 @@ local function input(self, action_id, action)
 		ui.hide(self.node)
 		data.sound("menu-select")
 		if self.handpos == 1 then
-			startgame(self)
+			msg.post("#select", "show", {})
 		elseif self.handpos == 2 then
 			msg.post("#controls", "show", {})
 		elseif self.handpos == 3 then
@@ -73,6 +66,8 @@ function on_input(self, action_id, action)
 
 	if data.state == data.STATE_MENU then
 		input(self, action_id, action)
+	elseif data.state == data.STATE_SELECT then
+		msg.post("#select", "input", {action_id = action_id, action = action})
 	elseif data.state == data.STATE_CONTROLS then
 		msg.post("#controls", "input", {action_id = action_id, action = action})
 	elseif data.state == data.STATE_OPTIONS then

@@ -8,7 +8,7 @@ M.power = {5,7,3}
 M.movemax = {9,7,11}
 M.firemax = {3,2,4}
 M.hp = {8,10,5}
-M.ai = {true, true}
+M.ai = {false, true}
 
 M.obj = nil
 M.stat = nil

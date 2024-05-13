@@ -1,4 +1,4 @@
-script: "/menu/options.gui_script"
+script: "/menu/select.gui_script"
 fonts {
   name: "main"
   font: "/assets/font/main.font"
@@ -167,9 +167,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "SETTINGS"
+  text: "GAME CONFIG"
   font: "main"
-  id: "options"
+  id: "title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
@@ -203,8 +203,8 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
-    y: 23.0
+    x: -87.0
+    y: 30.0
     z: 0.0
     w: 1.0
   }
@@ -221,7 +221,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -234,9 +234,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "AI SPEED"
+  text: "LENGTH"
   font: "main"
-  id: "speed1"
+  id: "length1"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -270,7 +270,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 100.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -288,7 +288,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 64.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -303,7 +303,7 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   text: "NORMAL"
   font: "main"
-  id: "speed"
+  id: "length"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -321,7 +321,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_STRETCH
   line_break: false
-  parent: "speed1"
+  parent: "length1"
   layer: ""
   inherit_alpha: true
   alpha: 1.0
@@ -337,8 +337,8 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
-    y: 7.0
+    x: -87.0
+    y: 14.0
     z: 0.0
     w: 1.0
   }
@@ -355,7 +355,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -368,9 +368,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "SFX VOLUME"
+  text: "DIFFICULTY"
   font: "main"
-  id: "sound1"
+  id: "diff1"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -404,7 +404,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 100.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -422,7 +422,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 64.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -435,9 +435,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "..."
+  text: "NORMAL"
   font: "main"
-  id: "sound"
+  id: "diff"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -455,7 +455,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_STRETCH
   line_break: false
-  parent: "sound1"
+  parent: "diff1"
   layer: ""
   inherit_alpha: true
   alpha: 1.0
@@ -471,8 +471,8 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
-    y: -9.0
+    x: -87.0
+    y: -16.0
     z: 0.0
     w: 1.0
   }
@@ -489,7 +489,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -502,9 +502,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "MUSIC VOLUME"
+  text: "RED TEAM"
   font: "main"
-  id: "music1"
+  id: "red1"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -538,7 +538,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 100.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -556,7 +556,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 64.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -569,9 +569,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "..."
+  text: "PLAYER 1"
   font: "main"
-  id: "music"
+  id: "red"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -589,7 +589,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_STRETCH
   line_break: false
-  parent: "music1"
+  parent: "red1"
   layer: ""
   inherit_alpha: true
   alpha: 1.0
@@ -605,8 +605,8 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
-    y: -39.0
+    x: -87.0
+    y: -32.0
     z: 0.0
     w: 1.0
   }
@@ -623,7 +623,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -636,9 +636,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "CREDITS"
+  text: "BLUE TEAM"
   font: "main"
-  id: "credits"
+  id: "blue1"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_W
@@ -672,8 +672,8 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
-    y: -69.0
+    x: 100.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -690,7 +690,141 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 100.0
+    y: 16.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "COMPUTER"
+  font: "main"
+  id: "blue"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "blue1"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: -87.0
+    y: -62.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
+    y: 16.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.49
+    y: 0.49
+    z: 0.639
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "START GAME"
+  font: "main"
+  id: "start"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_STRETCH
+  line_break: false
+  parent: "container"
+  layer: ""
+  inherit_alpha: true
+  alpha: 1.0
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  custom_type: 0
+  enabled: true
+  visible: true
+  material: ""
+}
+nodes {
+  position {
+    x: -87.0
+    y: -78.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 100.0
     y: 16.0
     z: 0.0
     w: 1.0
