@@ -2253,7 +2253,7 @@ nodes {
 nodes {
   position {
     x: 128.0
-    y: 218.0
+    y: 52.0
     z: 0.0
     w: 1.0
   }
@@ -2270,8 +2270,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 256.0
-    y: 12.0
+    x: 72.0
+    y: 14.0
     z: 0.0
     w: 1.0
   }
@@ -2328,7 +2328,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 250.0
+    x: 78.0
     y: 10.0
     z: 0.0
     w: 1.0
@@ -2341,7 +2341,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "TICKER TICKER TICKER"
+  text: "5 ENEMY"
   font: "main"
   id: "tick"
   xanchor: XANCHOR_NONE
