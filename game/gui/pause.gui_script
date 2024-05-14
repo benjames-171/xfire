@@ -1,0 +1,63 @@
+local data = require "main.data"
+
+local MENU_LEN = 2
+
+function init(self)
+	self.state = data.STATE_NULL
+	self.handpos = 1
+	self.arrowpos = {gui.get_position(gui.get_node(1)), gui.get_position(gui.get_node(2))}
+	self.node = gui.get_node("container")
+end
+
+function update(self, dt)
+	if data.state == data.STATE_PAUSE then
+		local pos = vmath.vector3(self.arrowpos[self.handpos].x - 10, self.arrowpos[self.handpos].y, 0)
+		gui.set_position(gui.get_node("arrow"), pos)
+	end
+end
+
+local function close(self)
+	gui.set_enabled(self.node, false)
+	data.state = self.state
+	msg.post("main:/handler", "set_time_step", {factor = 1, mode = 0})
+	data.sound("menu-back")
+	sound.pause("main:/sound", false)
+end
+
+local function quit2menu()
+	data.sound("menu-back")
+	msg.post("main:/handler", "set_time_step", {factor = 1, mode = 0})
+	msg.post("/common/player", "quit")
+end
+
+local function input(self, action_id, action)
+	if action_id == hash("up") and action.pressed then
+		self.handpos = data.wrap(self.handpos - 1, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("down") and action.pressed then
+		self.handpos = data.wrap(self.handpos + 1, 1, MENU_LEN)
+		data.sound("menu-move")
+	elseif action_id == hash("action") and action.pressed then
+		if self.handpos == 1 then
+			close(self)
+		elseif self.handpos == 2 then
+			quit2menu()
+		end
+	elseif action_id == hash("esc") and action.pressed then
+		close(self)
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("show") then
+		self.state = data.state
+		gui.set_enabled(self.node, true)
+		data.state = data.STATE_PAUSE
+		msg.post("main:/handler", "set_time_step", {factor = 0, mode = 0})
+		data.sound("menu-select")
+		sound.pause("main:/sound", true)
+		self.handpos = 1
+	elseif message_id == hash("input") then
+		input(self, message.action_id, message.action)
+	end
+end

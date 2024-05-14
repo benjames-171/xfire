@@ -144,6 +144,13 @@ function on_input(self, action_id, action)
 
 	if data.state == data.STATE_COMPLETE then
 		input_complete(self, action_id, action)
+		return
+	end
+
+	if data.state == data.STATE_PAUSE then
+		msg.post("view#pause", "input", {action_id = action_id, action = action})
+	elseif action_id == hash("esc") and action.pressed then
+		msg.post("view#pause", "show")
 	end
 
 	if data.save.ai[unit.turn] then
@@ -172,6 +179,8 @@ function on_message(self, message_id, message)
 		nextunit()
 	elseif message_id == hash("pauseinput") then
 		pauseinput(message.time)
+	elseif message_id == hash("quit") then
+		quit2menu(self)
 	end
 end
 

@@ -34,6 +34,10 @@ key_trigger {
   input: KEY_ENTER
   action: "enter"
 }
+key_trigger {
+  input: KEY_ESC
+  action: "esc"
+}
 gamepad_trigger {
   input: GAMEPAD_LSTICK_LEFT
   action: "left"
@@ -73,4 +77,8 @@ gamepad_trigger {
 gamepad_trigger {
   input: GAMEPAD_RPAD_RIGHT
   action: "back"
+}
+gamepad_trigger {
+  input: GAMEPAD_BACK
+  action: "esc"
 }

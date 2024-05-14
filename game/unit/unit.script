@@ -46,7 +46,7 @@ end
 local function findtargets(self)
 	self.totaltargets = unit.findtargets(self)
 
-	if self.totaltargets > 0 then
+	if self.totaltargets > 0 and data.state == data.STATE_UNIT then
 		local text = string.format("%d ENEMY", self.totaltargets)
 		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})
 		data.sound("alarm")
