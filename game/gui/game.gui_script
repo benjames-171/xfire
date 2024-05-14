@@ -1,6 +1,11 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
+local hints = {
+	"PRESS SELECT ON A BLANK TILE TO SHOW THE COMMAND MENU",
+	"USE LEFT/RIGHT MOVEMENT BUTTONS TO SWITCH BETWEEN TARGETS"
+}
+
 function init(self)
 	self.handle = nil
 	gui.set_render_order(1)
@@ -28,23 +33,39 @@ local function panel(info)
 	end
 end
 
+local function tick(self, message)
+	local node = gui.get_node("tickbox")
+	local textnode = gui.get_node("tick")
+	gui.set_enabled(node, true)
+
+	if message.color then
+		gui.set_color(textnode, data.hex2rgba(message.color))
+	else
+		gui.set_color(textnode, vmath.vector4(1))
+	end
+	gui.set_text(textnode, message.text)
+
+	if self.handle then
+		timer.cancel(self.handle)
+	end
+	self.handle = timer.delay(2, false, function() gui.set_enabled(node, false) self.handle = nil end)
+end
+
+local function hint(num)
+	local node = gui.get_node("hintbox")
+	local textnode = gui.get_node("hint")
+	gui.set_enabled(node, true)
+	gui.set_text(textnode, hints[num])
+	timer.delay(5, false, function() gui.set_enabled(node, false) end)
+end
+
 function on_message(self, message_id, message)
 	if message_id == hash("tick") then
-		local node = gui.get_node("tickbox")
-		local text = gui.get_node("tick")
-		gui.set_enabled(node, true)
-
-		if message.color then
-			gui.set_color(text, data.hex2rgba(message.color))
-		else
-			gui.set_color(text, vmath.vector4(1))
+		tick(self, message)
+	elseif message_id == hash("hint") then
+		if not data.hints[message.num] then
+			hint(message.num)
 		end
-		gui.set_text(text, message.text)
-
-		if self.handle then
-			timer.cancel(self.handle)
-		end
-		self.handle = timer.delay(2, false, function() gui.set_enabled(node, false) self.handle = nil end)
 	elseif message_id == hash("cleartick") then
 		if self.handle then
 			timer.cancel(self.handle)

@@ -71,6 +71,7 @@ end
 local function startgame(self)
 	data.stopmusic()
 	data.savegamefile()
+	data.hints = {}
 	data.level = data.save.length
 	data.state = data.STATE_PLAYING
 	msg.post("main:/handler", "show_game")
