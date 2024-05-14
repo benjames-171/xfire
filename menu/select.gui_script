@@ -39,7 +39,6 @@ local function settext()
 end
 
 function init(self)
-	data.save.length = 2
 	self.handpos = 1
 	self.arrowpos = {
 		gui.get_position(gui.get_node("length1")),

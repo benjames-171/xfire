@@ -1,4 +1,5 @@
 local data = require "main.data"
+local unit = require "game.unit.unit"
 
 function init(self)
 	self.len = 3
@@ -29,6 +30,7 @@ local function select(self)
 		gui.set_enabled(gui.get_node("menu"), false)
 	elseif text == "FIRE" then
 		data.state = data.STATE_FIRE
+		msg.post(unit.obj, "selectfire")
 		data.sound("menu-select")
 		gui.set_enabled(gui.get_node("menu"), false)
 	elseif text == "REGENERATE" then
