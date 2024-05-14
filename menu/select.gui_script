@@ -1,7 +1,7 @@
 local data = require "main.data"
 local ui = require "main.ui"
 
-local MENU_LEN = 6
+local MENU_LEN = 7
 
 local DIFF = {"EASY", "NORMAL", "HARD"}
 local LENGTH = {"SHORT", "MEDIUM", "LONG"}
@@ -15,7 +15,12 @@ local function settext()
 	gui.set_text(gui.get_node("length"), LENGTH[data.save.length])
 	gui.set_text(gui.get_node("time"), TIME[data.save.length])
 
-	local text
+	local text = "ON"
+	if not data.save.hints then
+		text = "OFF"
+	end
+	gui.set_text(gui.get_node("hints"), text)
+
 	if data.save.ai[1] then
 		text = "COMPUTER"
 	else
@@ -39,6 +44,7 @@ function init(self)
 	self.arrowpos = {
 		gui.get_position(gui.get_node("length1")),
 		gui.get_position(gui.get_node("diff1")),
+		gui.get_position(gui.get_node("hints1")),
 		gui.get_position(gui.get_node("red1")),
 		gui.get_position(gui.get_node("blue1")),
 		gui.get_position(gui.get_node("start")),
@@ -52,7 +58,7 @@ end
 
 local function show(self)
 	ui.show(self.node)
-	self.handpos = 5
+	self.handpos = 6
 	data.state = data.STATE_SELECT
 end
 
@@ -96,16 +102,20 @@ local function input(self, action_id, action)
 			data.sound("step")
 			settext()
 		elseif self.handpos == 3 then
-			data.save.ai[1] = not data.save.ai[1]
+			data.save.hints = not data.save.hints
 			data.sound("step")
 			settext()
 		elseif self.handpos == 4 then
-			data.save.ai[2] = not data.save.ai[2]
+			data.save.ai[1] = not data.save.ai[1]
 			data.sound("step")
 			settext()
 		elseif self.handpos == 5 then
-			startgame(self)
+			data.save.ai[2] = not data.save.ai[2]
+			data.sound("step")
+			settext()
 		elseif self.handpos == 6 then
+			startgame(self)
+		elseif self.handpos == 7 then
 			close(self)
 		end
 	elseif action_id == hash("back") and action.pressed then
