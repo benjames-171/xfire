@@ -2,6 +2,8 @@ local data = require "main.data"
 
 local M = {}
 
+M.MAX_VIS = 256
+
 M.names = {"TROOPER", "X4-MECHA", "C2-SCOUT"}
 M.armor = {4,6,2}
 M.power = {5,8,3}
@@ -71,7 +73,7 @@ function M.findtargets(self)
 		if M.stat.team ~= v.team then
 			local target = data.tile2world(vmath.vector3(v.x, v.y, 0)) + vmath.vector3(-8, -8, 0)
 			local ray = physics.raycast(pos, target, {hash("world")})
-			if ray == nil then
+			if ray == nil and vmath.length(target - pos) < M.MAX_VIS then
 				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
 				total = total + 1
 			end

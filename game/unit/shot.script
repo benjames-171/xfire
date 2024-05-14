@@ -61,3 +61,7 @@ function init(self)
 	end
 end
 
+function update(self)
+	data.cursor = go.get_position() / data.TILE_SIZE
+end
+

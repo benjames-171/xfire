@@ -13,7 +13,7 @@ function init(self)
 	self.obj = nil
 	self.target = {}
 	self.currtarget = 1
-	self.totaltarget = 0
+	self.totaltargets = 0
 	unit.stat = nil
 end
 
@@ -96,7 +96,7 @@ end
 local function menu(self)
 	local menudata = {}
 
-	if unit.stat.fire > 0 then
+	if unit.stat.fire > 0 and self.totaltargets > 0 then
 		table.insert(menudata, "FIRE")
 	end
 	if unit.stat.move >= 4 and unit.stat.hp < unit.stat.hpmax then
@@ -155,6 +155,8 @@ function on_message(self, message_id, message)
 		self.currtarget = 1
 		if self.totaltargets > 0 then
 			data.cursor = self.target[self.currtarget]
+		else
+			data.state = data.STATE_UNIT
 		end
 	elseif message_id == hash("lookat") then
 		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)

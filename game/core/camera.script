@@ -17,8 +17,10 @@ end
 
 local function move(self)
 	local speed = 0.2
-	if data.state == data.STATE_AI or data.state == data.STATE_NULL then
+	if data.state == data.STATE_AI then
 		speed = 0.05
+	elseif data.state == data.STATE_NULL then
+		speed = 0.5
 	end
 	local v = vmath.vector3((data.cursor.x - self.pos.x) * speed, (data.cursor.y - self.pos.y) * speed, 0)
 	self.pos = self.pos + v
