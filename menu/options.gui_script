@@ -3,7 +3,7 @@ local ui = require "main.ui"
 
 local MENU_LEN = 5
 
-local SPEED = {"SLOW", "NORMAL", "FAST"}
+local SPEED = {"SLOW", "MEDIUM", "FAST"}
 
 local function settext()
 	local text

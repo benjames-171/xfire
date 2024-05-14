@@ -8,7 +8,6 @@ M.power = {5,8,3}
 M.movemax = {8,6,10}
 M.firemax = {3,2,4}
 M.hp = {8,10,5}
-M.ai = {false, true}
 
 M.obj = nil
 M.stat = nil
@@ -27,7 +26,7 @@ end
 
 function M.add(x, y, team, type, obj)
 	local diff = 1
-	if M.ai[team] then
+	if data.save.ai[team] then
 		diff = data.diff()
 	end
 	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, obj = obj,

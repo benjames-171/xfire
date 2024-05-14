@@ -5,7 +5,7 @@ function init(self)
 	self.move = vmath.vector3()
 	self.state = data.STATE_NULL
 	msg.post(".", "acquire_input_focus")
-	if unit.ai[1] then
+	if data.save.ai[1] then
 		data.state = data.STATE_AI
 	end
 end
@@ -46,7 +46,7 @@ local function cursor(self)
 end
 
 function update(self, dt)
-	if unit.ai[unit.turn] then
+	if data.save.ai[unit.turn] then
 		return
 	end
 
@@ -156,7 +156,7 @@ function on_input(self, action_id, action)
 		input_complete(self, action_id, action)
 	end
 
-	if unit.ai[unit.turn] then
+	if data.save.ai[unit.turn] then
 		return
 	end
 

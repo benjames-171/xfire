@@ -12,7 +12,7 @@ function on_message(self, message_id, message)
 		ui.show(self.node)
 		data.state = data.STATE_COMPLETE
 		local text
-		if unit.ai[unit.turn] then
+		if data.save.ai[unit.turn] then
 			text = "COMPUTER"
 		else
 			text = "PLAYER "..unit.turn

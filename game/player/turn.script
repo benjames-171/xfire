@@ -13,7 +13,7 @@ local function newturn(self)
 		data.cursor = unit.cursor[unit.turn]
 	end
 	unit.prepteam(unit.turn)
-	if unit.ai[unit.turn] then
+	if data.save.ai[unit.turn] then
 		data.state = data.STATE_AI
 	else
 		data.state = data.STATE_PLAYING
