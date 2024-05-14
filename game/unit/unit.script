@@ -126,9 +126,11 @@ local function input_fire(self, action_id, action)
 	if action_id == hash("left") and action.pressed then
 		self.currtarget = data.wrap(self.currtarget - 1, 1, self.totaltargets)
 		data.cursor = self.target[self.currtarget]
+		data.sound("menu-move")
 	elseif action_id == hash("right") and action.pressed then
 		self.currtarget = data.wrap(self.currtarget + 1, 1, self.totaltargets)
 		data.cursor = self.target[self.currtarget]
+		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		fire(self)
 	elseif action_id == hash("back") and action.pressed then

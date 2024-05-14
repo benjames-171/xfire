@@ -16,8 +16,8 @@ function init(self)
 
 	data.SCR_W = render.get_width()
 	data.SCR_H = render.get_height()
-	data.CANV_W = data.SCR_W / data.PIXEL_SIZE
-	data.CANV_H = data.SCR_H / data.PIXEL_SIZE
+	data.CANV_W = data.SCR_W
+	data.CANV_H = data.SCR_H
 end
 
 function update(self)
@@ -46,7 +46,7 @@ function update(self)
 	render.enable_state(render.STATE_BLEND)
 	render.set_blend_func(render.BLEND_SRC_ALPHA, render.BLEND_ONE_MINUS_SRC_ALPHA)
 	render.disable_state(render.STATE_CULL_FACE)
-	render.set_projection(vmath.matrix4_orthographic(0, render.get_width() / data.PIXEL_SIZE, 0, render.get_height() / data.PIXEL_SIZE, -1, 1))
+	render.set_projection(vmath.matrix4_orthographic(0, render.get_width(), 0, render.get_height(), -1, 1))
 	render.draw(self.tile_pred)
 	render.draw(self.particle_pred)
 	render.draw_debug3d()

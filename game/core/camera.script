@@ -15,19 +15,14 @@ local function bounds(pos)
 	return pos
 end
 
-local function move(self)
-	local speed = 0.2
-	if data.state == data.STATE_AI then
-		speed = 0.05
-	elseif data.state == data.STATE_NULL then
-		speed = 0.5
-	end
+local function move(self, dt)
+	local speed = dt * 10
 	local v = vmath.vector3((data.cursor.x - self.pos.x) * speed, (data.cursor.y - self.pos.y) * speed, 0)
 	self.pos = self.pos + v
 end
 
 function update(self, dt)
-	move(self)
+	move(self, dt)
 	local pos = bounds(self.pos - data.offset) * data.TILE_SIZE
 	pos.x = math.ceil(pos.x)
 	pos.y = math.ceil(pos.y)
