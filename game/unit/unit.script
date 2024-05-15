@@ -46,7 +46,7 @@ end
 local function findtargets(self)
 	self.totaltargets = unit.findtargets(self)
 
-	if self.totaltargets > 0 and data.state == data.STATE_UNIT then
+	if self.totaltargets > 0 then
 		local text = string.format("%d ENEMY", self.totaltargets)
 		msg.post("common/view#game", "tick", {text = text, color = "#ff032b"})
 		data.sound("alarm")
@@ -132,7 +132,9 @@ local function input_fire(self, action_id, action)
 		data.cursor = self.target[self.currtarget]
 		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
-		fire(self)
+		if unit.stat.fire > 0 then
+			fire(self)
+		end
 	elseif action_id == hash("back") and action.pressed then
 		data.sound("menu-back")
 		data.state = data.STATE_UNIT

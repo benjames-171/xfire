@@ -8,8 +8,13 @@ local function complete(self)
 	if unit.gameover() then
 		msg.post("common/player", "pauseinput", {time = 2})
 		msg.post("common/view#complete", "show")
+	else
+		data.state = self.state
+		if data.state ~= data.STATE_AI then
+			msg.post(unit.obj, "resettargets")
+			data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+		end
 	end
-	data.state = self.state
 	go.delete()
 end
 
@@ -17,15 +22,16 @@ local function flash(self)
 	self.power = self.power - 1
 
 	if self.unit.hp <= 0 then
-		msg.post(unit.obj, "resettargets")
 		msg.post("common/effect", "explode", {pos = go.get_position()})
+		--msg.post(unit.obj, "resettargets")
 		data.sound("exp-large")
 		unit.delete(self.target.x, self.target.y)
 		timer.cancel(self.handle)
 		timer.delay(0.5, false, function() complete(self) end)
 	elseif self.power < 0 then
 		timer.cancel(self.handle)
-		complete(self)
+		data.state = self.state
+		go.delete()
 	else
 		sprite.play_flipbook("#sprite", "flash")
 		data.sound("flash")
@@ -62,6 +68,8 @@ function init(self)
 end
 
 function update(self)
-	data.cursor = go.get_position() / data.TILE_SIZE
+	if data.state == data.STATE_NULL then
+		data.cursor = go.get_position() / data.TILE_SIZE
+	end
 end
 
