@@ -7,20 +7,41 @@ function init(self)
 	ui.init(self.node)
 end
 
+local function show(self)
+	ui.show(self.node)
+	data.state = data.STATE_COMPLETE
+	local text
+
+	if data.save.ai[unit.turn] then
+		text = "COMPUTER"
+	else
+		text = "PLAYER "..unit.turn
+	end
+
+	local node = gui.get_node("winner")
+	if unit.turn == 2 then
+		gui.set_color(node, data.hex2rgba("#3c80db"))
+	end
+
+	gui.set_text(node, text)
+	gui.set_text(gui.get_node("clock"), data.formattime(os.clock() - data.clock))
+
+	local red = 0
+	local blue = 0
+	for _, v in pairs(unit.data) do
+		if v.team == 1 then
+			red = red + 1
+		else
+			blue = blue + 1
+		end
+	end
+
+	gui.set_text(gui.get_node("red"), string.format("%d/%d", red, unit.total[1]))
+	gui.set_text(gui.get_node("blue"), string.format("%d/%d", blue, unit.total[2]))
+end
+
 function on_message(self, message_id, message)
 	if message_id == hash("show") then
-		ui.show(self.node)
-		data.state = data.STATE_COMPLETE
-		local text
-		if data.save.ai[unit.turn] then
-			text = "COMPUTER"
-		else
-			text = "PLAYER "..unit.turn
-		end
-		local node = gui.get_node("winner")
-		if unit.turn == 2 then
-			gui.set_color(node, data.hex2rgba("#3c80db"))
-		end
-		gui.set_text(node, text)
+		show(self)
 	end
 end

@@ -38,6 +38,7 @@ M.hints = {}
 M.teamname = {"", ""}
 M.maxwp = 0
 M.level = 1
+M.clock = 0
 
 M.APP_NAME = "Xfire"
 M.FILE_NAME = "Xfire.sav"
@@ -151,21 +152,20 @@ function M.onscreen(p, m)
 	end
 end
 
-function M.ms2str(time)
-	local day = math.floor(time / 86400)
-	local rem = time % 86400
-	local hr = math.floor(rem / 3600)
-	rem = rem % 3600
+function M.formattime(time)
+	local hr = math.floor(time / 3600)
+	local rem = time % 3600
 	local min = math.floor(rem / 60)
 	rem = rem % 60
 	local sec = rem
 
-	local str = ""
-	if day > 0 then str = tostring(day) .. "d " end
-	if hr > 0 or day > 0 then str = str .. tostring(hr) .. ":" end
+	local ex = ""
+	if hr > 0 then
+		ex = tostring(hr)..":"
+	end
+	local text = string.format("%s%02d:%02d", ex, min, math.floor(sec))
 
-	str = string.format("%s%02d:%02d", str, min, math.floor(sec))
-	return str
+	return text
 end
 
 function M.fullscreen()

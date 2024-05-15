@@ -2,7 +2,8 @@ local data = require "main.data"
 local unit = require "game.unit.unit"
 
 function init(self)
-	self.time = 0
+	self.step = 0
+	data.clock = os.clock()
 end
 
 local function newturn(self)
@@ -36,9 +37,9 @@ end
 
 function update(self, dt)
 	if data.state == data.STATE_AI then
-		self.time = self.time + dt
-		if self.time > data.speed() then
-			self.time = 0
+		self.step = self.step + dt
+		if self.step > data.speed() then
+			self.step = 0
 			if not unit.data[self.index] then
 				newturn(self)
 			elseif unit.data[self.index].team == unit.turn then
@@ -47,7 +48,7 @@ function update(self, dt)
 				msg.post(unit.data[self.index].obj, "think")
 			else
 				nextunit(self)
-				self.time = data.speed()
+				self.step = data.speed()
 			end
 		end
 	end
