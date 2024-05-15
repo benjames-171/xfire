@@ -5,14 +5,18 @@ function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("handler#menu", "load")
 	math.randomseed(os.time())
-	local t = 10 + os.time() % 50
+	local t = 10 + (os.time() % 50)
 	for _ = 1, t do
-		math.random()
+		_ = math.random()
 	end
 	if not html5 then
-		defos.set_view_size(nil,nil, 256*3, 224*3)
-		defos.disable_window_resize()
-		defos.disable_maximize_button()
+		if sys.get_engine_info().is_debug then
+			defos.set_view_size(nil,nil, 256*3, 224*3)
+			defos.disable_window_resize()
+			defos.disable_maximize_button()
+		else
+			data.fullscreen()
+		end
 	end
 	astar.setup(data.MAP_SIZE, data.MAP_SIZE, astar.DIRECTION_FOUR, data.MAP_SIZE * data.MAP_SIZE, 8, false)
 	data.loadgamefile()
