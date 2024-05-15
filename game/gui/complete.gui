@@ -336,7 +336,7 @@ nodes {
   }
   size {
     x: 100.0
-    y: 114.0
+    y: 118.0
     z: 0.0
     w: 1.0
   }
@@ -881,7 +881,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -9.0
+    y: -8.0
     z: 0.0
     w: 1.0
   }
@@ -1015,7 +1015,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: -9.0
+    y: -8.0
     z: 0.0
     w: 1.0
   }
@@ -1149,7 +1149,7 @@ nodes {
 nodes {
   position {
     x: -5.0
-    y: -9.0
+    y: -8.0
     z: 0.0
     w: 1.0
   }
@@ -1216,7 +1216,7 @@ nodes {
 nodes {
   position {
     x: 5.0
-    y: -9.0
+    y: -8.0
     z: 0.0
     w: 1.0
   }

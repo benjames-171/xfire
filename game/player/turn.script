@@ -15,8 +15,10 @@ local function newturn(self)
 	if not data.save.ai[self.turn] then
 		if unit.cursor[unit.turn] then
 			data.cursor = unit.cursor[unit.turn]
+			msg.post("view#script", "snap_to")
 		else
 			unit.setcursor()
+			msg.post("view#script", "snap_to")
 		end
 	end
 	
