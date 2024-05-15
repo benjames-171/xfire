@@ -7,7 +7,7 @@ function on_message(self, message_id, message)
 		if data.currentsong ~= nil then
 			sound.stop("#"..data.currentsong)
 		end
-		sound.play("#"..message.id, {gain = data.save.music / 10})
+		sound.play("#"..message.id, {gain = data.save.music / 20})
 		data.currentsong = message.id
 	elseif message_id == hash("pause") then
 		if data.currentsong ~= nil then
