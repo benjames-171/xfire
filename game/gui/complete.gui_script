@@ -22,6 +22,5 @@ function on_message(self, message_id, message)
 			gui.set_color(node, data.hex2rgba("#3c80db"))
 		end
 		gui.set_text(node, text)
-		data.playmusic("music-complete")
 	end
 end
