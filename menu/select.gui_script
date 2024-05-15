@@ -26,6 +26,7 @@ local function settext()
 	else
 		text = "PLAYER 1"
 	end
+	data.teamname[1] = text
 	gui.set_text(gui.get_node("red"), text)
 
 	if data.save.ai[2] then
@@ -35,6 +36,7 @@ local function settext()
 	else
 		text = "PLAYER 2"
 	end
+	data.teamname[2] = text
 	gui.set_text(gui.get_node("blue"), text)
 end
 

@@ -1,10 +1,13 @@
 local data = require "main.data"
+local ui = require "main.ui"
 local unit = require "game.unit.unit"
 
 local hints = {
 	"PRESS SELECT ON A BLANK TILE TO SHOW THE COMMAND MENU",
 	"USE LEFT/RIGHT MOVEMENT BUTTONS TO SWITCH BETWEEN TARGETS"
 }
+
+local turntext = {"RED TEAM'S TURN - ", "BLUE TEAM'S TURN - "}
 
 function init(self)
 	self.handle = nil
@@ -36,6 +39,7 @@ end
 local function tick(self, message)
 	local node = gui.get_node("tickbox")
 	local textnode = gui.get_node("tick")
+	local time = message.time or 2
 	gui.set_enabled(node, true)
 
 	if message.color then
@@ -48,7 +52,10 @@ local function tick(self, message)
 	if self.handle then
 		timer.cancel(self.handle)
 	end
-	self.handle = timer.delay(2, false, function() gui.set_enabled(node, false) self.handle = nil end)
+
+	local m = ui.getmetrics("tick")
+	gui.set_size(gui.get_node("tickbox"), vmath.vector3(m.width + 8, 14, 0))
+	self.handle = timer.delay(time, false, function() gui.set_enabled(node, false) self.handle = nil end)
 end
 
 local function hint(num)
@@ -56,7 +63,21 @@ local function hint(num)
 	local textnode = gui.get_node("hint")
 	gui.set_enabled(node, true)
 	gui.set_text(textnode, hints[num])
+	local m = ui.getmetrics("hint")
+	gui.set_size(gui.get_node("hintbox"), vmath.vector3(m.width + 8, 10, 0))
 	timer.delay(5, false, function() gui.set_enabled(node, false) end)
+end
+
+local function newturn(self)
+	local message = {}
+	if unit.turn == 1 then
+		message.color = "#ff032b"
+	else
+		message.color = "#3c80db"
+	end
+	message.text = turntext[unit.turn]..data.teamname[unit.turn]
+	message.time = 3
+	tick(self, message)
 end
 
 function on_message(self, message_id, message)
@@ -74,6 +95,8 @@ function on_message(self, message_id, message)
 		gui.set_enabled(gui.get_node("tickbox"), false)
 	elseif message_id == hash("panel") then
 		panel(unit.findxy(message.x, message.y))
+	elseif message_id == hash("newturn") then
+		newturn(self)
 	end
 end
 

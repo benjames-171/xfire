@@ -18,6 +18,7 @@ local function newturn(self)
 	else
 		data.state = data.STATE_PLAYING
 	end
+	msg.post("view#game", "newturn")
 end
 
 local function nextunit(self)

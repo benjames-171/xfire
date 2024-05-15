@@ -105,5 +105,5 @@ function init(self)
 	unit.init()
 	parse()
 	setcursor()
-	timer.delay(1, false, function() data.playmusic("music-game") end)
+	timer.delay(0.5, false, function() data.playmusic("music-game") msg.post("common/view#game", "newturn") end)
 end
