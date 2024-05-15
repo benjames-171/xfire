@@ -9,9 +9,15 @@ local function newturn(self)
 	self.index = 1
 	unit.cursor[unit.turn] = data.cursor
 	unit.turn = data.wrap(unit.turn + 1, 1, data.MAX_TEAMS)
-	if unit.cursor[unit.turn] then
-		data.cursor = unit.cursor[unit.turn]
+
+	if not data.save.ai[self.turn] then
+		if unit.cursor[unit.turn] then
+			data.cursor = unit.cursor[unit.turn]
+		else
+			unit.setcursor()
+		end
 	end
+	
 	unit.prepteam(unit.turn)
 	if data.save.ai[unit.turn] then
 		data.state = data.STATE_AI

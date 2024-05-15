@@ -78,32 +78,9 @@ local function parse()
 	end
 end
 
-local function setcursor()
-	local team
-	if not data.save.ai[1] then
-		team = 1
-	elseif not data.save.ai[2] then
-		team = 2
-	else
-		return
-	end
-
-	local pos = vmath.vector3()
-	local total = 0
-	for _, v in pairs(unit.data) do
-		if v.team == team then
-			pos = pos + vmath.vector3(v.x, v.y, 0)
-			total = total + 1
-		end
-	end
-	data.cursor = pos / total
-	data.cursor.x = math.floor(data.cursor.x)
-	data.cursor.y = math.floor(data.cursor.y)
-end
-
 function init(self)
 	unit.init()
 	parse()
-	setcursor()
+	unit.setcursor()
 	timer.delay(0.5, false, function() data.playmusic("music-game") msg.post("common/view#game", "newturn") end)
 end

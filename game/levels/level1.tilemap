@@ -13382,14 +13382,6 @@ layers {
     rotate90: 0
   }
   cell {
-    x: 41
-    y: 18
-    tile: 182
-    h_flip: 0
-    v_flip: 0
-    rotate90: 0
-  }
-  cell {
     x: 42
     y: 18
     tile: 240
@@ -13401,14 +13393,6 @@ layers {
     x: 44
     y: 18
     tile: 82
-    h_flip: 0
-    v_flip: 0
-    rotate90: 0
-  }
-  cell {
-    x: 34
-    y: 19
-    tile: 250
     h_flip: 0
     v_flip: 0
     rotate90: 0
