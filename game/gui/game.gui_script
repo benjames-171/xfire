@@ -58,9 +58,18 @@ local function tick(self, message)
 	self.handle = timer.delay(time, false, function() gui.set_enabled(node, false) self.handle = nil end)
 end
 
+local function cleartick(self)
+	if self.handle then
+		timer.cancel(self.handle)
+		self.handle = nil
+	end
+	gui.set_enabled(gui.get_node("tickbox"), false)
+end
+
 local function hint(num)
 	local node = gui.get_node("hintbox")
 	local textnode = gui.get_node("hint")
+
 	gui.set_enabled(node, true)
 	gui.set_text(textnode, hints[num])
 	local m = ui.getmetrics("hint")
@@ -88,11 +97,7 @@ function on_message(self, message_id, message)
 			hint(message.num)
 		end
 	elseif message_id == hash("cleartick") then
-		if self.handle then
-			timer.cancel(self.handle)
-			self.handle = nil
-		end
-		gui.set_enabled(gui.get_node("tickbox"), false)
+		cleartick(self)
 	elseif message_id == hash("panel") then
 		panel(unit.findxy(message.x, message.y))
 	elseif message_id == hash("newturn") then

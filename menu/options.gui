@@ -234,7 +234,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "AI SPEED"
+  text: "A.I. SPEED"
   font: "main"
   id: "speed1"
   xanchor: XANCHOR_NONE
