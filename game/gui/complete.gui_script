@@ -35,7 +35,7 @@ local function show(self)
 			blue = blue + 1
 		end
 	end
-
+	gui.set_text(gui.get_node("turns"), unit.numturns)
 	gui.set_text(gui.get_node("red"), string.format("%d/%d", red, unit.total[1]))
 	gui.set_text(gui.get_node("blue"), string.format("%d/%d", blue, unit.total[2]))
 end

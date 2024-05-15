@@ -17,6 +17,7 @@ M.data = {}
 M.cursor = {}
 M.total = {0, 0}
 M.turn = 1
+M.numturns = 0
 M.next = 0
 
 function M.init()
@@ -25,6 +26,7 @@ function M.init()
 	M.obj = nil
 	M.stat = nil
 	M.turn = 1
+	M.numturns = 1
 	M.next = 0
 end
 

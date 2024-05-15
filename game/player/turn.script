@@ -10,6 +10,7 @@ local function newturn(self)
 	self.index = 1
 	unit.cursor[unit.turn] = data.cursor
 	unit.turn = data.wrap(unit.turn + 1, 1, data.MAX_TEAMS)
+	unit.numturns = unit.numturns + 1
 
 	if not data.save.ai[self.turn] then
 		if unit.cursor[unit.turn] then
