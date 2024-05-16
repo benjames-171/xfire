@@ -116,7 +116,9 @@ local function input(self, action_id, action)
 			data.sound("step")
 			settext()
 		elseif self.handpos == 6 then
-			startgame(self)
+			ui.hide(self.node)
+			data.state = data.STATE_NULL
+			timer.delay(0.2, false, function() startgame(self) end)
 		elseif self.handpos == 7 then
 			close(self)
 		end

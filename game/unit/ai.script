@@ -60,7 +60,7 @@ local function step(self)
 	unit.stat.x = self.path[self.step].x
 	unit.stat.y = self.path[self.step].y
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
-	go.set_position(data.tile2world(vmath.vector3(data.cursor)))
+	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, data.tile2world(vmath.vector3(data.cursor)), go.EASING_LINEAR, data.speed() / 2)
 	unit.stat.move = unit.stat.move - 1
 	data.sound("step")
 end
@@ -68,6 +68,8 @@ end
 local function move(self)
 	if self.step == 0 then
 		findpath(self, unit.stat.x, unit.stat.y, self.endpoint.x, self.endpoint.y)
+		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+		msg.post("common/view#script", "snap_to")
 	elseif unit.stat.move > 1 then
 		step(self)
 		self.step = self.step + 1

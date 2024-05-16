@@ -26,7 +26,7 @@ local function move(self)
 		unit.stat.move = unit.stat.move - 1
 		unit.stat.x = pos.x
 		unit.stat.y = pos.y
-		go.set_position(data.tile2world(pos))
+		go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, data.tile2world(pos), go.EASING_LINEAR, 0.1)
 		data.cursor = pos
 		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 		data.sound("step")
