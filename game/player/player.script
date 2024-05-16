@@ -1,6 +1,18 @@
 local data = require "main.data"
 local unit = require "game.unit.unit"
 
+local function hintcmenu(self)
+	if data.state == data.STATE_PLAYING then
+		msg.post("view#game", "hint", {num = 1})
+	end
+end
+
+local function hintnextunit(self)
+	if data.state ~= data.STATE_AI then
+		msg.post("view#game", "hint", {num = 3})
+	end
+end
+
 function init(self)
 	self.move = vmath.vector3()
 	self.state = data.STATE_NULL
@@ -8,6 +20,8 @@ function init(self)
 	if data.save.ai[1] then
 		data.state = data.STATE_AI
 	end
+	timer.delay(6, false, function() hintcmenu(self) end)
+	timer.delay(14, false, function() hintnextunit(self) end)
 end
 
 local function pauseinput(time)

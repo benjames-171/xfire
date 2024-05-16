@@ -1,15 +1,16 @@
 local data = require "main.data"
-local ui = require "main.ui"
 local unit = require "game.unit.unit"
 
 local hints = {
 	"PRESS SELECT ON A BLANK TILE TO SHOW THE COMMAND MENU",
-	"USE LEFT/RIGHT MOVEMENT BUTTONS TO SWITCH BETWEEN TARGETS"
+	"USE LEFT & RIGHT KEYS TO SWITCH BETWEEN TARGETS",
+	"IN CURSOR MODE, PRESS <BACK> TO SWITCH BETWEEN UNITS"
 }
 
 local turntext = {"RED TEAM'S TURN - ", "BLUE TEAM'S TURN - "}
 
 function init(self)
+	self.hints = {}
 	self.handle = nil
 	gui.set_render_order(1)
 end
@@ -53,8 +54,6 @@ local function tick(self, message)
 		timer.cancel(self.handle)
 	end
 
-	local m = ui.getmetrics("tick")
-	gui.set_size(gui.get_node("tickbox"), vmath.vector3(m.width + 8, 14, 0))
 	self.handle = timer.delay(time, false, function() gui.set_enabled(node, false) self.handle = nil end)
 end
 
@@ -66,14 +65,13 @@ local function cleartick(self)
 	gui.set_enabled(gui.get_node("tickbox"), false)
 end
 
-local function hint(num)
+local function hint(self, num)
 	local node = gui.get_node("hintbox")
 	local textnode = gui.get_node("hint")
 
+	self.hints[num] = true
 	gui.set_enabled(node, true)
 	gui.set_text(textnode, hints[num])
-	local m = ui.getmetrics("hint")
-	gui.set_size(gui.get_node("hintbox"), vmath.vector3(m.width + 8, 10, 0))
 	timer.delay(5, false, function() gui.set_enabled(node, false) end)
 end
 
@@ -93,8 +91,8 @@ function on_message(self, message_id, message)
 	if message_id == hash("tick") then
 		tick(self, message)
 	elseif message_id == hash("hint") then
-		if not data.hints[message.num] then
-			hint(message.num)
+		if not self.hints[message.num] and data.save.hints then
+			hint(self, message.num)
 		end
 	elseif message_id == hash("cleartick") then
 		cleartick(self)

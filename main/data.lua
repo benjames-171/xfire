@@ -34,7 +34,6 @@ M.offset = vmath.vector3(8.5, 8.5, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE - 16, M.MAP_SIZE - 14)
 M.gate = {}
 M.wp = {}
-M.hints = {}
 M.teamname = {"", ""}
 M.maxwp = 0
 M.level = 1
@@ -54,7 +53,7 @@ M.save = {
 }
 
 function M.diff()
-	local d = {0.7, 1, 1.2}
+	local d = {0.8, 1, 1.4}
 	return d[M.save.diff] or 1
 end
 

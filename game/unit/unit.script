@@ -35,12 +35,16 @@ local function move(self)
 	return false
 end
 
-local function powerup(self)
+local function pickup(self)
 	local t = tilemap.get_tile("level#tilemap", "control", data.cursor.x, data.cursor.y)
 	if t == 192 then
 		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
 		data.sound("popup")
 		msg.post("common/view#powerup", "show")
+	elseif t == 193 and unit.stat.hp < unit.stat.hpmax then
+		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
+		unit.stat.hp = data.clamp(unit.stat.hp + 4, 1, unit.stat.hpmax)
+		data.sound("powerup")
 	end
 end
 
@@ -72,7 +76,7 @@ function update(self, dt)
 		if vmath.length(self.move) ~= 0 and data.state == data.STATE_UNIT and unit.stat.move > 0 then
 			if move(self) then
 				findtargets(self)
-				powerup(self)
+				pickup(self)
 			end
 		end
 		flash(self, dt)
@@ -155,6 +159,9 @@ function on_message(self, message_id, message)
 		findtargets(self)
 	elseif message_id == hash("selectfire") then
 		data.cursor = self.target[self.currtarget]
+		if self.totaltargets > 1 then
+			msg.post("common/view#game", "hint", {num = 2})
+		end
 	elseif message_id == hash("resettargets") then
 		findtargets(self)
 		self.currtarget = 1
