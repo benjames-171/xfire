@@ -38,5 +38,5 @@ repeat_interval = 0.075
 subpixels = 0
 
 [tilemap]
-max_tile_count = 3600
+max_tile_count = 4096
 
