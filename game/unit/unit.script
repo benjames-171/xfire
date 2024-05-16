@@ -9,6 +9,7 @@ function init(self)
 	sprite.play_flipbook("#sprite", anim)
 	local pos = go.get_position()
 	sprite.set_hflip("#sprite", pos.x > data.MAP_SIZE * data.TILE_SIZE / 2)
+	msg.post("#regen", "disable")
 	self.move = vmath.vector3()
 	self.flash = 0
 	self.obj = nil
@@ -157,6 +158,9 @@ function on_message(self, message_id, message)
 		self.obj = unit.obj
 		data.sound("popup")
 		findtargets(self)
+		if unit.stat.hp <= (unit.stat.hpmax - 2) then
+			msg.post("common/view#game", "hint", {num = 4})
+		end
 	elseif message_id == hash("selectfire") then
 		data.cursor = self.target[self.currtarget]
 		if self.totaltargets > 1 then
@@ -175,8 +179,10 @@ function on_message(self, message_id, message)
 	elseif message_id == hash("regenerate") then
 		if unit.stat.move >= 4 and unit.stat.hp < unit.stat.hpmax then
 			unit.stat.move = unit.stat.move - 4
-			unit.stat.hp = unit.stat.hp + 1
+			unit.stat.hp = data.wrap(unit.stat.hp + 2, 1, unit.stat.hpmax)
 			msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
+			msg.post("#regen", "enable")
+			timer.delay(1.2, false, function () msg.post("#regen", "disable") end)
 			data.sound("powerup")
 		end
 	elseif message_id == hash("cancel") then

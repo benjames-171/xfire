@@ -6,7 +6,8 @@ local ST_RESET = 0
 local ST_MOVE = 1
 local ST_FIRE = 2
 local ST_RETREAT = 3
-local ST_END = 4
+local ST_REGEN = 4
+local ST_END = 5
 
 local function findpath(self, sx, sy, tx, ty)
 	local map = {}
@@ -48,12 +49,12 @@ end
 
 local function reset(self)
 	self.step = 0
-	self.state = ST_MOVE
 	repeat
 		self.endpoint = data.wp[math.random(1, data.maxwp)]
 	until self.endpoint.x ~= unit.stat.x or self.endpoint.y ~= unit.stat.y
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	msg.post("common/view#script", "snap_to")
+	self.state = ST_MOVE
 end
 
 local function step(self)
@@ -78,6 +79,8 @@ local function move(self)
 		else
 			if unit.findtargets(self) > 0 then
 				self.state = ST_FIRE
+			elseif unit.stat.hp <= (unit.stat.hpmax - 2) and unit.stat.move >= 4 then
+				self.state = ST_REGEN
 			end
 		end
 	else
@@ -91,6 +94,14 @@ local function retreat(self)
 		step(self)
 	end
 	self.state = ST_END
+end
+
+local function regen(self)
+	msg.post("#regen", "enable")
+	unit.stat.hp = data.wrap(unit.stat.hp + 2, 1, unit.stat.hpmax)
+	timer.delay(1.2, false, function () msg.post("#regen", "disable") end)
+	unit.stat.move = unit.stat.move - 4
+	self.state = ST_MOVE
 end
 
 local function fire(self)
@@ -119,6 +130,8 @@ local function think(self)
 		fire(self)
 	elseif self.state == ST_RETREAT then
 		retreat(self)
+	elseif self.state == ST_REGEN then
+		regen(self)
 	elseif self.state == ST_END then
 		self.step = 0
 		self.state = ST_MOVE
