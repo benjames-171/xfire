@@ -1317,7 +1317,7 @@ animations {
   id: "2-1"
   start_tile: 247
   end_tile: 248
-  playback: PLAYBACK_LOOP_FORWARD
+  playback: PLAYBACK_LOOP_BACKWARD
   fps: 1
   flip_horizontal: 0
   flip_vertical: 0
@@ -1326,7 +1326,7 @@ animations {
   id: "2-2"
   start_tile: 249
   end_tile: 250
-  playback: PLAYBACK_LOOP_FORWARD
+  playback: PLAYBACK_LOOP_BACKWARD
   fps: 2
   flip_horizontal: 0
   flip_vertical: 0
@@ -1335,7 +1335,7 @@ animations {
   id: "2-3"
   start_tile: 251
   end_tile: 252
-  playback: PLAYBACK_LOOP_FORWARD
+  playback: PLAYBACK_LOOP_BACKWARD
   fps: 4
   flip_horizontal: 0
   flip_vertical: 0
@@ -1434,6 +1434,15 @@ animations {
   id: "hp"
   start_tile: 191
   end_tile: 191
+  playback: PLAYBACK_NONE
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "lospec"
+  start_tile: 209
+  end_tile: 209
   playback: PLAYBACK_NONE
   fps: 30
   flip_horizontal: 0
