@@ -140,6 +140,7 @@ local function think(self)
 		msg.post("common/turn", "nextunit")
 	elseif self.state == ST_ERR then
 		msg.post("common/turn", "nextunit")
+		self.step = 0
 		self.state = ST_RESET
 	end
 	msg.post("common/view#game", "panel", {x = unit.stat.x, y = unit.stat.y})

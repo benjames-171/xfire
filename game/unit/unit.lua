@@ -35,13 +35,28 @@ function M.add(x, y, team, type, obj)
 	if data.save.ai[team] then
 		diff = data.diff()
 	end
-	
+
 	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, obj = obj,
 		armor = M.armor[type], power = M.power[type], move = M.movemax[type], movemax = M.movemax[type],
 		fire = M.firemax[type], firemax = M.firemax[type]}
 
 	table.insert(M.data, unit)
 	M.total[team] = M.total[team] + 1
+end
+
+function M.sortdata()
+	local i = 1
+	local t = {}
+	local order = {3,1,2}
+	for type = 1, 3 do
+		for _,v in pairs(M.data) do
+			if v.type == order[type] then
+				t[i] = v
+				i = i + 1
+			end
+		end
+	end
+	M.data = t
 end
 
 function M.prepteam(team)

@@ -89,6 +89,7 @@ end
 function init(self)
 	unit.init()
 	parse()
+	unit.sortdata()
 	unit.setcursor()
 	msg.post("common/view#script", "snap_to")
 	timer.delay(0.5, false, function() data.playmusic("music-game") msg.post("common/view#game", "newturn") end)
