@@ -51,7 +51,8 @@ local function reset(self)
 	self.step = 0
 	repeat
 		self.endpoint = data.wp[math.random(1, data.maxwp)]
-	until self.endpoint.x ~= unit.stat.x or self.endpoint.y ~= unit.stat.y
+		local len = vmath.length(self.endpoint - vmath.vector3(unit.stat.x, unit.stat.y, 0))
+	until len > 16
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	msg.post("common/view#script", "snap_to")
 	self.state = ST_MOVE
@@ -63,6 +64,7 @@ local function step(self)
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, data.tile2world(vmath.vector3(data.cursor)), go.EASING_LINEAR, data.speed() / 2)
 	unit.stat.move = unit.stat.move - 1
+	self.step = self.step + 1
 	data.sound("step")
 end
 
@@ -73,7 +75,6 @@ local function move(self)
 		msg.post("common/view#script", "snap_to")
 	elseif unit.stat.move > 1 then
 		step(self)
-		self.step = self.step + 1
 		if self.step > self.plen then
 			self.state = ST_RESET
 		else
