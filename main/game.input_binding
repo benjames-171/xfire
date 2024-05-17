@@ -15,7 +15,7 @@ key_trigger {
   action: "right"
 }
 key_trigger {
-  input: KEY_X
+  input: KEY_Z
   action: "action"
 }
 key_trigger {
@@ -23,7 +23,7 @@ key_trigger {
   action: "debug"
 }
 key_trigger {
-  input: KEY_C
+  input: KEY_X
   action: "back"
 }
 key_trigger {
@@ -37,6 +37,18 @@ key_trigger {
 key_trigger {
   input: KEY_ESC
   action: "esc"
+}
+key_trigger {
+  input: KEY_SPACE
+  action: "action"
+}
+key_trigger {
+  input: KEY_ENTER
+  action: "action"
+}
+key_trigger {
+  input: KEY_W
+  action: "action"
 }
 gamepad_trigger {
   input: GAMEPAD_LSTICK_LEFT

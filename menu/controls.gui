@@ -245,8 +245,8 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "ARROWS\n"
-  "X\n"
-  "C"
+  "Z\n"
+  "X"
   font: "main"
   id: "kb"
   xanchor: XANCHOR_NONE
