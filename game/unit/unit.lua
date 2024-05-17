@@ -4,7 +4,7 @@ local M = {}
 
 M.MAX_VIS = 256
 
-M.names = {"TROOPER", "X4-MECHA", "C2-SCOUT"}
+M.names = {"TROOPER", "HEAVY MECH", "LIGHT DRONE"}
 M.armor = {4,6,2}
 M.power = {5,8,3}
 M.movemax = {8,6,10}
