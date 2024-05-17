@@ -1458,6 +1458,24 @@ animations {
   flip_vertical: 0
 }
 animations {
+  id: "pickup1"
+  start_tile: 231
+  end_tile: 234
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "pickup2"
+  start_tile: 215
+  end_tile: 218
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 10
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
   id: "point-green"
   start_tile: 189
   end_tile: 189
@@ -1490,15 +1508,6 @@ animations {
   end_tile: 179
   playback: PLAYBACK_NONE
   fps: 30
-  flip_horizontal: 0
-  flip_vertical: 0
-}
-animations {
-  id: "powerup"
-  start_tile: 231
-  end_tile: 234
-  playback: PLAYBACK_LOOP_FORWARD
-  fps: 10
   flip_horizontal: 0
   flip_vertical: 0
 }

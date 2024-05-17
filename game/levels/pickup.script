@@ -1,0 +1,15 @@
+local data = require "main.data"
+
+go.property("num", 1)
+
+function init(self)
+	self.pos = data.world2tile(go.get_position())
+	sprite.play_flipbook("#sprite", "pickup"..self.num)
+end
+
+function update(self, dt)
+	local t = tilemap.get_tile("level#tilemap", "control", self.pos.x, self.pos.y)
+	if t == 0 then
+		go.delete()
+	end
+end

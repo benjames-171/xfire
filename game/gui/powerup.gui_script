@@ -4,7 +4,7 @@ local ui = require "main.ui"
 
 local MENU_LEN = 4
 
-local desc = {"+2 ARMOR", "+1 MOVES PER TURN", "+2 SHOT POWER", "+1 SHOTS PER TURN"}
+local desc = {"+3 ARMOR", "+2 MOVES PER TURN", "+2 SHOT POWER", "+1 SHOTS PER TURN"}
 
 function init(self)
 	self.handpos = 1
@@ -28,10 +28,10 @@ end
 
 local function apply(self)
 	if self.handpos == 1 then
-		unit.stat.armor = unit.stat.armor + 2
+		unit.stat.armor = unit.stat.armor + 3
 	elseif self.handpos == 2 then
-		unit.stat.movemax = unit.stat.movemax + 1
-		unit.stat.move = unit.stat.move + 1
+		unit.stat.movemax = data.clamp(unit.stat.movemax + 2, 1, 16)
+		unit.stat.move = data.clamp(unit.stat.move + 2, 1, 16)
 	elseif self.handpos == 3 then
 		unit.stat.power = unit.stat.power + 2
 	elseif self.handpos == 4 then

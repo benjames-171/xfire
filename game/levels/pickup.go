@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/game/levels/powerup.script"
+  component: "/game/levels/pickup.script"
   position {
     x: 0.0
     y: 0.0
@@ -16,7 +16,7 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"powerup\"\n"
+  data: "default_animation: \"pickup1\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   "textures {\n"

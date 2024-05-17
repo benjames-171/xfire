@@ -73,7 +73,7 @@ end
 
 function M.findtargets(self)
 	self.target = {}
-	local pos = go.get_position() + vmath.vector3(-8, -8, 0)
+	local pos = data.tile2world(vmath.vector3(M.stat.x, M.stat.y, 0)) + vmath.vector3(-8, -8, 0)
 	local total = 0
 
 	for _, v in pairs(M.data) do

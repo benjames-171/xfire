@@ -75,7 +75,9 @@ local function parse()
 				table.insert(data.wp, vmath.vector3(x, y, 0))
 				data.maxwp = data.maxwp + 1
 			elseif c == 192 then
-				factory.create("#powerup-fac", data.tile2world(vmath.vector3(x, y, 0)) + vmath.vector3(-8, -8, 0))
+				factory.create("#pickup-fac", data.tile2world(vmath.vector3(x, y, 0)) + vmath.vector3(-8, -8, 0), nil, {num = 1})
+			elseif c == 193 then
+				factory.create("#pickup-fac", data.tile2world(vmath.vector3(x, y, 0)) + vmath.vector3(-8, -8, 0), nil, {num = 2})
 			elseif c >= 241 and c <= 252 then
 				tilemap.set_tile("#tilemap", "control", x, y, 0)
 				spawnunit(x, y, c)
