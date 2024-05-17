@@ -22512,6 +22512,14 @@ layers {
   cell {
     x: 46
     y: 37
+    tile: 94
+    h_flip: 0
+    v_flip: 0
+    rotate90: 0
+  }
+  cell {
+    x: 47
+    y: 37
     tile: 86
     h_flip: 0
     v_flip: 0

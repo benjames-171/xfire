@@ -1422,15 +1422,6 @@ animations {
   flip_vertical: 0
 }
 animations {
-  id: "gp"
-  start_tile: 178
-  end_tile: 178
-  playback: PLAYBACK_NONE
-  fps: 30
-  flip_horizontal: 0
-  flip_vertical: 0
-}
-animations {
   id: "hit"
   start_tile: 201
   end_tile: 205
@@ -1443,15 +1434,6 @@ animations {
   id: "hp"
   start_tile: 191
   end_tile: 191
-  playback: PLAYBACK_NONE
-  fps: 30
-  flip_horizontal: 0
-  flip_vertical: 0
-}
-animations {
-  id: "kb"
-  start_tile: 177
-  end_tile: 177
   playback: PLAYBACK_NONE
   fps: 30
   flip_horizontal: 0

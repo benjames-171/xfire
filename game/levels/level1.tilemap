@@ -2790,7 +2790,7 @@ layers {
   cell {
     x: 39
     y: 21
-    tile: 17
+    tile: 33
     h_flip: 0
     v_flip: 0
     rotate90: 0
@@ -13001,6 +13001,14 @@ layers {
     x: 19
     y: 26
     tile: 92
+    h_flip: 0
+    v_flip: 0
+    rotate90: 0
+  }
+  cell {
+    x: 20
+    y: 26
+    tile: 94
     h_flip: 0
     v_flip: 0
     rotate90: 0
