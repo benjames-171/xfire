@@ -409,7 +409,7 @@ nodes {
 nodes {
   position {
     x: 0.0
-    y: 30.0
+    y: 0.0
     z: 0.0
     w: 1.0
   }
@@ -467,8 +467,8 @@ nodes {
 }
 nodes {
   position {
-    x: -43.0
-    y: -47.0
+    x: 99.0
+    y: -27.0
     z: 0.0
     w: 1.0
   }
@@ -491,9 +491,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 0.502
+    x: 0.176
     y: 0.0
-    z: 0.204
+    z: 0.431
     w: 1.0
   }
   type: TYPE_TEXT

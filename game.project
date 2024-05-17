@@ -15,14 +15,14 @@ shared_state = 1
 
 [html5]
 splash_image = /assets/png/splash.png
-cssfile = /builtins/manifests/web/dark_theme.css
+cssfile = /main/theme.css
 scale_mode = fit
 show_console_banner = 0
 show_made_with_defold = 0
 show_fullscreen_button = 0
 
 [project]
-version = v1.00
+version = v0.1b
 title = Xfire
 dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
 dependencies#1 = https://github.com/selimanac/defold-astar/archive/master.zip
@@ -39,4 +39,13 @@ subpixels = 0
 
 [tilemap]
 max_tile_count = 4096
+
+[mesh]
+max_count = 0
+
+[label]
+max_count = 0
+
+[model]
+max_count = 0
 
