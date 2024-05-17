@@ -92,8 +92,9 @@ local function retreat(self)
 	self.step = self.step - 2
 	if self.step > 0 and unit.stat.move > 0 then
 		step(self)
+	else
+		self.state = ST_END
 	end
-	self.state = ST_END
 end
 
 local function regen(self)
