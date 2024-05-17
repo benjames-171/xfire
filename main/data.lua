@@ -58,7 +58,7 @@ function M.diff()
 end
 
 function M.speed()
-	local s = {0.7, 0.4, 0.1}
+	local s = {0.5, 0.3, 0.1}
 	return s[M.save.speed] or 1
 end
 

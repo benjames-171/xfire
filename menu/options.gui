@@ -203,7 +203,7 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
+    x: -64.0
     y: 23.0
     z: 0.0
     w: 1.0
@@ -221,7 +221,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 90.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -270,7 +270,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 90.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -301,7 +301,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "NORMAL"
+  text: "MEDIUM"
   font: "main"
   id: "speed"
   xanchor: XANCHOR_NONE
@@ -337,7 +337,7 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
+    x: -64.0
     y: 7.0
     z: 0.0
     w: 1.0
@@ -355,7 +355,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 90.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -368,7 +368,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "SFX VOLUME"
+  text: "SFX VOL"
   font: "main"
   id: "sound1"
   xanchor: XANCHOR_NONE
@@ -404,7 +404,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 90.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -471,7 +471,7 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
+    x: -64.0
     y: -9.0
     z: 0.0
     w: 1.0
@@ -489,7 +489,7 @@ nodes {
     w: 1.0
   }
   size {
-    x: 120.0
+    x: 90.0
     y: 16.0
     z: 0.0
     w: 1.0
@@ -502,7 +502,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "MUSIC VOLUME"
+  text: "MUSIC VOL"
   font: "main"
   id: "music1"
   xanchor: XANCHOR_NONE
@@ -538,7 +538,7 @@ nodes {
 }
 nodes {
   position {
-    x: 120.0
+    x: 90.0
     y: 0.0
     z: 0.0
     w: 1.0
@@ -605,7 +605,7 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
+    x: -64.0
     y: -39.0
     z: 0.0
     w: 1.0
@@ -672,7 +672,7 @@ nodes {
 }
 nodes {
   position {
-    x: -90.0
+    x: -64.0
     y: -69.0
     z: 0.0
     w: 1.0
