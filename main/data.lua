@@ -44,6 +44,7 @@ M.FILE_NAME = "Xfire.sav"
 
 M.save = {
 	diff = 2,
+	mode = 1,
 	length = 1,
 	hints = true,
 	ai = {false, true},

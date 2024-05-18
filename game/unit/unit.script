@@ -10,13 +10,22 @@ function init(self)
 	local pos = go.get_position()
 	sprite.set_hflip("#sprite", pos.x > data.MAP_SIZE * data.TILE_SIZE / 2)
 	msg.post("#regen", "disable")
+	msg.post("#flag", "disable")
 	self.move = vmath.vector3()
 	self.flash = 0
 	self.obj = nil
 	self.target = {}
 	self.currtarget = 1
 	self.totaltargets = 0
+	self.flag = false
 	unit.stat = nil
+end
+
+function final(self)
+	if self.flag then
+		local pos = data.world2tile(go.get_position())
+		tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
+	end
 end
 
 local function move(self)
@@ -38,7 +47,12 @@ end
 
 local function pickup(self)
 	local t = tilemap.get_tile("level#tilemap", "control", data.cursor.x, data.cursor.y)
-	if t == 192 then
+	if t == 178 then
+		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
+		self.flag = true
+		msg.post("#flag", "enable")
+		data.sound("powerup")
+	elseif t == 192 then
 		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
 		data.sound("popup")
 		msg.post("common/view#powerup", "show")
@@ -46,6 +60,13 @@ local function pickup(self)
 		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
 		unit.stat.hp = data.clamp(unit.stat.hp + 4, 1, unit.stat.hpmax)
 		data.sound("powerup")
+	end
+
+	if self.flag then
+		t = tilemap.get_tile("level#tilemap", "world", data.cursor.x, data.cursor.y)
+		if (unit.stat.team == 1 and t == 165) or (unit.stat.team == 2 and t == 166) then
+			msg.post("common/view#complete", "show")
+		end
 	end
 end
 

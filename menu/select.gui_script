@@ -1,16 +1,21 @@
 local data = require "main.data"
 local ui = require "main.ui"
 
-local MENU_LEN = 7
+local MENU_LEN = 8
 
 local DIFF = {"EASY", "NORMAL", "HARD"}
 local LENGTH = {"SHORT", "MEDIUM", "LONG"}
 local TIME = {"5-10 MINUTES", "10-15 MINUTES", "15-20 MINUTES"}
+local MODE = {"LTS", "CTF"}
+local MODEB = {"LAST TEAM STANDING", "CAPTURE THE FLAG"}
 
 local function settext()
+	data.save.mode = data.wrap(data.save.mode, 1, 2)
 	data.save.diff = data.wrap(data.save.diff, 1, 3)
 	data.save.length = data.wrap(data.save.length, 1, 3)
 
+	gui.set_text(gui.get_node("mode"), MODE[data.save.mode])
+	gui.set_text(gui.get_node("modeb"), MODEB[data.save.mode])
 	gui.set_text(gui.get_node("diff"), DIFF[data.save.diff])
 	gui.set_text(gui.get_node("length"), LENGTH[data.save.length])
 	gui.set_text(gui.get_node("time"), TIME[data.save.length])
@@ -43,6 +48,7 @@ end
 function init(self)
 	self.handpos = 1
 	self.arrowpos = {
+		gui.get_position(gui.get_node("mode1")),
 		gui.get_position(gui.get_node("length1")),
 		gui.get_position(gui.get_node("diff1")),
 		gui.get_position(gui.get_node("hints1")),
@@ -59,7 +65,7 @@ end
 
 local function show(self)
 	ui.show(self.node)
-	self.handpos = 6
+	self.handpos = 7
 	data.state = data.STATE_SELECT
 end
 
@@ -96,30 +102,34 @@ local function input(self, action_id, action)
 		data.sound("menu-move")
 	elseif action_id == hash("action") and action.pressed then
 		if self.handpos == 1 then
-			data.save.length = data.save.length + 1
+			data.save.mode = data.save.mode + 1
 			data.sound("step")
 			settext()
 		elseif self.handpos == 2 then
-			data.save.diff = data.save.diff + 1
+			data.save.length = data.save.length + 1
 			data.sound("step")
 			settext()
 		elseif self.handpos == 3 then
-			data.save.hints = not data.save.hints
+			data.save.diff = data.save.diff + 1
 			data.sound("step")
 			settext()
 		elseif self.handpos == 4 then
-			data.save.ai[1] = not data.save.ai[1]
+			data.save.hints = not data.save.hints
 			data.sound("step")
 			settext()
 		elseif self.handpos == 5 then
-			data.save.ai[2] = not data.save.ai[2]
+			data.save.ai[1] = not data.save.ai[1]
 			data.sound("step")
 			settext()
 		elseif self.handpos == 6 then
+			data.save.ai[2] = not data.save.ai[2]
+			data.sound("step")
+			settext()
+		elseif self.handpos == 7 then
 			ui.hide(self.node)
 			data.state = data.STATE_NULL
 			timer.delay(0.2, false, function() startgame(self) end)
-		elseif self.handpos == 7 then
+		elseif self.handpos == 8 then
 			close(self)
 		end
 	elseif action_id == hash("back") and action.pressed then

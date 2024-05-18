@@ -35,6 +35,19 @@ local function shadow(x, y)
 	end
 end
 
+local function isfloortile(t)
+	local r = false
+	if t == 149 then
+		r = true
+	elseif data.save.mode == 1 then
+		if t >= 165 and t <= 166 then
+			r = true
+		end
+	end
+
+	return r
+end
+
 local function parse()
 	data.wp = {}
 	data.maxwp = 0
@@ -48,7 +61,7 @@ local function parse()
 				else
 					tilemap.set_tile("#tilemap", "world", x, y, 0)
 				end
-			elseif t == 149 then
+			elseif isfloortile(t) then
 				tilemap.set_tile("#tilemap", "world", x, y, math.random(149, 152))
 				shadow(x, y)
 			elseif t == 153 then
@@ -66,7 +79,9 @@ local function parse()
 			end
 
 			local c = tilemap.get_tile("#tilemap", "control", x, y)
-			if c == 183 then
+			if c == 178 and data.save.mode ~= 2 then
+				tilemap.set_tile("#tilemap", "control", x, y, 0)
+			elseif c == 183 then
 				tilemap.set_tile("#tilemap", "control", x, y, 0)
 				data.cursor = vmath.vector3(x, y, 0)
 				msg.post("common/view", "snap_to")
