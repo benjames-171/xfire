@@ -22,7 +22,7 @@ show_made_with_defold = 0
 show_fullscreen_button = 0
 
 [project]
-version = v0.1b
+version = v0.2b
 title = Xfire
 dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
 dependencies#1 = https://github.com/selimanac/defold-astar/archive/master.zip

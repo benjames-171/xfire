@@ -9,10 +9,26 @@ local ST_RETREAT = 3
 local ST_REGEN = 4
 local ST_END = 5
 
+local function findtile(self, x, y)
+	local ox = {0,0,0,-1,1}
+	local oy = {0,1,-1,0,0}
+
+	for n = 1, 5 do
+		local t = tilemap.get_tile("level#tilemap", "world", x + ox[n], y + oy[n])
+		local c = tilemap.get_tile("level#tilemap", "control", x + ox[n], y + oy[n])
+		if not data.walltile(t) and not data.solidtile(c) and not unit.findxy(x, y) then
+			return x + ox[n], y + oy[n]
+		end
+	end
+	return x, y
+end
+
 local function findpath(self, sx, sy, tx, ty)
 	local map = {}
 	local cost = {[1] = {1,1,1,1}}
 
+	tx, ty = findtile(self, tx, ty)
+	
 	for y = 1, data.MAP_SIZE do
 		for x = 1, data.MAP_SIZE do
 			local t = tilemap.get_tile("level#tilemap", "world", x, y)
@@ -51,19 +67,14 @@ end
 
 function final(self)
 	if self.flag then
-		if self.flag then
-			unit.dropflag()
-		end
+		unit.dropflag()
 	end
 end
 
 local function goafterflag(self)
 	local r = false
 	if data.save.mode == 2 and not data.flaginplay then
-		local dist = vmath.length(data.flag - vmath.vector3(unit.stat.x, unit.stat.y, 0))
-		if dist < 10 then
-			r = true
-		elseif math.random(1, 2) == 1 then
+		if math.random(1, 2) == 1 then
 			r = true
 		end
 	end
@@ -72,7 +83,7 @@ end
 
 local function reset(self)
 	self.step = 0
-	
+
 	if data.save.mode == 2 and self.flag then
 		self.endpoint = vmath.vector3(data.base[unit.stat.team])
 	elseif goafterflag(self) then
@@ -103,6 +114,14 @@ local function step(self)
 end
 
 local function move(self)
+	if data.save.mode == 2 and not data.flaginplay and self.endpoint ~= data.flag then
+		local dist = vmath.length(data.flag - vmath.vector3(unit.stat.x, unit.stat.y, 0))
+		if dist < 5 then
+			self.endpoint = vmath.vector3(data.flag)
+			self.step = 0
+		end
+	end
+
 	if self.step == 0 then
 		findpath(self, unit.stat.x, unit.stat.y, self.endpoint.x, self.endpoint.y)
 		data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
