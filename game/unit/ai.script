@@ -35,7 +35,7 @@ local function findpath(self, sx, sy, tx, ty)
 		self.step = 2
 	else
 		self.state = ST_ERR
-		print(string.format("pathing error %d,%d - %d,%d", sx,sy,tx,ty))
+		print(string.format("path blocked %d,%d - %d,%d", sx,sy,tx,ty))
 	end
 end
 

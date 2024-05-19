@@ -23,7 +23,6 @@ local function flash(self)
 
 	if self.unit.hp <= 0 then
 		msg.post("common/effect", "explode", {pos = go.get_position()})
-		--msg.post(unit.obj, "resettargets")
 		data.sound("exp-large")
 		unit.delete(self.target.x, self.target.y)
 		timer.cancel(self.handle)
