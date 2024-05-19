@@ -43,16 +43,36 @@ function init(self)
 	self.enemy = {}
 	self.plen = 0
 	self.step = 0
+	self.flag = false
 	self.state = ST_RESET
 	self.endpoint = vmath.vector3()
 end
 
+function final(self)
+	if self.flag then
+		local pos = data.world2tile(go.get_position())
+		tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
+		data.flag = pos
+	end
+end
+
 local function reset(self)
 	self.step = 0
-	repeat
-		self.endpoint = data.wp[math.random(1, data.maxwp)]
-		local len = vmath.length(self.endpoint - vmath.vector3(unit.stat.x, unit.stat.y, 0))
-	until len > 16
+	
+	if data.save.mode == 2 and self.flag then
+		self.endpoint = vmath.vector3(data.base[unit.stat.team])
+		print(self, "returning to base")
+	elseif data.save.mode == 2 and math.random(1,2) == 1 then
+		self.endpoint = vmath.vector3(data.flag)
+		print(self, "going after flag")
+	elseif data.save.mode == 2 and self.flag then
+		self.endpoint = vmath.vector3(data.base[unit.stat.team])
+	else
+		repeat
+			self.endpoint = data.wp[math.random(1, data.maxwp)]
+			local len = vmath.length(self.endpoint - vmath.vector3(unit.stat.x, unit.stat.y, 0))
+		until len > 16
+	end
 	data.cursor = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	msg.post("common/view#script", "snap_to")
 	self.state = ST_MOVE
@@ -123,6 +143,24 @@ local function fire(self)
 	end
 end
 
+local function pickup(self)
+	local t = tilemap.get_tile("level#tilemap", "control", unit.stat.x, unit.stat.y)
+	if t == 178 then
+		tilemap.set_tile("level#tilemap", "control", unit.stat.x, unit.stat.y, 0)
+		self.flag = true
+		self.state = ST_RESET
+		msg.post("#flag", "enable")
+		data.sound("powerup")
+	end
+
+	if self.flag then
+		t = tilemap.get_tile("level#tilemap", "world", unit.stat.x, unit.stat.y)
+		if (unit.stat.team == 1 and t == 165) or (unit.stat.team == 2 and t == 166) then
+			msg.post("common/view#complete", "show")
+		end
+	end
+end
+
 local function think(self)
 	if self.state == ST_RESET then
 		reset(self)
@@ -142,6 +180,10 @@ local function think(self)
 		msg.post("common/turn", "nextunit")
 		self.step = 0
 		self.state = ST_RESET
+	end
+	pickup(self)
+	if self.flag then
+		data.flag = vmath.vector3(unit.stat.x, unit.stat.y, 0)
 	end
 	msg.post("common/view#game", "panel", {x = unit.stat.x, y = unit.stat.y})
 end

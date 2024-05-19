@@ -25,6 +25,7 @@ function final(self)
 	if self.flag then
 		local pos = data.world2tile(go.get_position())
 		tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
+		data.flag = pos
 	end
 end
 
@@ -99,6 +100,9 @@ function update(self, dt)
 			if move(self) then
 				findtargets(self)
 				pickup(self)
+				if self.flag then
+					data.flag = vmath.vector3(unit.stat.x, unit.stat.y, 0)
+				end
 			end
 		end
 		flash(self, dt)
