@@ -23,9 +23,7 @@ end
 
 function final(self)
 	if self.flag then
-		local pos = data.world2tile(go.get_position())
-		tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
-		data.flag = pos
+		unit.dropflag()
 	end
 end
 

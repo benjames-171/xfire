@@ -133,6 +133,12 @@ function M.setcursor()
 	data.cursor.y = math.floor(data.cursor.y)
 end
 
+function M.dropflag()
+	local pos = data.world2tile(go.get_position())
+	tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
+	data.flag = pos
+end
+
 function M.gameover()
 	local t = {}
 	for n = 1, data.MAX_TEAMS do

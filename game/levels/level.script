@@ -80,8 +80,10 @@ local function parse()
 			end
 
 			local c = tilemap.get_tile("#tilemap", "control", x, y)
-			if c == 178 and data.save.mode ~= 2 then
-				tilemap.set_tile("#tilemap", "control", x, y, 0)
+			if c == 178 then
+				if data.save.mode ~= 2 then
+					tilemap.set_tile("#tilemap", "control", x, y, 0)
+				end
 				data.flag = vmath.vector3(pos)
 			elseif c == 183 then
 				tilemap.set_tile("#tilemap", "control", x, y, 0)
