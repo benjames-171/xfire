@@ -137,6 +137,7 @@ function M.dropflag()
 	local pos = data.world2tile(go.get_position())
 	tilemap.set_tile("level#tilemap", "control", pos.x, pos.y, 178)
 	data.flag = pos
+	data.flaginplay = false
 end
 
 function M.gameover()

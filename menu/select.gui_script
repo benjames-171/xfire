@@ -82,6 +82,7 @@ local function startgame(self)
 	data.hints = {}
 	data.level = data.save.length
 	data.state = data.STATE_PLAYING
+	data.flaginplay = false
 	msg.post("main:/handler", "show_game")
 end
 

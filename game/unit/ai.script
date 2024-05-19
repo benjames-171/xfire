@@ -59,7 +59,7 @@ end
 
 local function goafterflag(self)
 	local r = false
-	if data.save.mode == 2 then
+	if data.save.mode == 2 and not data.flaginplay then
 		local dist = vmath.length(data.flag - vmath.vector3(unit.stat.x, unit.stat.y, 0))
 		if dist < 10 then
 			r = true
@@ -77,6 +77,10 @@ local function reset(self)
 		self.endpoint = vmath.vector3(data.base[unit.stat.team])
 	elseif goafterflag(self) then
 		self.endpoint = vmath.vector3(data.flag)
+	elseif data.flaginplay then
+		if math.random(1, 2) == 1 then
+			self.endpoint = vmath.vector3(data.base[3 - unit.stat.team])
+		end
 	else
 		repeat
 			self.endpoint = data.wp[math.random(1, data.maxwp)]
@@ -159,6 +163,7 @@ local function pickup(self)
 		tilemap.set_tile("level#tilemap", "control", unit.stat.x, unit.stat.y, 0)
 		self.flag = true
 		self.state = ST_RESET
+		data.flaginplay = true
 		msg.post("#flag", "enable")
 		data.sound("powerup")
 	end

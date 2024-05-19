@@ -49,6 +49,7 @@ local function pickup(self)
 	if t == 178 then
 		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
 		self.flag = true
+		data.flaginplay = true
 		msg.post("#flag", "enable")
 		data.sound("powerup")
 	elseif t == 192 then

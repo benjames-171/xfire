@@ -33,6 +33,7 @@ M.flag = vmath.vector3()
 M.scroll = vmath.vector3()
 M.offset = vmath.vector3(8.5, 8.5, 0)
 M.bounds = vmath.vector4(0, -2, M.MAP_SIZE - 16, M.MAP_SIZE - 14)
+M.flaginplay = false
 M.gate = {}
 M.wp = {}
 M.base = {}
