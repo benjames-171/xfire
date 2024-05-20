@@ -35,8 +35,8 @@ local function apply(self)
 	elseif self.handpos == 3 then
 		unit.stat.power = unit.stat.power + 2
 	elseif self.handpos == 4 then
-		unit.stat.firemax = unit.stat.firemax + 1
-		unit.stat.fire = unit.stat.fire + 1
+		unit.stat.firemax = data.clamp(unit.stat.firemax + 1, 1, 8)
+		unit.stat.fire = data.clamp(unit.stat.fire + 1, 1, 8)
 	end
 end
 

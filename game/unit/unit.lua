@@ -32,13 +32,18 @@ end
 
 function M.add(x, y, team, type, obj)
 	local diff = 1
+	local movextra = 0
+	local firextra = 0
+	
 	if data.save.ai[team] then
 		diff = data.diff()
+		movextra = data.save.diff
+		firextra = data.clamp(data.save.diff, 0, 2)
 	end
 
 	local unit = {x = x, y = y, team = team, type = type, hp = M.hp[type] * diff, hpmax = M.hp[type] * diff, obj = obj,
-		armor = M.armor[type], power = M.power[type], move = M.movemax[type], movemax = M.movemax[type],
-		fire = M.firemax[type], firemax = M.firemax[type]}
+	armor = M.armor[type], power = M.power[type], move = M.movemax[type] + movextra, movemax = M.movemax[type] + movextra,
+	fire = M.firemax[type] + firextra, firemax = M.firemax[type] + firextra}
 
 	table.insert(M.data, unit)
 	M.total[team] = M.total[team] + 1
