@@ -13,6 +13,10 @@ local function findtile(self, x, y)
 	local ox = {0,0,0,-1,1}
 	local oy = {0,1,-1,0,0}
 
+	if x == 0 or y == 0 then 
+		return 32, 32
+	end
+
 	for n = 1, 5 do
 		local nx = x + ox[n]
 		local ny = y + oy[n]
@@ -30,7 +34,7 @@ local function findpath(self, sx, sy, tx, ty)
 	local cost = {[1] = {1,1,1,1}}
 
 	tx, ty = findtile(self, tx, ty)
-	
+
 	for y = 1, data.MAP_SIZE do
 		for x = 1, data.MAP_SIZE do
 			local t = tilemap.get_tile("level#tilemap", "world", x, y)
