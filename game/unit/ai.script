@@ -14,10 +14,12 @@ local function findtile(self, x, y)
 	local oy = {0,1,-1,0,0}
 
 	for n = 1, 5 do
-		local t = tilemap.get_tile("level#tilemap", "world", x + ox[n], y + oy[n])
-		local c = tilemap.get_tile("level#tilemap", "control", x + ox[n], y + oy[n])
-		if not data.walltile(t) and not data.solidtile(c) and not unit.findxy(x, y) then
-			return x + ox[n], y + oy[n]
+		local nx = x + ox[n]
+		local ny = y + oy[n]
+		local t = tilemap.get_tile("level#tilemap", "world", nx, ny)
+		local c = tilemap.get_tile("level#tilemap", "control", nx, ny)
+		if not data.walltile(t) and not data.solidtile(c) and not unit.findxy(nx, ny) then
+			return nx, ny
 		end
 	end
 	return x, y
@@ -88,10 +90,8 @@ local function reset(self)
 		self.endpoint = vmath.vector3(data.base[unit.stat.team])
 	elseif goafterflag(self) then
 		self.endpoint = vmath.vector3(data.flag)
-	elseif data.flaginplay then
-		if math.random(1, 2) == 1 then
-			self.endpoint = vmath.vector3(data.base[3 - unit.stat.team])
-		end
+	elseif data.flaginplay and math.random(1, 2) == 1 then
+		self.endpoint = vmath.vector3(data.base[3 - unit.stat.team])
 	else
 		repeat
 			self.endpoint = data.wp[math.random(1, data.maxwp)]

@@ -5,7 +5,8 @@ local hints = {
 	"PRESS SELECT ON A BLANK TILE TO SHOW THE COMMAND MENU",
 	"USE LEFT & RIGHT KEYS TO SWITCH BETWEEN TARGETS",
 	"IN CURSOR MODE, PRESS <BACK> TO SWITCH BETWEEN UNITS",
-	"SELECT 'REGENERATE' FROM COMMAND MENU TO REGAIN 2 HP"
+	"SELECT 'REGENERATE' FROM COMMAND MENU TO REGAIN 2 HP",
+	"TAKE THE FLAG BACK TO YOUR BASE"
 }
 
 local turntext = {"RED TEAM'S TURN - ", "BLUE TEAM'S TURN - "}
@@ -14,6 +15,13 @@ function init(self)
 	self.hints = {}
 	self.handle = nil
 	gui.set_render_order(1)
+end
+
+function update(self)
+	if sys.get_engine_info().is_debug then
+		--local text = string.format("FLAG POS %d, %d\nFLAG IN PLAY %s", data.flag.x, data.flag.y, tostring(data.flaginplay))
+		--gui.set_text(gui.get_node("debug"), text)
+	end
 end
 
 local function panel(info)

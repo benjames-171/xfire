@@ -51,6 +51,7 @@ local function pickup(self)
 		self.flag = true
 		data.flaginplay = true
 		msg.post("#flag", "enable")
+		msg.post("common/view#game", "hint", {num = 5})
 		data.sound("powerup")
 	elseif t == 192 then
 		tilemap.set_tile("level#tilemap", "control", data.cursor.x, data.cursor.y, 0)
