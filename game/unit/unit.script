@@ -150,6 +150,9 @@ local function input_move(self, action_id, action)
 		menu(self)
 	elseif action_id == hash("back") and action.pressed then
 		cancel(self)
+	elseif action_id == hash("debug") and action.pressed and sys.get_engine_info().is_debug then
+		unit.stat.move = 16
+		msg.post("common/view#game", "panel", {x = data.cursor.x, y = data.cursor.y})
 	end
 end
 

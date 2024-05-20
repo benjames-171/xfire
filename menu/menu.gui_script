@@ -16,7 +16,7 @@ function init(self)
 	gui.set_position(self.node, vmath.vector3(data.SCR_W/2, (data.SCR_H/2), 0))
 
 	local info = sys.get_engine_info()
-	local text = string.format("%s (%s)", sys.get_config("project.version"), info.version)
+	local text = string.format("%s [%s]", sys.get_config("project.version"), info.version)
 	gui.set_text(gui.get_node("v"), text)
 	data.playmusic("music-menu")
 	data.state = data.STATE_MENU

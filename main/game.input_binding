@@ -43,10 +43,6 @@ key_trigger {
   action: "action"
 }
 key_trigger {
-  input: KEY_ENTER
-  action: "action"
-}
-key_trigger {
   input: KEY_W
   action: "action"
 }
