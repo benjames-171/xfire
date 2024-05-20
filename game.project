@@ -24,6 +24,8 @@ show_fullscreen_button = 0
 [project]
 version = v0.2b
 title = Xfire
+publisher = 171Dev
+developer = 171Dev
 dependencies#0 = https://github.com/subsoap/defos/archive/master.zip
 dependencies#1 = https://github.com/selimanac/defold-astar/archive/master.zip
 
@@ -48,4 +50,7 @@ max_count = 0
 
 [model]
 max_count = 0
+
+[windows]
+app_icon = /assets/xfire.ico
 

@@ -10,11 +10,10 @@ function init(self)
 		_ = math.random()
 	end
 	if not html5 then
-		if sys.get_engine_info().is_debug then
-			defos.set_view_size(nil,nil, 256*3, 224*3)
-			defos.disable_window_resize()
-			defos.disable_maximize_button()
-		else
+		defos.set_view_size(nil,nil, 256*3, 224*3)
+		defos.disable_window_resize()
+		defos.disable_maximize_button()
+		if not sys.get_engine_info().is_debug then
 			data.fullscreen()
 		end
 	end
