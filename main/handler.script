@@ -9,16 +9,14 @@ function init(self)
 	for _ = 1, t do
 		_ = math.random()
 	end
+	data.loadgamefile()
 	if not html5 then
 		defos.set_view_size(nil,nil, 256*3, 224*3)
 		defos.disable_window_resize()
 		defos.disable_maximize_button()
-		if not sys.get_engine_info().is_debug then
-			data.fullscreen()
-		end
+		defos.set_fullscreen(data.save.fullscreen)
 	end
 	astar.setup(data.MAP_SIZE, data.MAP_SIZE, astar.DIRECTION_FOUR, data.MAP_SIZE * data.MAP_SIZE, 8, false)
-	data.loadgamefile()
 end
 
 function on_message(self, message_id, message, sender)

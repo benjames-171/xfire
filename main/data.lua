@@ -50,6 +50,7 @@ M.save = {
 	mode = 1,
 	length = 1,
 	hints = true,
+	fullscreen = true,
 	ai = {false, true},
 	speed = 2,
 	sfx = 8,
@@ -172,9 +173,8 @@ function M.formattime(time)
 end
 
 function M.fullscreen()
-	defos.toggle_fullscreen()
-	defos.disable_window_resize()
-	defos.disable_maximize_button()
+	M.save.fullscreen = not M.save.fullscreen
+	defos.set_fullscreen(M.save.fullscreen)
 end
 
 return M
