@@ -7,7 +7,7 @@ function init(self)
 end
 
 local function input(self, action_id, action)
-	if (action_id == hash("back") or action_id == hash("action")) and action.pressed then
+	if (action_id == hash("back") or action_id == hash("action") or action_id == hash("esc")) and action.pressed then
 		ui.hide(self.node)
 		msg.post("#menu", "show", {})
 		data.sound("menu-back")

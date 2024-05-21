@@ -19,6 +19,7 @@ M.total = {0, 0}
 M.turn = 1
 M.numturns = 0
 M.next = 0
+M.targets = 0
 
 function M.init()
 	M.data = {}
@@ -94,7 +95,7 @@ end
 function M.findtargets(self)
 	self.target = {}
 	local pos = data.tile2world(vmath.vector3(M.stat.x, M.stat.y, 0)) + vmath.vector3(-8, -8, 0)
-	local total = 0
+	M.targets = 0
 
 	for _, v in pairs(M.data) do
 		if M.stat.team ~= v.team then
@@ -102,12 +103,11 @@ function M.findtargets(self)
 			local ray = physics.raycast(pos, target, {hash("world")})
 			if ray == nil and vmath.length(target - pos) < M.MAX_VIS then
 				table.insert(self.target, vmath.vector3(v.x, v.y, 0))
-				total = total + 1
+				M.targets = M.targets + 1
 			end
 		end
 	end
-
-	return total
+	return M.targets
 end
 
 function M.getname(type)

@@ -18,10 +18,10 @@ function init(self)
 end
 
 function update(self)
-	if sys.get_engine_info().is_debug then
-		--local text = string.format("FLAG POS %d, %d\nFLAG IN PLAY %s", data.flag.x, data.flag.y, tostring(data.flaginplay))
-		--gui.set_text(gui.get_node("debug"), text)
-	end
+	--[[if sys.get_engine_info().is_debug then
+		local text = tostring(unit.targets)
+		gui.set_text(gui.get_node("debug"), text)
+	end--]]
 end
 
 local function panel(info)

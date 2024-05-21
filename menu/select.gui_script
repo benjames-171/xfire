@@ -133,7 +133,7 @@ local function input(self, action_id, action)
 		elseif self.handpos == 8 then
 			close(self)
 		end
-	elseif action_id == hash("back") and action.pressed then
+	elseif (action_id == hash("back") or action_id == hash("esc")) and action.pressed then
 		close(self)
 	end
 end
