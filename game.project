@@ -22,7 +22,7 @@ show_made_with_defold = 0
 show_fullscreen_button = 0
 
 [project]
-version = v0.2b
+version = V1.0
 title = Xfire
 publisher = 171Dev
 developer = 171Dev
